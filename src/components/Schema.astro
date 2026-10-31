@@ -1,0 +1,24 @@
+---
+import { buildGraph, serializeJsonLd, type Crumb, type Faq, type Step } from '../lib/schema';
+
+interface Props {
+  description: string;
+  crumbs?: Crumb[];
+  faqs?: Faq[];
+  steps?: Step[];
+  processTitle?: string;
+  serviceName?: string;
+}
+
+const graph = buildGraph({
+  pageUrl: new URL(Astro.url.pathname, Astro.site).href,
+  description: Astro.props.description,
+  crumbs: Astro.props.crumbs,
+  faqs: Astro.props.faqs,
+  steps: Astro.props.steps,
+  processTitle: Astro.props.processTitle,
+  serviceName: Astro.props.serviceName,
+});
+---
+
+<script type="application/ld+json" set:html={serializeJsonLd(graph)} />

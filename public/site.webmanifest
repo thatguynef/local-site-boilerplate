@@ -1,0 +1,11 @@
+{
+  "name": "Example Plumbing",
+  "short_name": "Example Plumbing",
+  "icons": [
+    { "src": "/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0c4a4a",
+  "background_color": "#f4f7f8",
+  "display": "browser"
+}

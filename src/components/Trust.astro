@@ -1,0 +1,49 @@
+---
+import { business } from '../config/business';
+
+const slots = [
+  {
+    label: 'License',
+    value: business.licenseNumber,
+    empty: 'Add the license number in src/config/business.ts.',
+  },
+  {
+    label: 'Insurance',
+    value: business.insurance,
+    empty: 'Add the insurance statement in src/config/business.ts.',
+  },
+  {
+    label: 'Guarantee',
+    value: business.guarantee,
+    empty: 'Add the guarantee term and scope in src/config/business.ts.',
+  },
+];
+
+const reviewsReady = business.reviews.rating && business.reviews.count && business.reviews.source && business.reviews.url;
+---
+
+<section class="section trust" data-trust>
+  <h2>License, insurance, and guarantee</h2>
+  {business.ownerName ? (
+    <p>{business.ownerName} owns {business.businessName}.</p>
+  ) : (
+    <p class="placeholder">Add the owner or team name in src/config/business.ts.</p>
+  )}
+  {slots.map((slot) => (
+    <p class:list={{ placeholder: !slot.value }}>
+      <strong>{slot.label}:</strong> {slot.value || slot.empty}
+    </p>
+  ))}
+  {reviewsReady ? (
+    <p>
+      <a href={business.reviews.url}>{business.reviews.source} rating {business.reviews.rating} from {business.reviews.count} reviews</a>
+    </p>
+  ) : (
+    <p class="placeholder">Add the review rating, count, source, and profile URL in src/config/business.ts.</p>
+  )}
+  {business.startingPrice ? (
+    <p>Jobs on this site start at {business.startingPrice}.</p>
+  ) : (
+    <p class="placeholder">Add a starting price in src/config/business.ts when you want one published.</p>
+  )}
+</section>

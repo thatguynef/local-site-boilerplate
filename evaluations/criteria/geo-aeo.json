@@ -1,0 +1,42 @@
+{
+  "scorecard": "GEO and AEO readiness",
+  "url": "https://github.com/thatguynef/website-scorecard",
+  "items": [
+    {
+      "id": "GEO-FAQ-SCHEMA",
+      "category": "Extractable answers",
+      "summary": "FAQPage schema matches the visible questions and answers.",
+      "requires": ["GEO-FAQ-SCHEMA", "jsonld-faq-match"]
+    },
+    {
+      "id": "GEO-ANSWER",
+      "category": "Extractable answers",
+      "summary": "Service and location pages lead with a short answer that names the city.",
+      "requires": ["GEO-ANSWER", "answer-blocks"]
+    },
+    {
+      "id": "GEO-QUESTION-HEADINGS",
+      "category": "Extractable answers",
+      "summary": "Headings are phrased as questions a person or an answer engine would ask.",
+      "requires": ["GEO-QUESTION-HEADINGS"]
+    },
+    {
+      "id": "GEO-SELF-CONTAINED",
+      "category": "Extractable answers",
+      "summary": "Answers stand alone without 'click here' or 'see above'.",
+      "requires": ["GEO-SELF-CONTAINED"]
+    },
+    {
+      "id": "GEO-HOWTO",
+      "category": "Structured data",
+      "summary": "The sample service page publishes HowTo schema for the visit.",
+      "requires": ["GEO-HOWTO", "jsonld-howto"]
+    },
+    {
+      "id": "GEO-GRAPH",
+      "category": "Structured data",
+      "summary": "Every page has WebSite and local business schema, with no site search action.",
+      "requires": ["GEO-GRAPH", "jsonld-parse", "jsonld-service", "jsonld-breadcrumb"]
+    }
+  ]
+}

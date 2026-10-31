@@ -1,0 +1,25 @@
+---
+import { getEntry, render } from 'astro:content';
+import Page from '../layouts/Page.astro';
+
+export const prerender = true;
+
+const entry = await getEntry('pages', 'home');
+if (!entry) {
+  throw new Error('Missing src/content/pages/home.md');
+}
+const { Content } = await render(entry);
+---
+
+<Page
+  title={entry.data.title}
+  seoTitle={entry.data.seoTitle}
+  description={entry.data.description}
+  answer={entry.data.answer}
+  steps={entry.data.steps}
+  processTitle={entry.data.processTitle}
+  faqs={entry.data.faqs}
+  showArea
+>
+  <Content />
+</Page>

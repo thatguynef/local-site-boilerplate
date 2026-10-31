@@ -1,0 +1,21 @@
+---
+import type { Faq } from '../lib/schema';
+
+interface Props {
+  faqs?: Faq[];
+  heading?: string;
+}
+const { faqs = [], heading = 'Common questions' } = Astro.props;
+---
+
+{faqs.length > 0 && (
+  <section class="section faq" data-faq>
+    <h2>{heading}</h2>
+    {faqs.map((faq) => (
+      <article>
+        <h3>{faq.q}</h3>
+        <p>{faq.a}</p>
+      </article>
+    ))}
+  </section>
+)}

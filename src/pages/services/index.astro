@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import { business } from '../../config/business';
+
+export const prerender = true;
+
+const services = await getCollection('services');
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services/' },
+];
+---
+
+<Page
+  title="Plumbing services in Example City"
+  seoTitle="Plumbing Services in Example City"
+  description="Example Plumbing offers drain cleaning, water heater repair, and leak detection for homes in Example City."
+  answer="Example Plumbing works on drain cleaning, water heater repair, and leak detection for homes in Example City. Drain cleaning is written up below. The other two start with a call until you add their pages."
+  crumbs={crumbs}
+  showArea
+>
+  <ul class="card-list">
+    {business.primaryServices.map((service) => {
+      const page = services.find((entry) => entry.data.title.toLowerCase().includes(service.name.toLowerCase()));
+      const href = page ? `/services/${page.id}/` : service.href;
+      return (
+        <li class="card">
+          <h2>{service.name}</h2>
+          <p>{service.name} for homes in {business.address.city}.</p>
+          <a href={href}>{page ? `Read about ${service.name}` : `Request ${service.name}`}</a>
+        </li>
+      );
+    })}
+  </ul>
+</Page>

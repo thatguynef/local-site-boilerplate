@@ -1,0 +1,29 @@
+---
+import { business } from '../config/business';
+
+const year = new Date().getFullYear();
+const { address } = business;
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <address class="nap" data-nap>
+      <span data-name>{business.businessName}</span>
+      <span data-street>{address.street}</span>
+      <span>
+        <span data-city>{address.city}</span>, <span data-region>{address.region}</span> <span data-postal>{address.postalCode}</span>
+      </span>
+      <a data-phone href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
+      <a href={`mailto:${business.email}`}>{business.email}</a>
+      <span data-hours>{business.hoursDisplay}</span>
+    </address>
+    <nav class="footer-nav" aria-label="Footer">
+      <ul>
+        {business.footerNav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <p class="wrap legal">© {year} {business.businessName}</p>
+</footer>

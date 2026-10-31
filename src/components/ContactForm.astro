@@ -1,0 +1,49 @@
+---
+import { business } from '../config/business';
+
+const times = ['Morning (7–11 a.m.)', 'Afternoon (11 a.m.–4 p.m.)', 'Evening (4–7 p.m.)'];
+---
+
+<form class="form" method="post" action="/api/contact/">
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" autocomplete="name" required />
+  </div>
+  <div class="field">
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required />
+  </div>
+  <div class="field">
+    <label for="area">ZIP code or area</label>
+    <input id="area" name="area" type="text" autocomplete="postal-code" required />
+  </div>
+  <div class="field">
+    <label for="service">Service needed</label>
+    <select id="service" name="service" required>
+      <option value="">Choose a service</option>
+      {business.primaryServices.map((service) => (
+        <option value={service.name}>{service.name}</option>
+      ))}
+    </select>
+  </div>
+  <div class="field">
+    <label for="preferredTime">Preferred contact time</label>
+    <select id="preferredTime" name="preferredTime" required>
+      <option value="">Choose a time</option>
+      {times.map((time) => <option value={time}>{time}</option>)}
+    </select>
+  </div>
+  <div class="field">
+    <label for="message">Message</label>
+    <textarea id="message" name="message"></textarea>
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label for="company">Company</label>
+    <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <button class="button" type="submit">Request a call</button>
+</form>

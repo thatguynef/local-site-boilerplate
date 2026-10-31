@@ -1,0 +1,8 @@
+---
+interface Props {
+  text?: string;
+}
+const { text } = Astro.props;
+---
+
+{text && <p class="answer" data-answer>{text}</p>}

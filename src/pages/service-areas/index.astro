@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+
+export const prerender = true;
+
+const areas = await getCollection('serviceAreas');
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Service areas', href: '/service-areas/' },
+];
+---
+
+<Page
+  title="Plumbing service areas in Example City"
+  seoTitle="Plumbing Service Areas in Example City"
+  description="Example Plumbing serves Example City, including North Example, Old Town, and River District."
+  answer="Example Plumbing serves homes in Example City. The sample area includes North Example, Old Town, and River District. Add one page for each city you actually drive to."
+  crumbs={crumbs}
+>
+  <ul class="card-list">
+    {areas.map((area) => (
+      <li class="card">
+        <h2>{area.data.city}</h2>
+        <p>{area.data.neighborhoods.join(', ')}</p>
+        <a href={`/service-areas/${area.id}/`}>Plumbing in {area.data.city}</a>
+      </li>
+    ))}
+  </ul>
+</Page>

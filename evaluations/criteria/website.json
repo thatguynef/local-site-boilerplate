@@ -1,0 +1,163 @@
+{
+  "scorecard": "Website Scorecard",
+  "url": "https://github.com/thatguynef/website-scorecard",
+  "docs": "https://thatguynef.github.io/website-scorecard/",
+  "items": [
+    {
+      "id": "RL-UND-01",
+      "category": "Understand",
+      "summary": "The home page names the primary service in plain language.",
+      "requires": ["RL-UND-01"]
+    },
+    {
+      "id": "RL-UND-02",
+      "category": "Understand",
+      "summary": "The home page names the city served.",
+      "requires": ["RL-UND-02"]
+    },
+    {
+      "id": "RL-UND-03",
+      "category": "Understand",
+      "summary": "The home page opens with the problem and the outcome.",
+      "requires": ["RL-UND-03"]
+    },
+    {
+      "id": "RL-UND-04",
+      "category": "Understand",
+      "summary": "A primary action is visible on the home page.",
+      "requires": ["RL-UND-04"]
+    },
+    {
+      "id": "RL-UND-06",
+      "category": "Understand",
+      "summary": "Services are in the main navigation.",
+      "requires": ["RL-UND-06"]
+    },
+    {
+      "id": "RL-UND-07",
+      "category": "Understand",
+      "summary": "A service-area page exists for the sample city.",
+      "requires": ["RL-UND-07"]
+    },
+    {
+      "id": "RL-CON-01",
+      "category": "Contact",
+      "summary": "The same phone digits appear in the header, footer, and contact page.",
+      "requires": ["RL-CON-01"]
+    },
+    {
+      "id": "RL-CON-02",
+      "category": "Contact",
+      "summary": "The header phone is a click-to-call link.",
+      "requires": ["RL-CON-02"]
+    },
+    {
+      "id": "RL-CON-04",
+      "category": "Contact",
+      "summary": "The contact page has a form that posts to the site.",
+      "requires": ["RL-CON-04"]
+    },
+    {
+      "id": "RL-CON-05",
+      "category": "Contact",
+      "summary": "The form asks for no more than six required fields. Full scorecard points prefer five or fewer; the ZIP field is kept on purpose.",
+      "requires": ["RL-CON-05"]
+    },
+    {
+      "id": "RL-CON-06",
+      "category": "Contact",
+      "summary": "Form controls have labels and the expected input types.",
+      "requires": ["RL-CON-06"]
+    },
+    {
+      "id": "RL-CON-08",
+      "category": "Contact",
+      "summary": "Home, service, about, and contact pages each offer a next step.",
+      "requires": ["RL-CON-08"]
+    },
+    {
+      "id": "RL-RSP-01",
+      "category": "Respond and Book",
+      "summary": "The contact page states when someone calls back.",
+      "requires": ["RL-RSP-01"]
+    },
+    {
+      "id": "RL-RSP-02",
+      "category": "Respond and Book",
+      "summary": "The contact page shows business hours.",
+      "requires": ["RL-RSP-02"]
+    },
+    {
+      "id": "RL-RSP-04",
+      "category": "Respond and Book",
+      "summary": "The thank-you page says what happens next.",
+      "requires": ["RL-RSP-04"]
+    },
+    {
+      "id": "RL-RSP-05",
+      "category": "Respond and Book",
+      "summary": "The form collects the service, the area, a message, and a preferred time.",
+      "requires": ["RL-RSP-05"]
+    },
+    {
+      "id": "RL-TRU-04",
+      "category": "Trust",
+      "summary": "A license slot is on the page and stays empty until a real number is added.",
+      "requires": ["RL-TRU-04"]
+    },
+    {
+      "id": "RL-TRU-05",
+      "category": "Trust",
+      "summary": "A guarantee slot is on the page and stays empty until a real term is added.",
+      "requires": ["RL-TRU-05"]
+    },
+    {
+      "id": "RL-MOB-01",
+      "category": "Mobile and Technical",
+      "summary": "Pages set a device-width viewport.",
+      "requires": ["RL-MOB-01"]
+    },
+    {
+      "id": "RL-MOB-02",
+      "category": "Mobile and Technical",
+      "summary": "Pages include a skip link and a mobile viewport.",
+      "requires": ["RL-MOB-02"]
+    },
+    {
+      "id": "RL-MOB-03",
+      "category": "Mobile and Technical",
+      "summary": "Focus styles and 44px targets ship in the stylesheet.",
+      "requires": ["RL-MOB-03"]
+    },
+    {
+      "id": "RL-FND-01",
+      "category": "Findability",
+      "summary": "Home, service, and location titles, descriptions, and H1s combine a service word with the city.",
+      "requires": ["RL-FND-01"]
+    },
+    {
+      "id": "RL-FND-02",
+      "category": "Findability",
+      "summary": "The home page is indexable and canonical. The 404 and thank-you pages are noindex. The sitemap lists public URLs.",
+      "requires": ["RL-FND-02", "sitemap-public", "sitemap-omits-private"]
+    },
+    {
+      "id": "RL-FND-03",
+      "category": "Findability",
+      "summary": "Local business schema matches the visible name, phone, and street.",
+      "requires": ["RL-FND-03"]
+    },
+    {
+      "id": "RL-FND-04",
+      "category": "Findability",
+      "summary": "The service page and the location page are different documents.",
+      "requires": ["RL-FND-04"]
+    },
+    {
+      "id": "RL-MSR-01",
+      "category": "Measurement",
+      "summary": "An analytics snippet is injected only when a real GA4 or GTM id is set. Empty ids are not a failure.",
+      "requires": ["RL-MSR-01"]
+    }
+  ]
+}

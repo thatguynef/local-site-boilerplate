@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0c4a4a"/>
+  <rect x="72" y="72" width="1056" height="486" fill="none" stroke="#d7ecec" stroke-width="3"/>
+  <text x="112" y="250" fill="#f4f7f8" font-family="Georgia, 'Times New Roman', serif" font-size="76">Example Plumbing</text>
+  <text x="112" y="340" fill="#d7ecec" font-family="Georgia, 'Times New Roman', serif" font-size="42">Drain cleaning in Example City</text>
+  <text x="112" y="430" fill="#f4f7f8" font-family="Georgia, 'Times New Roman', serif" font-size="32">Call (555) 010-0199</text>
+</svg>

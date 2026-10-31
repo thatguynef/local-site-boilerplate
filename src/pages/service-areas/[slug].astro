@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const areas = await getCollection('serviceAreas');
+  return areas.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Service areas', href: '/service-areas/' },
+  { name: entry.data.city, href: `/service-areas/${entry.id}/` },
+];
+---
+
+<Page
+  title={entry.data.title}
+  seoTitle={entry.data.seoTitle}
+  description={entry.data.description}
+  answer={entry.data.answer}
+  steps={entry.data.steps}
+  processTitle={entry.data.processTitle}
+  faqs={entry.data.faqs}
+  city={entry.data.city}
+  neighborhoods={entry.data.neighborhoods}
+  crumbs={crumbs}
+  showArea
+>
+  <Content />
+</Page>

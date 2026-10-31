@@ -1,0 +1,51 @@
+{
+  "scorecard": "Local Visibility Scorecard",
+  "url": "https://thatguynef.github.io/local-visibility-scorecard/",
+  "items": [
+    {
+      "id": "LV-INTENT",
+      "category": "Discovery surfaces",
+      "summary": "Service and location pages use the words a homeowner would search.",
+      "requires": ["LV-INTENT"]
+    },
+    {
+      "id": "LV-UNIQUE",
+      "category": "Discovery surfaces",
+      "summary": "The service index, service detail, and location page are separate URLs with separate H1s.",
+      "requires": ["LV-UNIQUE"]
+    },
+    {
+      "id": "LV-FAQ",
+      "category": "Discovery surfaces",
+      "summary": "FAQ and answer blocks give a generative engine a quotable passage.",
+      "requires": ["LV-FAQ", "GEO-FAQ-SCHEMA"]
+    },
+    {
+      "id": "LV-AREA",
+      "category": "Discovery surfaces",
+      "summary": "areaServed in the schema matches the neighborhoods named on the site.",
+      "requires": ["LV-AREA"]
+    },
+    {
+      "id": "LV-MAPS-RANK",
+      "category": "Discovery surfaces",
+      "status": "not_applicable",
+      "summary": "Map pack rank is off-site.",
+      "reason": "not_applicable: this repository checks the site, not Google Maps rank. See the Local Visibility Scorecard."
+    },
+    {
+      "id": "LV-COMPETITOR",
+      "category": "Discovery surfaces",
+      "status": "not_applicable",
+      "summary": "Competitor share is off-site.",
+      "reason": "not_applicable: competitor share is not something the boilerplate can prove. See the Local Visibility Scorecard."
+    },
+    {
+      "id": "LV-AI-MENTIONS",
+      "category": "Discovery surfaces",
+      "status": "not_applicable",
+      "summary": "Live AI citations are off-site.",
+      "reason": "not_applicable: a build cannot prove that an assistant cites the business. See the Local Visibility Scorecard."
+    }
+  ]
+}

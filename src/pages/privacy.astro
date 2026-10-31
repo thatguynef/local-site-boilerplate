@@ -1,0 +1,26 @@
+---
+import { getEntry, render } from 'astro:content';
+import Page from '../layouts/Page.astro';
+
+export const prerender = true;
+
+const entry = await getEntry('pages', 'privacy');
+if (!entry) throw new Error('Missing privacy content');
+const { Content } = await render(entry);
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Privacy', href: '/privacy/' },
+];
+---
+
+<Page
+  title={entry.data.title}
+  seoTitle={entry.data.seoTitle}
+  description={entry.data.description}
+  answer={entry.data.answer}
+  crumbs={crumbs}
+  showTrust={false}
+  showNext={false}
+>
+  <Content />
+</Page>

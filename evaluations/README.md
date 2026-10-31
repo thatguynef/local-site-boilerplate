@@ -1,0 +1,25 @@
+# Evaluations
+
+`npm run verify` builds the site, starts the preview, runs `scripts/checks/`, and then runs `node evaluations/run.mjs`.
+
+A pass means the built site has the structure this boilerplate promises. It is not a numeric Website Scorecard score, a Maps rank, or proof that an assistant cites the business.
+
+## Scorecards
+
+These evaluations follow the sister scorecards. They do not copy the rubrics.
+
+- Website Scorecard: https://github.com/thatguynef/website-scorecard and https://thatguynef.github.io/website-scorecard/
+- Local Visibility Scorecard: https://thatguynef.github.io/local-visibility-scorecard/
+- GBP Scorecard: https://thatguynef.github.io/gbp-scorecard/
+
+The journey those scorecards describe is discovery, then the Business Profile, then the website. This repository checks the website.
+
+## What is checked
+
+Criteria live in `evaluations/criteria/`. Each item names the assertion ids the checks must emit. A missing or failed assertion fails the run. Evidence is printed and written to `evaluations/results/summary.json` (that folder is gitignored).
+
+Rows marked not applicable are off-site: Maps rank, competitor share, live AI mentions, Business Profile reviews, categories, and posts. Empty analytics ids are also not applicable, because the default site loads no tracker.
+
+## Before launch
+
+The local JSON-LD check compares the schema with the visible page. Before a real domain goes live, also run Google's Rich Results Test and the Schema Markup Validator. Those hosted tools are not the local gate.

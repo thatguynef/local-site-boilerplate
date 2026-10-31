@@ -1,0 +1,51 @@
+{
+  "scorecard": "GBP Scorecard",
+  "url": "https://thatguynef.github.io/gbp-scorecard/",
+  "items": [
+    {
+      "id": "GBP-NAP",
+      "category": "Profile alignment",
+      "summary": "The site publishes one name, address, and phone that a Business Profile can match.",
+      "requires": ["GBP-NAP", "nap-consistent"]
+    },
+    {
+      "id": "GBP-SERVICES",
+      "category": "Profile alignment",
+      "summary": "Primary service names appear on the services index.",
+      "requires": ["GBP-SERVICES"]
+    },
+    {
+      "id": "GBP-TEL",
+      "category": "Action paths",
+      "summary": "The phone number is a tel link.",
+      "requires": ["GBP-TEL"]
+    },
+    {
+      "id": "GBP-HOURS",
+      "category": "Profile alignment",
+      "summary": "Visible hours and openingHoursSpecification describe the same week.",
+      "requires": ["GBP-HOURS"]
+    },
+    {
+      "id": "GBP-REVIEWS",
+      "category": "Profile trust",
+      "status": "not_applicable",
+      "summary": "Profile reviews live on the Business Profile.",
+      "reason": "not_applicable: the site does not invent reviews. See the GBP Scorecard."
+    },
+    {
+      "id": "GBP-CATEGORIES",
+      "category": "Profile trust",
+      "status": "not_applicable",
+      "summary": "GBP categories are set on the profile.",
+      "reason": "not_applicable: category choice is a Business Profile setting. See the GBP Scorecard."
+    },
+    {
+      "id": "GBP-POSTS",
+      "category": "Profile trust",
+      "status": "not_applicable",
+      "summary": "GBP posts are not a page on this site.",
+      "reason": "not_applicable: posts are published on the Business Profile. See the GBP Scorecard."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "local-site-boilerplate",
+  "version": "1.0.0",
+  "description": "Astro boilerplate for local home-service websites. Built for SEO, GEO, and AEO, and ready to deploy on Cloudflare Workers.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "verify": "astro build && ./scripts/run-all.sh"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "14.4.3",
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.0",
+    "sharp": "0.34.5"
+  },
+  "devDependencies": {
+    "impeccable": "4.8.0",
+    "typescript": "5.9.3",
+    "wrangler": "4.156.0"
+  }
+}

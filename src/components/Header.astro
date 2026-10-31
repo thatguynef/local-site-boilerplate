@@ -1,0 +1,29 @@
+---
+import { business } from '../config/business';
+
+const path = Astro.url.pathname;
+---
+
+{business.showExampleBanner && (
+  <div class="banner">
+    <p class="wrap">Example content. Replace the business details in src/config/business.ts before launch.</p>
+  </div>
+)}
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">{business.businessName}</a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        {business.mainNav.map((item) => {
+          const current = item.href === '/' ? path === '/' : path.startsWith(item.href);
+          return (
+            <li>
+              <a href={item.href} aria-current={current ? 'page' : undefined}>{item.label}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+    <a class="header-phone" href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
+  </div>
+</header>

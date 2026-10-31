@@ -1,0 +1,68 @@
+---
+import Base from './Base.astro';
+import Answer from '../components/Answer.astro';
+import Process from '../components/Process.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceArea from '../components/ServiceArea.astro';
+import Trust from '../components/Trust.astro';
+import NextStep from '../components/NextStep.astro';
+import type { Crumb, Faq, Step } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  seoTitle?: string;
+  answer?: string;
+  crumbs?: Crumb[];
+  faqs?: Faq[];
+  steps?: Step[];
+  processTitle?: string;
+  serviceName?: string;
+  city?: string;
+  neighborhoods?: string[];
+  showArea?: boolean;
+  showTrust?: boolean;
+  showNext?: boolean;
+  noindex?: boolean;
+}
+
+const props = Astro.props;
+---
+
+<Base
+  title={props.title}
+  description={props.description}
+  seoTitle={props.seoTitle}
+  noindex={props.noindex}
+  crumbs={props.crumbs}
+  faqs={props.faqs}
+  steps={props.steps}
+  processTitle={props.processTitle}
+  serviceName={props.serviceName}
+>
+  <article class="wrap">
+    {props.crumbs && props.crumbs.length > 0 && (
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          {props.crumbs.map((crumb, index) => (
+            <li>
+              {index === props.crumbs!.length - 1 ? crumb.name : <a href={crumb.href}>{crumb.name}</a>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+    <header class="page-header">
+      <h1>{props.title}</h1>
+      <Answer text={props.answer} />
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+    <Process steps={props.steps} heading={props.processTitle} />
+    {props.showArea && <ServiceArea city={props.city} neighborhoods={props.neighborhoods} />}
+    <FaqList faqs={props.faqs} />
+    {props.showTrust !== false && <Trust />}
+    {props.showNext !== false && <NextStep />}
+  </article>
+</Base>

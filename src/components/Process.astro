@@ -1,0 +1,22 @@
+---
+import type { Step } from '../lib/schema';
+
+interface Props {
+  steps?: Step[];
+  heading?: string;
+}
+const { steps = [], heading = 'How it works' } = Astro.props;
+---
+
+{steps.length > 0 && (
+  <section class="section" data-process>
+    <h2>{heading}</h2>
+    <ol class="steps">
+      {steps.map((step) => (
+        <li>
+          <strong>{step.name}.</strong> {step.text}
+        </li>
+      ))}
+    </ol>
+  </section>
+)}

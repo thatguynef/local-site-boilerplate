@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Design System"
+  short_description: "Build a coherent, usable web design system"
+  default_prompt: "Use $web-design-system to extract or create a practical design system for this frontend."

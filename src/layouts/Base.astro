@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Schema from '../components/Schema.astro';
+import type { Crumb, Faq, Step } from '../lib/schema';
+import { business } from '../config/business';
+
+interface Props {
+  title: string;
+  description: string;
+  seoTitle?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  crumbs?: Crumb[];
+  faqs?: Faq[];
+  steps?: Step[];
+  processTitle?: string;
+  serviceName?: string;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang={business.lang}>
+  <head>
+    <Head
+      title={props.title}
+      description={props.description}
+      seoTitle={props.seoTitle}
+      noindex={props.noindex}
+      ogImage={props.ogImage}
+    />
+    <Schema
+      description={props.description}
+      crumbs={props.crumbs}
+      faqs={props.faqs}
+      steps={props.steps}
+      processTitle={props.processTitle}
+      serviceName={props.serviceName}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

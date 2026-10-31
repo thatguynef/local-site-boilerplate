@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import { business } from '../config/business';
+
+export const prerender = true;
+
+const title = 'Thank you';
+const description = 'Example Plumbing received your request and will call within one business hour, 7:00 a.m. to 7:00 p.m.';
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Thank you', href: '/thank-you/' },
+];
+---
+
+<Base title={title} description={description} crumbs={crumbs} noindex>
+  <article class="wrap">
+    <header class="page-header">
+      <h1>{title}</h1>
+      <p class="answer" data-answer>
+        We received your request. {business.responsePromise} If you need someone sooner, call {business.phoneDisplay}.
+      </p>
+    </header>
+    <div class="prose">
+      <h2>What happens next?</h2>
+      <p>
+        A person from {business.businessName} calls the phone number you sent, during {business.hoursDisplay}.
+        If that window passes with no call, dial <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a> and ask for the request you just sent.
+      </p>
+      <p><a href="/">Back to the home page</a></p>
+    </div>
+  </article>
+</Base>
