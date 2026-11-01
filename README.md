@@ -37,6 +37,10 @@ npm run verify
 
 The site is not ready until `npm run verify` exits 0.
 
+For a client who already has a site, follow [docs/existing-site.md](docs/existing-site.md). That guide uses the current URL as the source of facts and rebuilds the pages in this shape. For a client with no site, follow [docs/new-site.md](docs/new-site.md). That guide starts with an intake checklist.
+
+When the primary service and city slugs change, update `scripts/lib/business.mjs`, `scripts/checks/check-pages.mjs`, `scripts/checks/check-faq.mjs`, and `scripts/checks/check-jsonld.mjs`. Until those files change, `npm run verify` still expects `/services/drain-cleaning/`, `/service-areas/example-city/`, and the words "drain" or "plumb". Both guides list that step.
+
 Deploy to Cloudflare Workers (not Cloudflare Pages):
 
 ```bash

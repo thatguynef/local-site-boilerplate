@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+Added `docs/existing-site.md` and `docs/new-site.md`, and linked both from the README. The first is the path for a client who already has a website. The second is the from-scratch intake and build. Both name the check files that still expect the sample plumbing pages.
+
 ## 1.0.0 - 2026-10-31
 
 First public release.

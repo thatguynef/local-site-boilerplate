@@ -1,0 +1,178 @@
+# Build from an existing website
+
+Use this path when the client already has a site. The current URL is the source of facts and old addresses. Rebuild those facts on this boilerplate. Do not import the old theme, CMS, or page builder.
+
+Create a new repository from this one. Keep client work off `local-site-boilerplate`.
+
+Requires Node.js 22.22.0 or newer. The site deploys to Cloudflare Workers, not Cloudflare Pages. `npm run verify` must exit 0 before launch. A pass means the on-site structure is in place. It is not a numeric scorecard score, a Maps rank, or proof that an assistant cites the business.
+
+Scorecards, without copying their rubrics:
+
+- Website Scorecard: https://github.com/thatguynef/website-scorecard
+- Local Visibility Scorecard: https://thatguynef.github.io/local-visibility-scorecard/
+- GBP Scorecard: https://thatguynef.github.io/gbp-scorecard/
+
+## Locked rules
+
+- Put name, phone, address, hours, service area, and services only in `src/config/business.ts`.
+- `phoneDisplay` and `phoneTel` use the same digits.
+- Leave `ownerName`, `licenseNumber`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the reference site or the client shows a value they can prove.
+- Leave `analytics.ga4` and `analytics.gtm` empty unless the id matches `G-…` or `GTM-…`.
+- One H1 per page. On the home page, the services index, each service page, and each city page, the title, the meta description, and the H1 each include a trade word and the city.
+- Service and city answers are at least 40 characters and say what the company does, where, and how to book. FAQ answers stand alone. Do not write "click here", "see above", or "read more".
+- Do not add a blog in this pass. This boilerplate has no blog.
+- Do not rename form fields. Required: `name`, `phone`, `email`, `area`, `service`, `preferredTime`. Optional: `message`. Honeypot: `company`. The form posts to `/api/contact/`.
+- Keep `/thank-you/` and the 404 page `noindex`. Keep privacy indexable.
+- Files named `_example.md` are templates and are not built.
+- A service with no real page links to `/contact/`.
+- One page per city the client will actually drive to.
+- Visual changes come after the facts and `npm run verify` pass. Use `agent-skills/visual/personalize-client-site/SKILL.md`.
+
+The sample checks look for `/services/drain-cleaning/`, `/service-areas/example-city/`, and the words "drain" or "plumb". After the primary service and city slugs change, update these files or verify still expects the sample plumbing pages:
+
+- `scripts/lib/business.mjs`
+- `scripts/checks/check-pages.mjs`
+- `scripts/checks/check-faq.mjs`
+- `scripts/checks/check-jsonld.mjs`
+
+## Phase 1 — Permission and the reference URL
+
+Collect the canonical URL, including `https://`. Note whether `www` or the bare domain is canonical. Confirm you may reuse the client's own facts and copy. Ask who can confirm the phone, address, hours, license, and services. Ask for access to the domain, the Google Business Profile, and the current form inbox. Record a live analytics id only if they want it kept.
+
+Write a one-page brief: business name, trade, primary city, primary service, and the URL you will treat as the source.
+
+## Phase 2 — Read the site
+
+Visit the home page, each service page, each city or neighborhood page, about, contact, FAQ, and privacy. Save the URL, the title, the H1, and a short note for each.
+
+Pull these into a worksheet. Leave a cell blank when the site does not say it.
+
+| Fact | Where it usually is |
+| --- | --- |
+| Name, phone, street, city, region, postal code | Header, footer, contact page |
+| Email | Contact page or footer |
+| Hours and how fast someone calls back | Contact page, footer |
+| Services, in the client's words | Nav, services page, footer |
+| Cities and neighborhoods | Location pages, footer, home page |
+| License, insurance, guarantee, owner name | About or footer |
+| Reviews: source, rating, count, and the review URL | Only if shown on the site |
+| Prices | Only if shown on the site |
+| Profile links | Footer icons |
+| Form fields and where a lead goes | Contact page |
+
+Copy the visible NAP exactly. If the header phone and the footer phone differ, record both and do not choose one. If the site names a license, copy the number and where you saw it.
+
+Use a logo, illustration, or job photo only when the client confirms they own it. Do not copy another company's reviews or badges.
+
+Make a separate list of blog posts that already earn calls or rankings. Decide later whether any of them deserve a service or city page. Do not add a blog to this build.
+
+## Phase 3 — Map old URLs to boilerplate URLs
+
+The new site has this shape:
+
+```text
+/
+/services/
+/services/<service-slug>/
+/service-areas/
+/service-areas/<city-slug>/
+/about/
+/faq/
+/contact/
+/privacy/
+/thank-you/          noindex
+```
+
+Build a two-column map from each old URL to one of those routes.
+
+- One primary service becomes `/services/<slug>/`. Other real services get their own pages. A service the old site only mentions, with no real explanation, stays a name in `primaryServices` and links to `/contact/`.
+- One city they actually drive to becomes `/service-areas/<slug>/`. Do not turn a long footer list of city names into a thin page per city.
+- About, contact, FAQ, and privacy map to those same routes.
+- Old blog, tag, author, and gallery URLs do not get a new page in this pass. They still need a redirect decision in Phase 8.
+
+Write down the primary service slug and the primary city slug. Those replace the sample paths in the check files listed above.
+
+## Phase 4 — Start the client repo and load verified facts
+
+```bash
+git clone --branch v1.0.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
+cd client-site
+rm -rf .git
+git init
+npm install
+```
+
+Point `origin` at the client's repository. In `astro.config.mjs`, set `site` to the `https://` origin you will launch. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
+
+Fill `src/config/business.ts` from the worksheet:
+
+- `businessName`, `trade`, `primaryService`, `schemaType`
+- `phoneDisplay` and `phoneTel`
+- Address, geo coordinates for that public address, hours, and `hoursDisplay`
+- `responsePromise` only when the old site states one, or when the client agrees to the sentence before you publish it
+- `areaServed` and `neighborhoods` limited to places the new pages will name
+- `primaryServices` with the final href for each service
+- `sameAs` only for profiles you opened
+- Analytics ids only when they match a real `G-…` or `GTM-…` property
+
+Leave owner, license, insurance, guarantee, reviews, and price empty when the site did not prove them. Set `showExampleBanner` to `false` only after the sample sentences are gone. Set `name` and `short_name` in `public/site.webmanifest`.
+
+`schemaType` is a schema.org local-business subtype. The sample is `Plumber`. Use `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, `GeneralContractor`, or the closest real subtype for another trade.
+
+## Phase 5 — Rewrite the pages
+
+Use the old page as the fact source. Write the new page in the answer-first shape.
+
+For each service file and each city file:
+
+- `title` is the only H1, and it includes the service or trade and the city
+- `seoTitle` and `description` do the same
+- `answer` is at least 40 characters and names the service or trade, the city, and how to book
+- At least two steps for how a visit works
+- At least two FAQs whose answers stand alone
+- Body headings are questions
+- Links go to the matching service page, city page, FAQ, and `/contact/`
+
+Copy `src/content/services/_example.md` or `src/content/service-areas/_example.md` to a new file that does not start with `_`. Delete `src/content/services/drain-cleaning.md` and `src/content/service-areas/example-city.md` once the real pages replace them. Keep the `_example.md` templates.
+
+Rewrite thin or duplicated location copy. Keep a claim only when the reference site or the client stated it.
+
+Home, about, FAQ, and privacy come from `src/content/pages/`. The FAQ page needs at least three questions. Privacy should describe this form: name, phone, email, ZIP or area, service, preferred time, and an optional message. The client should have a qualified person review that page before launch.
+
+An agent can draft the pages from `agent-skills/foundation/generate-service-page/SKILL.md`, `generate-service-area-page/SKILL.md`, `update-faq/SKILL.md`, and `fill-jsonld/SKILL.md`. Paste the reference URL and the worksheet. Tell it to leave any unproven field blank.
+
+## Phase 6 — Move the checks, then run them
+
+Update the four check files listed in the locked rules so they require the new primary service URL, the new primary city URL, and a trade-word pattern for this business. The home page must link to that service URL, that city URL, `/faq/`, `/about/`, and `/contact/`.
+
+Replace `public/images/og-default.png` with a 1200×630 image. Put the business name, the primary service, the city, and the phone in the center. Use a logo or job photo only when the client owns it. Keep `ogImage`, `ogImageWidth`, and `ogImageHeight` pointed at that file.
+
+Replace `public/favicon.svg` and the PNG icons when the client has a mark.
+
+Run `npm run verify`. Fix every failed line. Then click through home, one service, one city, contact, thank-you, and a missing URL.
+
+## Phase 7 — Personalize the look
+
+Do this after Phase 6 passes.
+
+Give an agent `agent-skills/visual/personalize-client-site/SKILL.md`, the reference URL, the client's logo, real job photos, and any brand colors. That pass may change `DESIGN.md` and `src/styles/global.css`. It keeps the routes, the single H1, the NAP, the schema, the form field names, and the answer blocks.
+
+Run `npm run verify` again after the visual pass.
+
+## Phase 8 — Review, redirects, and launch
+
+Walk the client through the preview. Correct the phone, address, hours, services, and service area in `src/config/business.ts` or the content files. Run `npm run verify` again.
+
+Before DNS moves:
+
+- Publish a 301 from each old URL that people or search engines already use to the new URL from the Phase 3 map. Unknown old URLs should hit the boilerplate 404, which is `noindex` and links home.
+- Set `CONTACT_WEBHOOK_URL` with `npx wrangler secret put` so a real submission is delivered. Copy `.dev.vars.example` to `.dev.vars` for local preview. Do not commit `.dev.vars`.
+- Submit one test lead and confirm it arrives. A valid post sends JSON with `name`, `phone`, `email`, `area`, `service`, `preferredTime`, `message`, and `source` set to `website-contact-form`, then redirects to `/thank-you/`.
+- Attach the domain to the Worker and make it match `site` in `astro.config.mjs`.
+- Deploy with `npx wrangler login` and then `npm run build && npx wrangler deploy`.
+- On the Google Business Profile, use the same name, phone, address, hours, and service names the new site shows.
+- Run the [Rich Results Test](https://search.google.com/test/rich-results) and the [Schema Markup Validator](https://validator.schema.org/) on the home page, the primary service page, and the primary city page.
+
+After launch, open the old service and city URLs and confirm each one lands on the new page. Submit `https://<domain>/sitemap-index.xml` in Search Console.
+
+This repository does not ship a redirect file. The redirect map is part of the client project, not part of the boilerplate sample.
