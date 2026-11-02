@@ -1,0 +1,13 @@
+---
+/*
+  Vertical gap for a new composition. This does not remove child margins.
+  Do not wrap a heading that already has margin unless that margin is removed.
+  The sample pages do not use Stack.
+*/
+const { as: Tag = 'div', gap } = Astro.props;
+const className = Astro.props.class;
+---
+
+<Tag class:list={['stack', className]} style={gap ? `--stack-gap: ${gap}` : undefined}>
+  <slot />
+</Tag>

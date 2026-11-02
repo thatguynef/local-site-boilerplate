@@ -1,0 +1,15 @@
+---
+const { heading, marker } = Astro.props;
+const className = Astro.props.class;
+---
+
+<section
+  class:list={['section', className]}
+  data-process={marker === 'process' ? true : undefined}
+  data-faq={marker === 'faq' ? true : undefined}
+  data-trust={marker === 'trust' ? true : undefined}
+  data-service-area={marker === 'service-area' ? true : undefined}
+>
+  {heading && <h2>{heading}</h2>}
+  <slot />
+</section>

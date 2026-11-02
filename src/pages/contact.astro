@@ -3,6 +3,9 @@ import Base from '../layouts/Base.astro';
 import Answer from '../components/Answer.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Trust from '../components/Trust.astro';
+import Cluster from '../components/primitives/Cluster.astro';
+import Container from '../components/primitives/Container.astro';
+import Section from '../components/primitives/Section.astro';
 import { business } from '../config/business';
 
 export const prerender = true;
@@ -21,12 +24,12 @@ const crumbs = [
 ---
 
 <Base title={title} seoTitle={`Contact ${business.businessName} in ${business.address.city}`} description={description} crumbs={crumbs}>
-  <article class="wrap">
+  <Container as="article">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <ol>
+      <Cluster as="ol" gap="0.35rem 0.5rem">
         <li><a href="/">Home</a></li>
         <li>Contact</li>
-      </ol>
+      </Cluster>
     </nav>
     <header class="page-header">
       <h1>{title}</h1>
@@ -35,8 +38,7 @@ const crumbs = [
     <p>{business.responsePromise} Hours: {business.hoursDisplay}.</p>
     {business.afterHours.trim() && <p data-after-hours>{business.afterHours}</p>}
     <ContactForm />
-    <section class="section">
-      <h2>Where is {business.businessName}?</h2>
+    <Section heading={`Where is ${business.businessName}?`}>
       <p>
         {business.businessName}<br />
         {business.address.street}<br />
@@ -44,7 +46,7 @@ const crumbs = [
         <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
       </p>
       <p>Service questions start on the <a href="/services/">services page</a> and the <a href={`/service-areas/${citySlug}/`}>{business.address.city} page</a>.</p>
-    </section>
+    </Section>
     <Trust />
-  </article>
+  </Container>
 </Base>

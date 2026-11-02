@@ -1,0 +1,13 @@
+---
+const { href, tone = 'primary' } = Astro.props;
+---
+
+<a
+  class:list={[
+    tone === 'header' ? 'header-phone' : 'button',
+    tone === 'secondary' && 'button-secondary',
+  ]}
+  href={href}
+>
+  <slot />
+</a>

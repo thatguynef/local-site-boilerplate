@@ -1,0 +1,8 @@
+---
+const { as: Tag = 'div' } = Astro.props;
+const className = Astro.props.class;
+---
+
+<Tag class:list={['wrap', className]}>
+  <slot />
+</Tag>

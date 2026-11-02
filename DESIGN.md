@@ -4,6 +4,8 @@ Sample theme for Example Plumbing. It is quiet on purpose so the boilerplate is 
 
 A client visual pass may replace the tokens in this file and in `src/styles/global.css`, and it may replace layout and composition. It may not change routes, the single H1, NAP, schema contracts, form field names, or noindex rules. Permissions are in [docs/change-policy.md](docs/change-policy.md). The pass starts at `agent-skills/visual/personalize-client-site/SKILL.md`.
 
+Layout pieces live in `src/components/primitives/`. They are described in [docs/design-primitives.md](docs/design-primitives.md). Replacing them is part of a client visual pass.
+
 ## Tone
 
 Local home-service site. The page should be easy to scan on a phone and easy to call from. No decorative motion, no scroll-jacking, no gradient text, no purple links.

@@ -1,5 +1,6 @@
 ---
 import type { Faq } from '../lib/schema';
+import Section from './primitives/Section.astro';
 
 interface Props {
   faqs?: Faq[];
@@ -9,13 +10,12 @@ const { faqs = [], heading = 'Common questions' } = Astro.props;
 ---
 
 {faqs.length > 0 && (
-  <section class="section faq" data-faq>
-    <h2>{heading}</h2>
+  <Section class="faq" marker="faq" heading={heading}>
     {faqs.map((faq) => (
       <article>
         <h3>{faq.q}</h3>
         <p>{faq.a}</p>
       </article>
     ))}
-  </section>
+  </Section>
 )}

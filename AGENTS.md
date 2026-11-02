@@ -82,7 +82,8 @@ Do not skip fact validation, the page plan, or `npm run verify`. A client site i
 | Client scaffold | [docs/client-repo.md](docs/client-repo.md). Clone a release tag. Do not clone `main`. |
 | Content | [page-brief](agent-skills/content/page-brief/SKILL.md), then [generate-service-page](agent-skills/foundation/generate-service-page/SKILL.md), [generate-service-area-page](agent-skills/foundation/generate-service-area-page/SKILL.md), and [update-faq](agent-skills/foundation/update-faq/SKILL.md). Do not write a page from a keyword alone. |
 | Foundation verify | `npm run verify` must exit 0 before visual work. |
-| Visual system and bespoke implementation | [personalize-client-site](agent-skills/visual/personalize-client-site/SKILL.md), then [docs/change-policy.md](docs/change-policy.md) |
+| Visual system and bespoke implementation | [personalize-client-site](agent-skills/visual/personalize-client-site/SKILL.md), [design primitives](docs/design-primitives.md), then [docs/change-policy.md](docs/change-policy.md) |
+| Uniqueness, content, and conversion | [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md), [content-review](agent-skills/quality/content-review/SKILL.md), and [conversion-review](agent-skills/quality/conversion-review/SKILL.md). The content and conversion commands are outside `npm run verify`. |
 | Full verify | `npm run verify` again after content or visual edits. |
 | Client review | The review section of the guide you started from. |
 | Production QA and launch | Deploy only when asked. Confirm one production lead. Rich Results Test and the Schema Markup Validator are manual. |

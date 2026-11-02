@@ -78,11 +78,37 @@ a:visited {
   margin-inline: auto;
 }
 
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, 0.75rem);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, 0.75rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap, 0.75rem);
+}
+
+.split {
+  display: grid;
+  gap: var(--split-gap, 1.25rem);
+}
+
+.callout {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
 .banner {
   background: var(--banner);
   color: var(--ink);
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--line);
 }
 
 .banner p {
@@ -95,10 +121,6 @@ a:visited {
 }
 
 .header-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.25rem;
   padding: 0.5rem 0;
 }
 
@@ -113,9 +135,6 @@ a:visited {
 
 .nav ul,
 .footer-nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.15rem 0.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -180,16 +199,10 @@ main {
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
   margin: 1.25rem 0 0;
 }
 
 .crumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.5rem;
   list-style: none;
   padding: 0;
   margin: 0 0 0.5rem;
@@ -237,8 +250,6 @@ main {
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
-  display: grid;
-  gap: 0.75rem;
 }
 
 .card {
@@ -331,11 +342,6 @@ textarea {
   display: block;
 }
 
-.footer-grid {
-  display: grid;
-  gap: 1.25rem;
-}
-
 .legal {
   margin: 1rem 0 0;
   font-family: "Avenir Next", "Segoe UI", sans-serif;
@@ -351,8 +357,8 @@ textarea {
     margin-left: auto;
   }
 
-  .footer-grid {
-    grid-template-columns: 1.2fr 1fr;
+  .split {
+    grid-template-columns: var(--split-columns, 1fr 1fr);
   }
 
   .card-list {

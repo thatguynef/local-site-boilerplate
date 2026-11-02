@@ -1,6 +1,8 @@
 ---
 import { business } from '../config/business';
 import { financingOffer, licenseLines } from '../lib/offers.mjs';
+import Section from './primitives/Section.astro';
+import TrustMetric from './primitives/TrustMetric.astro';
 
 const licenses = licenseLines(business.licenseNumber, business.licenses);
 const financing = financingOffer(business.financing);
@@ -20,23 +22,16 @@ const slots = [
 const reviewsReady = business.reviews.rating && business.reviews.count && business.reviews.source && business.reviews.url;
 ---
 
-<section class="section trust" data-trust>
-  <h2>License, insurance, and guarantee</h2>
+<Section class="trust" marker="trust" heading="License, insurance, and guarantee">
   {business.ownerName ? (
     <p>{business.ownerName} owns {business.businessName}.</p>
   ) : (
     <p class="placeholder">Add the owner or team name in src/config/business.ts.</p>
   )}
   {licenses.length ? (
-    licenses.map((line) => (
-      <p>
-        <strong>License:</strong> {line}
-      </p>
-    ))
+    licenses.map((line) => <TrustMetric label="License" value={line} />)
   ) : (
-    <p class="placeholder">
-      <strong>License:</strong> Add the license number in src/config/business.ts.
-    </p>
+    <TrustMetric label="License" empty="Add the license number in src/config/business.ts." />
   )}
   {financing && (
     <p data-financing>
@@ -44,9 +39,7 @@ const reviewsReady = business.reviews.rating && business.reviews.count && busine
     </p>
   )}
   {slots.map((slot) => (
-    <p class:list={{ placeholder: !slot.value }}>
-      <strong>{slot.label}:</strong> {slot.value || slot.empty}
-    </p>
+    <TrustMetric label={slot.label} value={slot.value} empty={slot.empty} />
   ))}
   {reviewsReady ? (
     <p>
@@ -60,4 +53,4 @@ const reviewsReady = business.reviews.rating && business.reviews.count && busine
   ) : (
     <p class="placeholder">Add a starting price in src/config/business.ts when you want one published.</p>
   )}
-</section>
+</Section>

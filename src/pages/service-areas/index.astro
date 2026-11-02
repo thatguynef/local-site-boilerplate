@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Page from '../../layouts/Page.astro';
+import CardLink from '../../components/primitives/CardLink.astro';
+import Grid from '../../components/primitives/Grid.astro';
 import { business } from '../../config/business';
 
 export const prerender = true;
@@ -21,13 +23,14 @@ const crumbs = [
   answer={`${business.businessName} serves homes in ${business.address.city}. The area includes ${places}. Add one page for each city you actually drive to.`}
   crumbs={crumbs}
 >
-  <ul class="card-list">
+  <Grid as="ul" class="card-list">
     {areas.map((area) => (
-      <li class="card">
-        <h2>{area.data.city}</h2>
-        <p>{area.data.neighborhoods.join(', ')}</p>
-        <a href={`/service-areas/${area.id}/`}>{tradeLabel} in {area.data.city}</a>
-      </li>
+      <CardLink
+        title={area.data.city}
+        text={area.data.neighborhoods.join(', ')}
+        href={`/service-areas/${area.id}/`}
+        label={`${tradeLabel} in ${area.data.city}`}
+      />
     ))}
-  </ul>
+  </Grid>
 </Page>

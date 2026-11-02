@@ -1,0 +1,8 @@
+---
+const { label, value = '', empty = '' } = Astro.props;
+const text = String(value).trim();
+---
+
+<p class:list={{ placeholder: !text }}>
+  <strong>{label}:</strong> {text || empty}
+</p>

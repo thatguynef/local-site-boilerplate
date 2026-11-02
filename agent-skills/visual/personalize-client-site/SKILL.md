@@ -59,6 +59,8 @@ Update `DESIGN.md` and `src/styles/global.css` together so the next agent can se
 
 Choose type and layout for this business. Do not default to a recolor of the sample.
 
+The starting grammar is [docs/design-primitives.md](../../../docs/design-primitives.md). You may replace those components. Use `Media` when you add an image. Do not add a trade-specific hero.
+
 The vendored skills are in `agent-skills/visual/`. Read `SOURCES.md` before using one. `typeset`, `layout`, `colorize`, `critique`, `audit`, `adapt`, and `optimize` are allowed when they serve the brief.
 
 ## Refuse
@@ -74,6 +76,8 @@ The vendored skills are in `agent-skills/visual/`. Read `SOURCES.md` before usin
 ## Finish
 
 Run `npm run verify`. If it fails, fix the structure before you keep styling. A visual pass that fails the checks is not done.
+
+Then review with [visual-uniqueness](../../quality/visual-uniqueness/SKILL.md), [content-review](../../quality/content-review/SKILL.md), and [conversion-review](../../quality/conversion-review/SKILL.md). `npm run evaluate:content` and `npm run evaluate:conversion` are the deterministic parts. They are not part of `npm run verify`.
 
 A useful test: if changing the logo, colors, business name, and phone would make the site suitable for an unrelated contractor, personalization is not done.
 

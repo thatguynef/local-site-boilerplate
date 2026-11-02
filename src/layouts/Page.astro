@@ -6,6 +6,8 @@ import FaqList from '../components/FaqList.astro';
 import ServiceArea from '../components/ServiceArea.astro';
 import Trust from '../components/Trust.astro';
 import NextStep from '../components/NextStep.astro';
+import Cluster from '../components/primitives/Cluster.astro';
+import Container from '../components/primitives/Container.astro';
 import type { Crumb, Faq, Step } from '../lib/schema';
 
 interface Props {
@@ -40,16 +42,16 @@ const props = Astro.props;
   processTitle={props.processTitle}
   serviceName={props.serviceName}
 >
-  <article class="wrap">
+  <Container as="article">
     {props.crumbs && props.crumbs.length > 0 && (
       <nav class="crumbs" aria-label="Breadcrumb">
-        <ol>
+        <Cluster as="ol" gap="0.35rem 0.5rem">
           {props.crumbs.map((crumb, index) => (
             <li>
               {index === props.crumbs!.length - 1 ? crumb.name : <a href={crumb.href}>{crumb.name}</a>}
             </li>
           ))}
-        </ol>
+        </Cluster>
       </nav>
     )}
     <header class="page-header">
@@ -64,5 +66,5 @@ const props = Astro.props;
     <FaqList faqs={props.faqs} />
     {props.showTrust !== false && <Trust />}
     {props.showNext !== false && <NextStep />}
-  </article>
+  </Container>
 </Base>

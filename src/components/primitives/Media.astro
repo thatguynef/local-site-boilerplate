@@ -1,0 +1,13 @@
+---
+const { src, alt, width, height, priority = false } = Astro.props;
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={priority ? 'high' : undefined}
+/>

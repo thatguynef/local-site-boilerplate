@@ -61,7 +61,7 @@ Broad freedom after foundation verify passes:
 - Iconography and client-owned imagery
 - Interaction that still meets accessibility and the performance notes in `DESIGN.md`
 
-The Example Plumbing design is scaffolding, not a design target. Do not stop at a recolor.
+The Example Plumbing design is scaffolding, not a design target. Do not stop at a recolor. Layout primitives in `src/components/primitives/` are a starting grammar. Replacing them is allowed.
 
 Refused even here: decorative hero video, scroll-jacking, third-party font hosts, and claims the client did not supply. One self-hosted font pair is allowed. The sample ships the system font stack.
 

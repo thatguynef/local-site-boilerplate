@@ -1,19 +1,20 @@
 ---
 import { business } from '../config/business';
+import Callout from './primitives/Callout.astro';
+import Cluster from './primitives/Cluster.astro';
+import ContactAction from './primitives/ContactAction.astro';
 
 const path = Astro.url.pathname;
 ---
 
 {business.showExampleBanner && (
-  <div class="banner">
-    <p class="wrap">Example content. Replace the business details in src/config/business.ts before launch.</p>
-  </div>
+  <Callout class="banner">Example content. Replace the business details in src/config/business.ts before launch.</Callout>
 )}
 <header class="site-header">
-  <div class="wrap header-inner">
+  <Cluster class="wrap header-inner" gap="0.5rem 1.25rem">
     <a class="brand" href="/">{business.businessName}</a>
     <nav class="nav" aria-label="Main">
-      <ul>
+      <Cluster as="ul" gap="0.15rem 0.25rem">
         {business.mainNav.map((item) => {
           const current = item.href === '/' ? path === '/' : path.startsWith(item.href);
           return (
@@ -22,8 +23,8 @@ const path = Astro.url.pathname;
             </li>
           );
         })}
-      </ul>
+      </Cluster>
     </nav>
-    <a class="header-phone" href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
-  </div>
+    <ContactAction href={`tel:${business.phoneTel}`} tone="header">{business.phoneDisplay}</ContactAction>
+  </Cluster>
 </header>

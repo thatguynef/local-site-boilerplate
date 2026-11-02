@@ -1,5 +1,6 @@
 ---
 import { business } from '../config/business';
+import Section from './primitives/Section.astro';
 
 interface Props {
   city?: string;
@@ -9,9 +10,8 @@ const city = Astro.props.city || business.address.city;
 const neighborhoods = Astro.props.neighborhoods || business.neighborhoods;
 ---
 
-<section class="section" data-service-area>
-  <h2>Which {city} neighborhoods are served?</h2>
+<Section marker="service-area" heading={`Which ${city} neighborhoods are served?`}>
   <p>
     {business.businessName} works in {city}. The service area is {business.serviceArea}. Neighborhoods on this page: {neighborhoods.join(', ')}.
   </p>
-</section>
+</Section>

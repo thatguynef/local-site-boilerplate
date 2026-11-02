@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Container from '../components/primitives/Container.astro';
 import { business } from '../config/business';
 
 export const prerender = true;
@@ -13,7 +14,7 @@ const crumbs = [
 ---
 
 <Base title={title} description={description} crumbs={crumbs} noindex>
-  <article class="wrap">
+  <Container as="article">
     <header class="page-header">
       <h1>{title}</h1>
       <p class="answer" data-answer>
@@ -28,5 +29,5 @@ const crumbs = [
       </p>
       <p><a href="/">Back to the home page</a></p>
     </div>
-  </article>
+  </Container>
 </Base>

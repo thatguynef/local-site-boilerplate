@@ -32,10 +32,11 @@ Do the first step that is not done.
 9. Scaffold incomplete: `npm run scaffold` in the client repository.
 10. Content incomplete: [page-brief](../../content/page-brief/SKILL.md) for every `build_now` and `optimize` page, then the page skills. Do not write a page from a keyword alone.
 11. Foundation verification has not passed: fix the foundation issues and run `npm run verify`.
-12. Visual work incomplete: only after foundation verification has passed, [personalize-client-site](../../visual/personalize-client-site/SKILL.md).
-13. Full verification has not passed: fix the issues and run `npm run verify` again.
-14. Production QA incomplete: finish the production section of the guide this build started from. Do not deploy unless asked.
-15. Every step has passed: stop.
+12. Visual work incomplete: only after foundation verification has passed, [personalize-client-site](../../visual/personalize-client-site/SKILL.md). The layout grammar is [docs/design-primitives.md](../../../docs/design-primitives.md). Replacing a primitive is allowed.
+13. Quality review incomplete: [visual-uniqueness](../../quality/visual-uniqueness/SKILL.md), [content-review](../../quality/content-review/SKILL.md), and [conversion-review](../../quality/conversion-review/SKILL.md). Do not mark final verification passed while a logo and color swap would still fit an unrelated contractor.
+14. Full verification has not passed: fix the issues and run `npm run verify` again.
+15. Production QA incomplete: finish the production section of the guide this build started from. Do not deploy unless asked.
+16. Every step has passed: stop.
 
 Do not skip facts, the site spec, or verification. Do not start visual work before foundation verification has passed. Do not launch before production QA.
 

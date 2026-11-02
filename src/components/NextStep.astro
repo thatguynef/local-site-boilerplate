@@ -1,11 +1,13 @@
 ---
 import { business } from '../config/business';
+import Cluster from './primitives/Cluster.astro';
+import ContactAction from './primitives/ContactAction.astro';
+import Section from './primitives/Section.astro';
 ---
 
-<section class="section">
-  <h2>Ready for a visit?</h2>
-  <p class="actions">
-    <a class="button" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
-    <a class="button button-secondary" href="/contact/">Request a call</a>
-  </p>
-</section>
+<Section heading="Ready for a visit?">
+  <Cluster as="p" class="actions" gap="0.75rem">
+    <ContactAction href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</ContactAction>
+    <ContactAction href="/contact/" tone="secondary">Request a call</ContactAction>
+  </Cluster>
+</Section>

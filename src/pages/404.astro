@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import Cluster from '../components/primitives/Cluster.astro';
+import ContactAction from '../components/primitives/ContactAction.astro';
+import Container from '../components/primitives/Container.astro';
 import { business } from '../config/business';
 
 export const prerender = true;
@@ -9,14 +12,14 @@ const description = `That page is not on the ${business.businessName} site. Go b
 ---
 
 <Base title={title} description={description} noindex>
-  <article class="wrap">
+  <Container as="article">
     <header class="page-header">
       <h1>{title}</h1>
       <p>That page is not on this site. You can go back to the home page or call {business.businessName}.</p>
     </header>
-    <p class="actions">
-      <a class="button" href="/">Back to the home page</a>
-      <a class="button button-secondary" href={`tel:${business.phoneTel}`}>Call {business.phoneDisplay}</a>
-    </p>
-  </article>
+    <Cluster as="p" class="actions" gap="0.75rem">
+      <ContactAction href="/">Back to the home page</ContactAction>
+      <ContactAction href={`tel:${business.phoneTel}`} tone="secondary">Call {business.phoneDisplay}</ContactAction>
+    </Cluster>
+  </Container>
 </Base>

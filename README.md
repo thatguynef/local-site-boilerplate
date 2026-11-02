@@ -170,6 +170,8 @@ That builds the site, previews it on `127.0.0.1:4329`, and runs:
 
 Evidence is printed and written under `evaluations/results/`, which is gitignored. A pass is structural readiness. Details and the scorecard URLs are in [evaluations/README.md](evaluations/README.md).
 
+`npm run evaluate:content` and `npm run evaluate:conversion` read that build and check copy and the conversion strategy. They are not part of `npm run verify`. Uniqueness is the written review in [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md).
+
 GitHub Actions runs the same command on push and pull request (`.github/workflows/verify.yml`).
 
 ## What the foundation includes

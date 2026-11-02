@@ -39,6 +39,18 @@ On a client repository, start at `orchestration/build-client-site/SKILL.md`. It 
 
 Those skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
 
+## Quality review
+
+Use these after the visual pass, in the client repository. On this repository, uniqueness review stops. The sample is the scaffold.
+
+| Review | File |
+| --- | --- |
+| Visual uniqueness | `quality/visual-uniqueness/SKILL.md` |
+| Content | `quality/content-review/SKILL.md` |
+| Conversion | `quality/conversion-review/SKILL.md` |
+
+`npm run evaluate:content` and `npm run evaluate:conversion` are the deterministic checks for the last two. They are not part of `npm run verify`.
+
 ## Visual pass
 
 Do this later, when a client is ready to tailor the look.

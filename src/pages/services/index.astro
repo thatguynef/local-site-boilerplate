@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import Page from '../../layouts/Page.astro';
+import CardLink from '../../components/primitives/CardLink.astro';
+import Grid from '../../components/primitives/Grid.astro';
 import { business } from '../../config/business';
 
 export const prerender = true;
@@ -22,17 +24,18 @@ const crumbs = [
   crumbs={crumbs}
   showArea
 >
-  <ul class="card-list">
+  <Grid as="ul" class="card-list">
     {business.primaryServices.map((service) => {
       const page = services.find((entry) => entry.data.title.toLowerCase().includes(service.name.toLowerCase()));
       const href = page ? `/services/${page.id}/` : service.href;
       return (
-        <li class="card">
-          <h2>{service.name}</h2>
-          <p>{service.name} for homes in {business.address.city}.</p>
-          <a href={href}>{page ? `Read about ${service.name}` : `Request ${service.name}`}</a>
-        </li>
+        <CardLink
+          title={service.name}
+          text={`${service.name} for homes in ${business.address.city}.`}
+          href={href}
+          label={page ? `Read about ${service.name}` : `Request ${service.name}`}
+        />
       );
     })}
-  </ul>
+  </Grid>
 </Page>

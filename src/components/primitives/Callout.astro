@@ -1,0 +1,7 @@
+---
+const className = Astro.props.class;
+---
+
+<div class:list={['callout', className]}>
+  <p class="wrap"><slot /></p>
+</div>

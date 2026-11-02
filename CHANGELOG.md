@@ -10,6 +10,8 @@ Added `client/*.example.yaml`, JSON Schemas, and `npm run validate:client`. Trus
 
 Added the build workflow skills: an orchestrator, competitor and market research, search intent, positioning, conversion strategy, site-spec generation, and page briefs. `client/page-briefs.example.yaml` records the sample build-now pages. `strategy.yaml` may store a `research` object. The page skills read a brief before writing copy. `local-page-plan` can mark a service `contact_only` and still does not run inside `npm run verify`.
 
+Added layout primitives in `src/components/primitives/` and `docs/design-primitives.md`. The sample is composed from that grammar and still looks like Example Plumbing. `npm run evaluate:content` and `npm run evaluate:conversion` review copy and the conversion strategy outside `npm run verify`. Visual uniqueness is a written review, so the sample is not failed for being the scaffold.
+
 ## 1.2.0 - 2026-11-01
 
 Added optional `licenses`, `afterHours`, `financing`, and `maintenancePlan` on `src/config/business.ts`. Empty after-hours, financing, and maintenance plan stay off the page. A maintenance plan is shown only on the maintenance service page. Financing is shown only when both the statement and the URL are set.

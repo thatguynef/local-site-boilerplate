@@ -1,0 +1,8 @@
+---
+const { as: Tag = 'div', gap } = Astro.props;
+const className = Astro.props.class;
+---
+
+<Tag class:list={['grid', className]} style={gap ? `--grid-gap: ${gap}` : undefined}>
+  <slot />
+</Tag>

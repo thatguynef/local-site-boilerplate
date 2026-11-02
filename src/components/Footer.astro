@@ -1,12 +1,15 @@
 ---
 import { business } from '../config/business';
+import Cluster from './primitives/Cluster.astro';
+import Container from './primitives/Container.astro';
+import Split from './primitives/Split.astro';
 
 const year = new Date().getFullYear();
 const { address } = business;
 ---
 
 <footer class="site-footer">
-  <div class="wrap footer-grid">
+  <Split class="wrap footer-grid" gap="1.25rem" columns="1.2fr 1fr">
     <address class="nap" data-nap>
       <span data-name>{business.businessName}</span>
       <span data-street>{address.street}</span>
@@ -19,12 +22,12 @@ const { address } = business;
       {business.afterHours.trim() && <span data-after-hours>{business.afterHours}</span>}
     </address>
     <nav class="footer-nav" aria-label="Footer">
-      <ul>
+      <Cluster as="ul" gap="0.15rem 0.25rem">
         {business.footerNav.map((item) => (
           <li><a href={item.href}>{item.label}</a></li>
         ))}
-      </ul>
+      </Cluster>
     </nav>
-  </div>
-  <p class="wrap legal">© {year} {business.businessName}</p>
+  </Split>
+  <Container as="p" class="legal">© {year} {business.businessName}</Container>
 </footer>

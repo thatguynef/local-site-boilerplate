@@ -1,5 +1,6 @@
 ---
 import type { Step } from '../lib/schema';
+import Section from './primitives/Section.astro';
 
 interface Props {
   steps?: Step[];
@@ -9,8 +10,7 @@ const { steps = [], heading = 'How it works' } = Astro.props;
 ---
 
 {steps.length > 0 && (
-  <section class="section" data-process>
-    <h2>{heading}</h2>
+  <Section marker="process" heading={heading}>
     <ol class="steps">
       {steps.map((step) => (
         <li>
@@ -18,5 +18,5 @@ const { steps = [], heading = 'How it works' } = Astro.props;
         </li>
       ))}
     </ol>
-  </section>
+  </Section>
 )}
