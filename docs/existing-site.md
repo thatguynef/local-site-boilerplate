@@ -16,7 +16,7 @@ Scorecards, without copying their rubrics:
 
 ## Locked rules
 
-- Put name, phone, address, hours, service area, and services only in `src/config/business.ts`.
+- Put name, phone, address, hours, service area, and services only in `src/config/business.ts`. Edit `client/facts.yaml` and run `npm run client:generate`. Do not hand-edit that module.
 - `phoneDisplay` and `phoneTel` use the same digits.
 - Leave `ownerName`, `licenseNumber`, `licenses`, `afterHours`, `financing`, `maintenancePlan`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the reference site or the client shows a value they can prove. After-hours, financing, and a maintenance plan stay off the page until they are set.
 - Leave `analytics.ga4` and `analytics.gtm` empty unless the id matches `G-…` or `GTM-…`.
@@ -46,6 +46,23 @@ Use a logo, illustration, or job photo only when the client confirms they own it
 
 Blog, tag, author, and gallery URLs stay on the URL map as redirects. Do not add a blog to this build.
 
+## What to record from the current site
+
+The existing-site-facts skill fills the fact sheet and drafts the URL map. It records Search Console, Analytics, or Business Profile access only when the client has already offered it. Do not ask for those accounts. The route list is in Phase 3. The table format is in that skill. This list is the migration record beside the sheet.
+
+- URL inventory: every public URL, its status, and the proposed target.
+- Redirect plan: which old URLs return 301, and which should 404. Phase 8 publishes the redirects. This repository does not ship a redirect file.
+- SEO equity: pages that already earn visits or links, so the rebuild keeps a real page for them.
+- Analytics and Search Console: an id or a property only when the client already has it. Do not create either account.
+- Leads: where the current form sends a request, and the field names, so the new form can be compared. Do not copy a webhook URL into the repo.
+- Rankings: a query the client cares about, as context only. Do not print a rank on the page.
+- Content worth preserving: explanations of the job, the service area, and the hours. Rewrite them answer-first. Do not paste the old theme.
+- Trust proof: a license, a review count, a price, or a guarantee only when the current site or the client shows it.
+- Schema: the JSON-LD types the old site publishes, so the new schema can be checked against the visible page.
+- Inbound links: URLs other sites already point at, when that list is available.
+- Migration risk: a URL, a phone, or a claim that would be lost or changed at cutover.
+- Redirect validation and launch comparison: after DNS moves, open each old service and city URL and confirm the 301. Compare the live NAP with the generated `src/config/business.ts`. Phase 8 is that check.
+
 ## Phase 3 — Map old URLs to boilerplate URLs
 
 The new site has this shape:
@@ -74,24 +91,19 @@ Write down the primary service slug and the primary city slug. Verify reads thos
 
 ## Phase 4 — Start the client repo and load verified facts
 
-Follow [client-repo.md](client-repo.md). Clone tag `v1.2.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
+Follow [client-repo.md](client-repo.md). Clone tag `v2.0.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
 
-In that repository, set `site` in `astro.config.mjs` to the `https://` origin you will launch. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
+In that repository, copy `client/facts.example.yaml`, `client/strategy.example.yaml`, and `client/site-spec.example.yaml` to the live names. Fill `facts.yaml` from the accepted fact sheet. Fill `site-spec.yaml` with the domain, a unique Worker name, and the pages you will build. Do not hand-edit `src/config/business.ts`. Do not copy `page-briefs.example.yaml` or `build-state.example.yaml`. Those files describe Example Plumbing.
 
-Fill `src/config/business.ts` from the accepted fact sheet:
+`schema_type` is a schema.org local-business subtype. The sample is `Plumber`. Use `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, `GeneralContractor`, or the closest real subtype for another trade. Leave owner, license, insurance, guarantee, reviews, and price empty when the site did not prove them. Set `sample_banner: false` only after the sample sentences are gone. Statuses and the fields the generator copies are in [client-data.md](client-data.md).
 
-- `businessName`, `trade`, `primaryService`, `schemaType`
-- `phoneDisplay` and `phoneTel`
-- Address, geo coordinates for that public address, hours, and `hoursDisplay`
-- `responsePromise` only when the old site states one, or when the client agrees to the sentence before you publish it
-- `areaServed` and `neighborhoods` limited to places the new pages will name
-- `primaryServices` with the final href for each service
-- `sameAs` only for profiles you opened
-- Analytics ids only when they match a real `G-…` or `GTM-…` property
+```bash
+npm run validate:client
+npm run client:generate
+npm run scaffold
+```
 
-Leave owner, license, insurance, guarantee, reviews, and price empty when the site did not prove them. Set `showExampleBanner` to `false` only after the sample sentences are gone. Set `name` and `short_name` in `public/site.webmanifest`.
-
-`schemaType` is a schema.org local-business subtype. The sample is `Plumber`. Use `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, `GeneralContractor`, or the closest real subtype for another trade.
+`client:generate` writes `src/config/business.ts` and sets the manifest name. `scaffold` sets `site` from `project.domain` and the Worker name from `project.worker_name`. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date. Scaffold creates a missing build-now stub and does not invent a trust claim. It removes the two sample markdown files only when they still contain sample markers and the spec does not keep those slugs.
 
 ## Choose the pages
 
@@ -115,7 +127,7 @@ For each service file and each city file:
 - Body headings are questions
 - Links go to the matching service page, city page, FAQ, and `/contact/`
 
-Copy `src/content/services/_example.md` or `src/content/service-areas/_example.md` to a new file that does not start with `_`. Delete `src/content/services/drain-cleaning.md` and `src/content/service-areas/example-city.md` once the real pages replace them. Keep the `_example.md` templates.
+`npm run scaffold` creates a stub for each build-now service and city that does not already have a file. Replace that stub. The frontmatter shape is in the `_example.md` templates. Keep those templates.
 
 Rewrite thin or duplicated location copy. Keep a claim only when the reference site or the client stated it.
 
@@ -143,7 +155,7 @@ Run `npm run verify` again after the visual pass.
 
 ## Phase 8 — Review, redirects, and launch
 
-Walk the client through the preview. Correct the phone, address, hours, services, and service area in `src/config/business.ts` or the content files. Run `npm run verify` again.
+Walk the client through the preview. Correct the phone, address, hours, services, and service area in `client/facts.yaml`, then run `npm run client:generate`. Correct page copy in the content files. Run `npm run verify` again.
 
 Before DNS moves:
 

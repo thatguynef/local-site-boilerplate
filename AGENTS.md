@@ -88,7 +88,7 @@ Do not skip fact validation, the page plan, or `npm run verify`. A client site i
 | Client review | The review section of the guide you started from. |
 | Production QA and launch | [production-qa](agent-skills/launch/production-qa/SKILL.md). `npm run security-check` and `npm run performance-check` also run inside `npm run verify`. Deploy only when asked. Confirm one production lead. |
 
-Principles: [docs/principles.md](docs/principles.md). What you may change: [docs/change-policy.md](docs/change-policy.md).
+Principles: [docs/principles.md](docs/principles.md). What you may change: [docs/change-policy.md](docs/change-policy.md). The directory map is [docs/architecture.md](docs/architecture.md). What each check proves is [docs/quality-gates.md](docs/quality-gates.md). `npm run help` lists the commands.
 
 ## What customers do not see
 

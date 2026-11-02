@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.0 - 2026-11-02
 
 Documented the agent contract. The boilerplate is an engineering foundation, not a visual template. Added `AGENTS.md`, `docs/principles.md`, and `docs/change-policy.md`. The Example Plumbing design is scaffolding, not a design target.
 
@@ -13,6 +13,10 @@ Added the build workflow skills: an orchestrator, competitor and market research
 Added layout primitives in `src/components/primitives/` and `docs/design-primitives.md`. The sample is composed from that grammar and still looks like Example Plumbing. `npm run evaluate:content` and `npm run evaluate:conversion` review copy and the conversion strategy outside `npm run verify`. Visual uniqueness is a written review, so the sample is not failed for being the scaffold.
 
 Added `npm run security-check` and `npm run performance-check`. Both run inside `npm run verify`. Performance defaults live in `docs/performance.md` and can be raised from `site-spec.yaml`. `docs/security.md` says where secrets belong. Production QA, post-launch, and upgrading docs are in place. `fixtures/` holds fake businesses that are not Example Plumbing. Failure-mode tests cover an unsupported license line, cloned city answers, a drifted phone, a logo-and-color swap, a renamed form field, a webhook URL, and a sample string left in the manifest.
+
+`npm run help` lists the commands. `npm run evaluate` runs the content review and then the conversion review. Neither replaces `npm run verify`. The directory map is `docs/architecture.md`. What each gate proves is `docs/quality-gates.md`. The new-site and existing-site guides load facts through client YAML and generate `business.ts`.
+
+This is a major release because client facts now live in `client/*.yaml` and `src/config/business.ts` is generated. Routes, the form contract, and `compatibility_date` `2026-10-30` are unchanged. Clone tag `v2.0.0`. A 1.x client merges that tag and follows `docs/upgrading.md`. `npm run verify` still passes on Example Plumbing. `npm test` scaffolds a fake fixture in a temporary directory. Content, visual uniqueness, deploy, and one production lead stay manual.
 
 ## 1.2.0 - 2026-11-01
 

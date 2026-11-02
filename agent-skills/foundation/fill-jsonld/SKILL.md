@@ -9,7 +9,7 @@ Use this when business details change and the schema should follow.
 
 ## Where values live
 
-Edit `src/config/business.ts`. `src/lib/schema.ts` builds one `application/ld+json` graph for every page:
+Edit `client/facts.yaml`, then run `npm run client:generate`. Do not hand-edit `src/config/business.ts`. `src/lib/schema.ts` builds one `application/ld+json` graph for every page from that module:
 
 - `WebSite` with the business name and language. No `SearchAction`.
 - The `schemaType` subtype (the sample is `Plumber`) with name, telephone, email, image, postal address, geo, opening hours, and `areaServed`.

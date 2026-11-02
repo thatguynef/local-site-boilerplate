@@ -20,6 +20,8 @@ Criteria live in `evaluations/criteria/`. Each item names the assertion ids the 
 
 `npm run security-check` and `npm run performance-check` run with the other checks. `npm run evaluate:content` and `npm run evaluate:conversion` are separate. They read the built HTML and do not run inside `npm run verify`. Visual uniqueness is a written review in `agent-skills/quality/visual-uniqueness/SKILL.md`.
 
+A passing check that is not listed in a criterion does not change the pass, fail, or not-applicable count. The same check still fails `npm run verify` when it does not pass. Do not add content, conversion, or uniqueness items to `evaluations/criteria/`.
+
 Rows marked not applicable are off-site: Maps rank, competitor share, live AI mentions, Business Profile reviews, categories, and posts. Empty analytics ids are also not applicable, because the default site loads no tracker.
 
 ## Before launch

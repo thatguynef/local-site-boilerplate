@@ -75,7 +75,7 @@ Change these in the client repository from [docs/client-repo.md](docs/client-rep
 | File | What to change |
 | --- | --- |
 | `astro.config.mjs` | Public site URL. Canonical URLs, Open Graph URLs, robots.txt, and the sitemap use it. |
-| `src/config/business.ts` | Name, phone, email, address, geo, hours, service area, services, and trust fields. This is the only NAP source. |
+| `client/facts.yaml` and `client/site-spec.yaml` | Accepted facts and which pages to build. `npm run client:generate` writes `src/config/business.ts` from these files. That module is the only NAP source. Do not hand-edit it. |
 | `src/content/pages/` | Home, about, FAQ, and privacy copy. |
 | `src/content/services/` | One markdown file per service. Names that start with `_` are templates and are not built. |
 | `src/content/service-areas/` | One markdown file per city. |
@@ -86,7 +86,7 @@ Change these in the client repository from [docs/client-repo.md](docs/client-rep
 
 Leave `licenseNumber`, `licenses`, `afterHours`, `financing`, `maintenancePlan`, `insurance`, `guarantee`, `reviews`, `startingPrice`, and `ownerName` empty until you can prove them. License, insurance, and guarantee show a placeholder. After-hours, financing, and a maintenance plan stay off the page until they are set. A maintenance plan is shown only on the service page whose slug or title contains "maintenance".
 
-Set `showExampleBanner` to `false` when the sample banner should come down.
+Set `sample_banner: false` in `client/site-spec.yaml` when the sample sentences are gone, then run `npm run client:generate`. That writes `showExampleBanner`.
 
 `analytics.ga4` and `analytics.gtm` stay empty until you have a real id. The layout injects a snippet only when the id matches `G-…` or `GTM-…`. An empty id loads no tracker.
 
@@ -174,7 +174,7 @@ That builds the site, previews it on `127.0.0.1:4329`, and runs:
 
 Evidence is printed and written under `evaluations/results/`, which is gitignored. A pass is structural readiness. Details and the scorecard URLs are in [evaluations/README.md](evaluations/README.md).
 
-`npm run security-check` and `npm run performance-check` are part of that suite. `npm run evaluate:content` and `npm run evaluate:conversion` read the build and check copy and the conversion strategy. They are not part of `npm run verify`. Uniqueness is the written review in [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md).
+`npm run security-check` and `npm run performance-check` are part of that suite. `npm run evaluate:content` and `npm run evaluate:conversion` read the build and check copy and the conversion strategy. `npm run evaluate` runs those two, in that order. They are not part of `npm run verify`. `npm run help` lists the commands. What each gate proves is in [docs/quality-gates.md](docs/quality-gates.md). Uniqueness is the written review in [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md).
 
 GitHub Actions runs the same command on push and pull request (`.github/workflows/verify.yml`).
 

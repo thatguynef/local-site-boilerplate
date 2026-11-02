@@ -16,7 +16,7 @@ Scorecards, without copying their rubrics:
 
 ## Locked rules
 
-- Put name, phone, address, hours, service area, and services only in `src/config/business.ts`.
+- Put name, phone, address, hours, service area, and services only in `src/config/business.ts`. Edit `client/facts.yaml` and run `npm run client:generate`. Do not hand-edit that module.
 - `phoneDisplay` and `phoneTel` use the same digits. The sample shape is `(555) 010-0199` and `+15550100199`.
 - Leave `ownerName`, `licenseNumber`, `licenses`, `afterHours`, `financing`, `maintenancePlan`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the client supplies a value they can prove. License, insurance, and guarantee show a placeholder. After-hours, financing, and a maintenance plan stay off the page until they are set.
 - Leave `analytics.ga4` and `analytics.gtm` empty unless the id matches `G-…` or `GTM-…`.
@@ -63,52 +63,44 @@ The client's note about which services should get a page is an input to that pla
 
 ## Phase 2 — Create the client project
 
-Follow [client-repo.md](client-repo.md). Clone tag `v1.2.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
+Follow [client-repo.md](client-repo.md). Clone tag `v2.0.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
 
 In that repository, set `site` in `astro.config.mjs` to the real `https://` origin. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
 
 Run `npm run dev` and confirm the sample Example Plumbing site loads.
 
-## Phase 3 — Load the business config
+## Phase 3 — Load the client files
 
-Edit `src/config/business.ts` from the accepted fact sheet.
+Copy the three live records and fill them from the accepted fact sheet. Do not hand-edit `src/config/business.ts`.
 
-- `businessName`, `trade`, `primaryService`
-- `schemaType`: a schema.org local-business subtype such as `Plumber`, `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, or `GeneralContractor`
-- `phoneDisplay`, `phoneTel`, `email`, `address`
-- `geo.latitude` and `geo.longitude` for the public address
-- `serviceArea` as one sentence
-- `areaServed` listing every city and neighborhood the pages will name
-- `neighborhoods` for the default area block
-- `primaryServices`: `name` plus `href`. Use `/services/<slug>/` only when that markdown file exists. Otherwise use `/contact/`.
-- `openingHours` with full day names and 24-hour `opens` and `closes`. `hoursDisplay` must describe that same week.
-- `responsePromise` from the client's callback answer
-- `sameAs` only for profile URLs the client gave
-- `locale` and `lang` when they are not `en_US` and `en`
-- Trust and review fields only from the optional intake answers
-- `licenses` for each proven license. `licenseNumber` is included with that list when it is set
-- `afterHours` as one sentence, only when the company offers it
-- `financing.statement` and `financing.url` together, only with proof. One without the other stays hidden
-- `maintenancePlan` as one sentence. It appears only on the service page whose slug or title contains "maintenance"
-- `showExampleBanner`: `false` after the sample sentences are gone
-- Analytics ids only if the client provided a real one
+```bash
+cp client/facts.example.yaml client/facts.yaml
+cp client/strategy.example.yaml client/strategy.yaml
+cp client/site-spec.example.yaml client/site-spec.yaml
+```
 
-Set `name` and `short_name` in `public/site.webmanifest`.
+`facts.yaml` holds the accepted facts and claim provenance. `strategy.yaml` holds audience, positioning, and the conversion choice. `site-spec.yaml` holds the domain, the Worker name, and which pages are `build_now`. Statuses and the fields the generator copies are in [client-data.md](client-data.md). Leave a trust claim blank when the client did not prove it.
+
+`schema_type` is a schema.org local-business subtype such as `Plumber`, `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, or `GeneralContractor`. A service that is not `build_now` or `optimize` links to `/contact/`. A city page needs at least one neighborhood in the facts. Set `sample_banner: false` after the sample sentences are gone.
+
+Do not copy `page-briefs.example.yaml` or `build-state.example.yaml` onto this business. Those files describe Example Plumbing. The page-brief skill writes `client/page-briefs.yaml` before the page copy. `npm run scaffold` writes `client/build-state.yaml` when that file is absent.
+
+```bash
+npm run validate:client
+npm run client:generate
+npm run scaffold
+npm run doctor
+```
+
+`client:generate` writes `src/config/business.ts` and sets the manifest `name` and `short_name`. `scaffold` sets `site` from `project.domain`, sets the Worker name when `project.worker_name` is set, and creates a missing build-now stub. The stub names the business, the city, and the phone. It does not add a license, a price, or a review count. It removes `drain-cleaning.md` and `example-city.md` only when the business is no longer Example Plumbing, the spec does not keep those slugs, and the file still contains sample markers. It keeps every `_example.md`.
+
+`npm run doctor` reports what is still open. These commands do not replace `npm run verify`.
 
 ## Phase 4 — Write the pages
 
-Write the build-now service and city files from the page plan. Leave a later service as a `/contact/` link.
+`npm run scaffold` creates a stub for each `build_now` or `optimize` service and city that does not already have a markdown file. Replace that stub. If you write the page first, scaffold leaves it. Leave a later service as a `/contact/` link. The frontmatter shape is in `src/content/services/_example.md` and `src/content/service-areas/_example.md`. Keep those templates.
 
-Rewrite `src/content/pages/home.md`, `about.md`, `faq.md`, and `privacy.md`.
-
-Copy a template and remove the leading underscore:
-
-```bash
-cp src/content/services/_example.md src/content/services/<service-slug>.md
-cp src/content/service-areas/_example.md src/content/service-areas/<city-slug>.md
-```
-
-Delete `src/content/services/drain-cleaning.md` and `src/content/service-areas/example-city.md` once the real pages exist. Keep the `_example.md` files.
+Rewrite `src/content/pages/home.md`, `about.md`, `faq.md`, and `privacy.md`. Scaffold does not write those four files.
 
 Each service and city file needs `title`, `seoTitle`, `description`, an `answer` of at least 40 characters, `processTitle`, at least two `steps`, and at least two `faqs`. City files also need `city` and at least one neighborhood. The FAQ page needs at least three questions.
 
@@ -155,7 +147,7 @@ Point an agent at `agent-skills/visual/personalize-client-site/SKILL.md` and giv
 
 ## Phase 8 — Client review and launch
 
-Walk the client through the preview and correct the phone, address, hours, services, and cities in the config or content files. Verify again.
+Walk the client through the preview. Correct the phone, address, hours, services, and cities in `client/facts.yaml`, then run `npm run client:generate`. Correct page copy in the content files. Verify again.
 
 Before the domain goes live:
 
@@ -177,7 +169,7 @@ After launch, the client can submit `https://<domain>/sitemap-index.xml` if they
 - Trust fields are filled only with proof the client gave.
 - `npm run verify` exits 0.
 - A production form submission reaches the client.
-- The Business Profile name, phone, address, hours, and services match `src/config/business.ts`.
+- The Business Profile name, phone, address, hours, and services match the generated `src/config/business.ts`.
 
 ## Intake checklist
 

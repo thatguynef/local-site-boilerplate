@@ -13,3 +13,5 @@ Each directory has `facts.yaml`, `strategy.yaml`, and `site-spec.yaml`. None of 
 | `minimal-new-business` | The smallest profile: one service, one city, empty claims. |
 
 A thin city page is not a fixture. The content review flags two city pages that share an answer. See `scripts/failure-modes.test.mjs`.
+
+`scripts/e2e.test.mjs` copies `plumber-urgent` into a temporary directory and runs scaffold there. It does not build or deploy that fixture.

@@ -1,6 +1,6 @@
 {
   "name": "local-site-boilerplate",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Astro boilerplate for local home-service websites. Built for SEO, GEO, and AEO, and ready to deploy on Cloudflare Workers.",
   "private": true,
   "type": "module",
@@ -21,7 +21,9 @@
     "performance-check": "node scripts/checks/check-performance.mjs",
     "evaluate:content": "node scripts/quality/evaluate-content.mjs",
     "evaluate:conversion": "node scripts/quality/evaluate-conversion.mjs",
-    "test": "node --test scripts/*.test.mjs"
+    "evaluate": "npm run evaluate:content && npm run evaluate:conversion",
+    "test": "node --test scripts/*.test.mjs",
+    "help": "node scripts/help.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.3",

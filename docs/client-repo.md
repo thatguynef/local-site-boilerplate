@@ -11,7 +11,7 @@ The client repository is a full copy of one release tag. It contains the pages, 
 Create an empty Git repository for the business. Do not add a README or a license there. Then:
 
 ```bash
-git clone --branch v1.2.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
+git clone --branch v2.0.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
 cd client-site
 git checkout -b main
 git remote rename origin upstream
@@ -20,7 +20,7 @@ npm install
 git push -u origin main
 ```
 
-`v1.2.0` is the current release tag. Clone a tag. Do not clone `main`.
+`v2.0.0` is the current release tag. Clone a tag. Do not clone `main`.
 
 `upstream` is this boilerplate. `origin` is the client's repository. Day-to-day commits go to `origin`.
 
@@ -30,7 +30,7 @@ Accept the fact sheet before this step. For a business that already has a site, 
 
 ## Client state files
 
-After the repo exists, copy `client/*.example.yaml` to the same names without `.example`. `facts.yaml` holds accepted facts and claim provenance. `strategy.yaml`, `site-spec.yaml`, `page-briefs.yaml`, and `build-state.yaml` hold the decisions that follow. Run `npm run validate:client`. Do not put secrets in those files. Write a page brief before writing a service or city page.
+After the repo exists, copy `facts.example.yaml`, `strategy.example.yaml`, and `site-spec.example.yaml` to the same names without `.example`. Fill those files, then run `npm run validate:client`. Do not copy `page-briefs.example.yaml` or `build-state.example.yaml` onto a different business. Those files describe Example Plumbing. The page-brief skill writes `page-briefs.yaml`. `npm run scaffold` writes `build-state.yaml` when that file is absent. Do not put secrets in the YAML.
 
 Then run `npm run client:generate` and `npm run scaffold`. Generate writes `src/config/business.ts` from the YAML. Scaffold creates missing build-now stubs and does not invent trust claims. See [client-data.md](client-data.md). Do not hand-edit `business.ts` after generating it.
 
@@ -38,7 +38,7 @@ Then run `npm run client:generate` and `npm run scaffold`. Generate writes `src/
 
 After the page plan says which rows to build, edit the client repo:
 
-- `src/config/business.ts` holds the name, phone, address, hours, services, and cities from accepted rows. Leave a trust field empty when you cannot prove it.
+- `client/facts.yaml` holds the name, phone, address, hours, services, and cities from accepted rows. Leave a trust field empty when you cannot prove it. `npm run client:generate` writes `src/config/business.ts` from that file. Do not hand-edit the generated module.
 - `src/content/pages/`, `src/content/services/`, and `src/content/service-areas/` hold the build-now pages. Delete the sample service and city files once the real ones exist.
 - `astro.config.mjs` holds the public `https://` origin.
 - `wrangler.jsonc` gets a unique Worker `name`. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler accepts a later date.

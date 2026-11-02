@@ -90,8 +90,8 @@ test('conversion review follows the strategy and ignores layout', () => {
 
 test('verify does not run the quality commands', () => {
   const runAll = fs.readFileSync(path.join(root, 'scripts/run-all.sh'), 'utf8');
-  const verify = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).scripts.verify;
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).scripts;
   assert.equal(runAll.includes('evaluate'), false);
-  assert.equal(verify.includes('evaluate:content'), false);
-  assert.equal(verify.includes('evaluate:conversion'), false);
+  assert.equal(scripts.verify.includes('evaluate'), false);
+  assert.ok(scripts.evaluate.indexOf('evaluate:content') < scripts.evaluate.indexOf('evaluate:conversion'));
 });
