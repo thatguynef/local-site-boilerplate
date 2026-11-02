@@ -19,7 +19,7 @@ Use this when the questions on the FAQ page or a service page should change.
 
 - Keep at least three questions on the FAQ page.
 - Each answer is self-contained. Name the business, the city, or the phone when the question needs it.
-- Phrase the question the way a homeowner would ask it.
+- Phrase the question the way a homeowner would ask it. On a service or city page, start from that page's brief when one exists.
 - Say what happens next: who calls, during which hours, and what the person should have ready.
 - If you do not know a fact (license, price, same-day promise), say it is not set yet or leave the question out. Do not guess.
 

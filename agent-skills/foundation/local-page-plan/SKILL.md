@@ -9,7 +9,7 @@ description: Decide which local service pages and service-area pages to build or
 
 Decide which service pages and service-area pages a local home-service business should publish or improve first. The result is an ordered page plan for paths shaped like `/services/<slug>/` and `/service-areas/<slug>/`.
 
-This skill lives in local-site-boilerplate. The usual client is a site the operator does not own. Rank from local keyword demand through OpenSEO, and from the public URLs when a site is already live. Search Console, Google Analytics, and the Google Business Profile are used only when the user says those accounts are already connected. Do not ask for access. This is a prioritization workflow. It does not write the website or forecast a Maps rank or a date.
+This skill lives in local-site-boilerplate. The usual client is a site the operator does not own. Rank from local keyword demand through OpenSEO, and from the public URLs when a site is already live. Search Console, Google Analytics, and the Google Business Profile are used only when the user says those accounts are already connected. Do not ask for access. This is a prioritization workflow. It does not write the website or forecast a Maps rank or a date. `npm run verify` does not run this skill.
 
 Use OpenSEO `keyword-research` when the user wants a keyword list. Use `keyword-clustering` when they already have keywords and want clusters. Use `local-seo` when the question is Maps visibility around a storefront.
 
@@ -20,6 +20,8 @@ Use OpenSEO `keyword-research` when the user wants a keyword list. Use `keyword-
 - The cities the business will drive to, and which city is primary
 - Optional: the live domain, when one exists
 - Optional: an accepted fact sheet from `agent-skills/foundation/fact-sheet.md`. Use its `accepted` services and drive-to cities. A `blank` or `conflict` row is not a service or a city.
+- When `client/facts.yaml` exists, its services and cities are the confirmed set. `client/facts.example.yaml` on this repository is the sample, not a client to plan.
+- When `client/strategy.yaml` exists, use its audience, situations, and `research` notes. A research note is not a keyword metric.
 
 If a service or city is missing, ask once. Confirm the list before any paid call. Keyword ideas do not add a service the business does not perform. Search volume does not add a city the business will not drive to.
 
@@ -56,7 +58,7 @@ If the user said an account was connected and the tool says it is not, record th
 ## Workflow
 
 1. Resolve the project. Read context. Confirm services, cities, and the primary city in one question when they are not already confirmed.
-2. Rank on local keyword demand. When a live site exists, list its public service and city URLs and match each candidate to one. Call Search Console or Analytics only when the user says those accounts are already connected.
+2. Rank on local keyword demand. When a live site exists, list its public service and city URLs and match each candidate to one. Use `docs/url-map.md` or the fact-sheet URL map when the client repo has one. Call Search Console or Analytics only when the user says those accounts are already connected.
 3. Count the paid seeds and say the count before calling `research_keywords`:
    - One seed per confirmed service, each with the primary city's `locationName`.
    - One seed per confirmed city, each the primary service with that city's `locationName`.
@@ -80,9 +82,11 @@ Compare candidates only inside this business's confirmed set. A missing metric i
 
 **Optimize first.** A public URL already covers this confirmed service or city. Rebuild that URL before adding a new one. When Search Console or Analytics rows exist, position 5–20 with at least 50 impressions, a weaker key-event rate than the business's other service or city pages, or the same query sending impressions to two URLs, means keep and improve the specific service or city URL.
 
-**Later.** The business offers it or drives there, and volume is low or difficulty is in the hardest band.
+**Later.** The business offers it or drives there, and volume is low or difficulty is in the hardest band. A page is still possible later.
 
-**Do not build.** The business does not sell it, the intent is informational only, the place is a neighborhood of a city page, or the intent already belongs to a page in this plan. On the site, a service with no page links to `/contact/`.
+**Contact only.** The business offers the service, and this plan is not giving it a page. Status `contact_only`. The site links that service to `/contact/`. This is not "do not build": the service is real, and the lead starts at the form until a later plan says otherwise.
+
+**Do not build.** The business does not sell it, the intent is informational only, the place is a neighborhood of a city page, or the intent already belongs to a page in this plan.
 
 ## Output format
 
@@ -98,8 +102,9 @@ Sections in this order:
 4. **Why this order** — one finding each for the first service, the first city, and any optimize-first page. State the evidence (the numbers, or `unknown`), the path to create or the URL to improve, and why it comes before the next candidate. The expected effect is a hypothesis about fit inside this set. Do not name a rank position or a date.
 5. **Optimize these first** — a table of URL, evidence, and action. Omit the section when no public URL matches a candidate and no first-party rows were used.
 6. **Do not build** — a short table of the term or place and the reason. Omit when empty.
-7. **What to do next** — an ordered list. After the user confirms the build-now rows, draft those pages with `generate-service-page` and `generate-service-area-page` in the client repo cloned from this boilerplate. Do not draft them on local-site-boilerplate main. Offer `local-seo` only if a Maps grid for the first city would change the order. Ask before saving keywords.
-8. **How this report was made** — name this skill, `agent-skills/foundation/local-page-plan/SKILL.md`, then which tools returned what. State that the order came from local keyword demand and, when a site was live, its public URLs. State that keyword difficulty and intent stayed national, and that local volume used `locationName`. Name Search Console or Analytics only when those tools were called.
+7. **Contact only** — services the business offers that stay on `/contact/`. Omit when empty.
+8. **What to do next** — an ordered list. After the user confirms the rows, record each one as `build_now`, `optimize`, `later`, `contact_only`, or `do_not_build`. [build-site-spec](../../strategy/build-site-spec/SKILL.md) writes those rows into `client/site-spec.yaml`. Write a page brief before any page. Draft pages only in the client repo. Do not draft them on local-site-boilerplate main. Offer `local-seo` only if a Maps grid for the first city would change the order. Ask before saving keywords.
+9. **How this report was made** — name this skill, `agent-skills/foundation/local-page-plan/SKILL.md`, then which tools returned what. State that the order came from local keyword demand and, when a site was live, its public URLs. State that keyword difficulty and intent stayed national, and that local volume used `locationName`. Name Search Console or Analytics only when those tools were called.
 
 Add one bar chart of local volume for the build-now shortlist when at least two volumes are known. Print every bar's number in the table too.
 

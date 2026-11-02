@@ -30,7 +30,7 @@ Accept the fact sheet before this step. For a business that already has a site, 
 
 ## Client state files
 
-After the repo exists, copy `client/*.example.yaml` to the same names without `.example`. `facts.yaml` holds accepted facts and claim provenance. `strategy.yaml`, `site-spec.yaml`, and `build-state.yaml` hold the decisions that follow. Run `npm run validate:client`. Do not put secrets in those files.
+After the repo exists, copy `client/*.example.yaml` to the same names without `.example`. `facts.yaml` holds accepted facts and claim provenance. `strategy.yaml`, `site-spec.yaml`, `page-briefs.yaml`, and `build-state.yaml` hold the decisions that follow. Run `npm run validate:client`. Do not put secrets in those files. Write a page brief before writing a service or city page.
 
 Then run `npm run client:generate` and `npm run scaffold`. Generate writes `src/config/business.ts` from the YAML. Scaffold creates missing build-now stubs and does not invent trust claims. See [client-data.md](client-data.md). Do not hand-edit `business.ts` after generating it.
 

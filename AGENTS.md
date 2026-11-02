@@ -19,13 +19,14 @@ Humans start at [README.md](README.md). This file is the agent entry point.
 3. Read `client/facts.yaml` when it exists. On this repository, read `client/facts.example.yaml`.
 4. Read `client/strategy.yaml` when it exists. On this repository, read `client/strategy.example.yaml`.
 5. Read `client/site-spec.yaml` when it exists. On this repository, read `client/site-spec.example.yaml`.
-6. Read the `SKILL.md` for the phase you are in.
-7. Inspect the implementation you are about to change.
-8. Make the smallest coherent set of changes.
-9. Run the checks that phase requires.
-10. Update `client/build-state.yaml` when it exists.
+6. Read `client/page-briefs.yaml` when it exists. On this repository, read `client/page-briefs.example.yaml`.
+7. Read the `SKILL.md` for the phase you are in. To choose that phase, read [build-client-site](agent-skills/orchestration/build-client-site/SKILL.md).
+8. Inspect the implementation you are about to change.
+9. Make the smallest coherent set of changes.
+10. Run the checks that phase requires.
+11. Update `client/build-state.yaml` when it exists.
 
-The YAML files record facts, strategy, the page spec, and workflow state. The site still reads `src/config/business.ts`. Do not invent a second copy of the name, phone, or address. Rules for the files are in [docs/client-data.md](docs/client-data.md). Check them with `npm run validate:client`.
+The YAML files record facts, strategy, the page spec, page briefs, and workflow state. The site still reads `src/config/business.ts`. Do not invent a second copy of the name, phone, or address. Rules for the files are in [docs/client-data.md](docs/client-data.md). Check them with `npm run validate:client`.
 
 On this repository's `main` branch, leave Example Plumbing in place. Do not turn `main` into a client site.
 
@@ -73,13 +74,13 @@ Do not skip fact validation, the page plan, or `npm run verify`. A client site i
 | --- | --- |
 | Discovery | [new-site-intake](agent-skills/foundation/new-site-intake/SKILL.md) or [existing-site-facts](agent-skills/foundation/existing-site-facts/SKILL.md) |
 | Fact validation | [fact-sheet.md](agent-skills/foundation/fact-sheet.md) and [docs/new-site.md](docs/new-site.md) or [docs/existing-site.md](docs/existing-site.md) |
-| Market research | No skill yet. Competitors are market intelligence. Do not copy their copy or their design. |
-| Positioning | No skill yet. Use only differentiators the business can prove. |
-| Conversion strategy | The built actions are click-to-call and `POST /api/contact/`. Do not add booking, chat, a financing calculator, or a membership portal in this pass. |
+| Market research | [competitor-research](agent-skills/research/competitor-research/SKILL.md), [local-market-analysis](agent-skills/research/local-market-analysis/SKILL.md), and [search-intent-analysis](agent-skills/research/search-intent-analysis/SKILL.md). Store notes on `strategy.yaml` under `research`. Do not copy a competitor. |
+| Positioning | [define-positioning](agent-skills/strategy/define-positioning/SKILL.md). Differentiators come only from facts the business can publish. |
+| Conversion strategy | [define-conversion-strategy](agent-skills/strategy/define-conversion-strategy/SKILL.md). The built actions are click-to-call and `POST /api/contact/`. |
 | Page plan | [local-page-plan](agent-skills/foundation/local-page-plan/SKILL.md). It does not run inside `npm run verify`. |
-| Site specification | `client/site-spec.yaml` when it exists, else the accepted fact sheet plus the page plan. `src/config/business.ts` remains the NAP source. |
+| Site specification | [build-site-spec](agent-skills/strategy/build-site-spec/SKILL.md) writes `client/site-spec.yaml`. `src/config/business.ts` remains the NAP source. |
 | Client scaffold | [docs/client-repo.md](docs/client-repo.md). Clone a release tag. Do not clone `main`. |
-| Content | [generate-service-page](agent-skills/foundation/generate-service-page/SKILL.md), [generate-service-area-page](agent-skills/foundation/generate-service-area-page/SKILL.md), [update-faq](agent-skills/foundation/update-faq/SKILL.md) |
+| Content | [page-brief](agent-skills/content/page-brief/SKILL.md), then [generate-service-page](agent-skills/foundation/generate-service-page/SKILL.md), [generate-service-area-page](agent-skills/foundation/generate-service-area-page/SKILL.md), and [update-faq](agent-skills/foundation/update-faq/SKILL.md). Do not write a page from a keyword alone. |
 | Foundation verify | `npm run verify` must exit 0 before visual work. |
 | Visual system and bespoke implementation | [personalize-client-site](agent-skills/visual/personalize-client-site/SKILL.md), then [docs/change-policy.md](docs/change-policy.md) |
 | Full verify | `npm run verify` again after content or visual edits. |

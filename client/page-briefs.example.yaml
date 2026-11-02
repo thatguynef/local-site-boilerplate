@@ -1,0 +1,71 @@
+# Shape for client/page-briefs.yaml. Sample reasoning for the two build-now
+# pages. Proof here is what the page may use. Publish a claim only when
+# facts.yaml gives it a publishable status. Do not copy a competitor.
+
+version: 1
+pages:
+  - path: /services/drain-cleaning/
+    kind: service
+    slug: drain-cleaning
+    search_intent: hire drain cleaning in Example City
+    visitor_situation: A homeowner has a slow or backed-up sink, tub, toilet, or main line.
+    primary_answer: Example Plumbing clears clogged sinks, tubs, toilets, and main lines for homes in Example City. Call (555) 010-0199.
+    primary_cta:
+      type: phone
+      label: Call Example Plumbing
+    supporting_proof:
+      - Hours are Monday–Saturday, 7:00 a.m.–7:00 p.m.
+      - The one-business-hour callback is client_supplied from the sample home page.
+      - Neighborhoods on the page are North Example, Old Town, and River District.
+    objections:
+      - Whether the visit covers the branch line or the main line
+      - Whether the street is inside the named neighborhoods
+    questions:
+      - How do I know if I need drain cleaning in Example City?
+      - Which Example City neighborhoods are served?
+      - How do I book drain cleaning?
+    related:
+      - water-heater-repair
+      - leak-detection
+      - example-city
+    internal_links:
+      - /service-areas/example-city/
+      - /contact/
+      - /faq/
+    avoid:
+      - license, insurance, guarantee, reviews, price, or an owner name
+      - a 24/7 or emergency claim
+      - a new page for a service marked contact_only
+
+  - path: /service-areas/example-city/
+    kind: service_area
+    slug: example-city
+    search_intent: find a plumber in Example City
+    visitor_situation: A homeowner in Example City wants to know whether the plumber will come to their neighborhood.
+    primary_answer: Example Plumbing is a plumber for homes in Example City, including North Example, Old Town, and River District. Call (555) 010-0199 to confirm the street.
+    primary_cta:
+      type: phone
+      label: Call Example Plumbing
+    supporting_proof:
+      - The city page names North Example, Old Town, and River District.
+      - Drain cleaning has a page. Water heater repair and leak detection start at the contact form.
+      - The one-business-hour callback is client_supplied from the sample home page.
+    objections:
+      - A street elsewhere in Example City may still need a yes or no by phone
+      - Water heater repair and leak detection do not have their own pages yet
+    questions:
+      - Do you serve North Example, Old Town, and River District?
+      - How do I know if my street is included?
+      - How do I book a plumber in Example City?
+    related:
+      - drain-cleaning
+      - water-heater-repair
+      - leak-detection
+    internal_links:
+      - /services/drain-cleaning/
+      - /contact/
+      - /faq/
+    avoid:
+      - a neighborhood page with the city paragraph swapped
+      - license, insurance, reviews, price, or an owner name
+      - a combined /services/drain-cleaning/example-city/ URL

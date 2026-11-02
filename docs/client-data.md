@@ -10,6 +10,7 @@ Structured records for a client repository. The operating contract is [AGENTS.md
 | `client/strategy.example.yaml` | `client/strategy.yaml` | `schemas/client-strategy.schema.json` |
 | `client/site-spec.example.yaml` | `client/site-spec.yaml` | `schemas/site-spec.schema.json` |
 | `client/build-state.example.yaml` | `client/build-state.yaml` | `schemas/build-state.schema.json` |
+| `client/page-briefs.example.yaml` | `client/page-briefs.yaml` | `schemas/page-briefs.schema.json` |
 
 Copy the example, then remove `.example` from the name. Do not commit webhook URLs, API keys, or `.dev.vars`.
 
@@ -20,7 +21,7 @@ npm run scaffold
 npm run doctor
 ```
 
-`validate:client` checks the example files and, when present, the live `client/*.yaml` files. A spec slug must exist in `facts.yaml`. Unknown keys fail.
+`validate:client` checks the example files and, when present, the live `client/*.yaml` files. A spec slug must exist in `facts.yaml`. A page brief must match a `build_now` or `optimize` page. Unknown keys fail. The sample briefs are not compared with a live spec until that repository has its own `page-briefs.yaml`.
 
 `client:generate` rewrites `src/config/business.ts` from the facts and the page statuses. `build_now` and `optimize` point at `/services/<slug>/`. Every other status points at `/contact/`. A claim is copied only when its status is publishable. Financing stays blank, because the page shows it only when both a statement and a URL are set. The manifest name changes only when the business name changed. Running the command twice makes no further diff.
 
@@ -35,6 +36,10 @@ npm run doctor
 `facts.yaml` is what the business is: name, phone, address, hours, services, cities, and claims.
 
 `strategy.yaml` is why the site is shaped that way: audience, situations, positioning, and the conversion choice. Differentiators stay empty until the facts support them. Do not copy a competitor.
+
+`strategy.yaml` may include `research`. Those notes are market observations from the research skills. They are not claims, and `client:generate` does not copy them into `business.ts`. Leave `research` off until the notes have a source. Do not invent a competitor, a rank, or a metric.
+
+`page-briefs.yaml` is the reasoning for each `build_now` or `optimize` page before anyone writes the markdown. One brief per such page. `npm run verify` does not require a live briefs file. The page skills refuse to draft from a keyword alone.
 
 `site-spec.yaml` is what to build. Page statuses:
 
@@ -113,4 +118,4 @@ A type does not add a feature. `phone` is the click-to-call link. `request_servi
 
 ## What the sample is allowed to claim
 
-The example files describe Example Plumbing. The only publishable claim is the sample callback sentence, marked `client_supplied` from the sample home page. License, insurance, reviews, price, owner, financing, after-hours, and emergency service stay empty.
+The example files describe Example Plumbing. The only publishable claim is the sample callback sentence, marked `client_supplied` from the sample home page. License, insurance, reviews, price, owner, financing, after-hours, and emergency service stay empty. The sample strategy has no `research` block. The sample briefs cover drain cleaning and Example City only.

@@ -147,7 +147,7 @@ if (paths.sample) {
     ['page_plan', 'Finish the page plan.'],
     ['site_spec', 'Validate the site spec.'],
     ['scaffold', 'Run npm run scaffold.'],
-    ['content', 'Replace scaffold stubs and write the build-now pages.'],
+    ['content', 'Write a page brief for each build-now page, then replace the scaffold stubs.'],
     ['foundation_verify', 'Run npm run verify.'],
     ['design', 'Complete visual personalization.'],
     ['final_verify', 'Run npm run verify after the visual pass.'],

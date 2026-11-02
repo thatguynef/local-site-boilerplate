@@ -9,6 +9,7 @@ const pairs = [
   ['strategy', 'client/strategy.example.yaml', 'client/strategy.yaml'],
   ['site-spec', 'client/site-spec.example.yaml', 'client/site-spec.yaml'],
   ['build-state', 'client/build-state.example.yaml', 'client/build-state.yaml'],
+  ['page-briefs', 'client/page-briefs.example.yaml', 'client/page-briefs.yaml'],
 ];
 
 function filesToCheck(args) {
@@ -32,6 +33,8 @@ function filesToCheck(args) {
 const args = process.argv.slice(2);
 let failed = false;
 const loaded = {};
+let liveSpec = false;
+let liveBriefs = false;
 
 for (const { kind, file } of filesToCheck(args)) {
   const label = path.relative(root, file);
@@ -44,8 +47,13 @@ for (const { kind, file } of filesToCheck(args)) {
     continue;
   }
   const result = validateClientData(kind, data);
-  if (!args.length && path.basename(file).endsWith('.example.yaml')) loaded[kind] = data;
-  if (!args.length && path.basename(file) === `${kind}.yaml`) loaded[kind] = data;
+  const base = path.basename(file);
+  if (!args.length && base.endsWith('.example.yaml')) loaded[kind] = data;
+  if (!args.length && base === `${kind}.yaml`) {
+    loaded[kind] = data;
+    if (kind === 'site-spec') liveSpec = true;
+    if (kind === 'page-briefs') liveBriefs = true;
+  }
   if (!result.ok) {
     failed = true;
     for (const error of result.errors) console.error(`FAIL ${label}: ${error}`);
@@ -56,7 +64,11 @@ for (const { kind, file } of filesToCheck(args)) {
 }
 
 if (!args.length && loaded.facts && loaded['site-spec']) {
-  for (const error of crossCheck(loaded)) {
+  const files = { facts: loaded.facts, 'site-spec': loaded['site-spec'] };
+  // Example briefs describe the sample spec. Do not compare them with a live spec
+  // that does not have its own briefs yet.
+  if (!liveSpec || liveBriefs) files['page-briefs'] = loaded['page-briefs'];
+  for (const error of crossCheck(files)) {
     failed = true;
     console.error(`FAIL client: ${error}`);
   }

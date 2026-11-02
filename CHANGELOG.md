@@ -8,6 +8,8 @@ Added `client/*.example.yaml`, JSON Schemas, and `npm run validate:client`. Trus
 
 `npm run client:generate` writes `src/config/business.ts` from the client YAML. `npm run scaffold` creates missing build-now stubs, keeps existing pages, and removes an obsolete Example Plumbing page only for a different business. `npm run doctor` reports workflow readiness. `npm run verify` checks that the generated config, claim provenance, build-now pages, sample strings, secrets, internal links, and image rules still hold. Example Plumbing stays valid on this repository.
 
+Added the build workflow skills: an orchestrator, competitor and market research, search intent, positioning, conversion strategy, site-spec generation, and page briefs. `client/page-briefs.example.yaml` records the sample build-now pages. `strategy.yaml` may store a `research` object. The page skills read a brief before writing copy. `local-page-plan` can mark a service `contact_only` and still does not run inside `npm run verify`.
+
 ## 1.2.0 - 2026-11-01
 
 Added optional `licenses`, `afterHours`, `financing`, and `maintenancePlan` on `src/config/business.ts`. Empty after-hours, financing, and maintenance plan stay off the page. A maintenance plan is shown only on the maintenance service page. Financing is shown only when both the statement and the URL are set.

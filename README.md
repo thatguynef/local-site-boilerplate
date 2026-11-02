@@ -133,7 +133,7 @@ Run `npm run verify` after a visual pass. The structural suite still has to pass
 
 ## Client data
 
-`client/*.example.yaml` is the shape for facts, strategy, the site spec, and build state. A client repository copies those files and drops `.example`. Claim rules are in [docs/client-data.md](docs/client-data.md). The pages still read `src/config/business.ts`.
+`client/*.example.yaml` is the shape for facts, strategy, the site spec, build state, and page briefs. A client repository copies those files and drops `.example`. Claim rules are in [docs/client-data.md](docs/client-data.md). The pages still read `src/config/business.ts`. The build order for an agent is [build-client-site](agent-skills/orchestration/build-client-site/SKILL.md).
 
 ```bash
 npm run validate:client

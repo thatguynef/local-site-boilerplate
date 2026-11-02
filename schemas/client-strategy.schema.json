@@ -69,7 +69,8 @@
           }
         }
       }
-    }
+    },
+    "research": { "$ref": "#/$defs/research" }
   },
   "$defs": {
     "ctaType": {
@@ -91,6 +92,69 @@
       "properties": {
         "type": { "$ref": "#/$defs/ctaType" },
         "label": { "type": "string", "minLength": 2 }
+      }
+    },
+    "note": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 240
+    },
+    "noteList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/note" }
+    },
+    "research": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conventions",
+        "gaps",
+        "trust_requirements",
+        "customer_fears",
+        "high_intent_services",
+        "common_offers",
+        "conversion_patterns",
+        "content_opportunities"
+      ],
+      "properties": {
+        "conventions": { "$ref": "#/$defs/noteList" },
+        "gaps": { "$ref": "#/$defs/noteList" },
+        "trust_requirements": { "$ref": "#/$defs/noteList" },
+        "customer_fears": { "$ref": "#/$defs/noteList" },
+        "high_intent_services": { "$ref": "#/$defs/noteList" },
+        "common_offers": { "$ref": "#/$defs/noteList" },
+        "conversion_patterns": { "$ref": "#/$defs/noteList" },
+        "content_opportunities": { "$ref": "#/$defs/noteList" },
+        "differentiation": { "$ref": "#/$defs/noteList" },
+        "intent_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["query", "intent", "home"],
+            "properties": {
+              "query": { "$ref": "#/$defs/note" },
+              "intent": {
+                "enum": ["hire", "compare", "price", "symptom", "informational", "navigational"]
+              },
+              "home": {
+                "enum": ["service_page", "city_page", "faq", "existing_page", "do_not_build"]
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["url", "note"],
+            "properties": {
+              "url": { "type": "string", "pattern": "^https://\\S+$" },
+              "note": { "$ref": "#/$defs/note" }
+            }
+          }
+        }
       }
     }
   }

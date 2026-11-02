@@ -118,13 +118,14 @@ Privacy must describe this form and say that a request is forwarded only when `C
 
 Use these skills if an agent writes the copy:
 
+- `agent-skills/content/page-brief/SKILL.md` before the page skills
 - `agent-skills/foundation/generate-service-page/SKILL.md`
 - `agent-skills/foundation/generate-service-area-page/SKILL.md`
 - `agent-skills/foundation/update-faq/SKILL.md`
 - `agent-skills/foundation/fill-jsonld/SKILL.md`
 - `agent-skills/foundation/check-nap/SKILL.md`
 
-Give the agent the accepted fact sheet. Tell it to leave unproven fields blank.
+Give the agent the accepted fact sheet and the page brief. Tell it to leave unproven fields blank.
 
 ## Phase 5 — Share image, mark, and checks
 

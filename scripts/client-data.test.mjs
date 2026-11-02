@@ -31,12 +31,14 @@ test('example client files validate', () => {
     strategy: readClientYaml(path.join(root, 'client/strategy.example.yaml')),
     'site-spec': readClientYaml(path.join(root, 'client/site-spec.example.yaml')),
     'build-state': readClientYaml(path.join(root, 'client/build-state.example.yaml')),
+    'page-briefs': readClientYaml(path.join(root, 'client/page-briefs.example.yaml')),
   };
   for (const [kind, data] of Object.entries(files)) {
     const result = validateClientData(kind, data);
     assert.deepEqual(result.errors, [], `${kind} ${result.errors.join('; ')}`);
     assert.equal(result.ok, true);
   }
+  assert.equal(files.strategy.research, undefined);
   assert.deepEqual(crossCheck(files), []);
 });
 
@@ -49,6 +51,8 @@ test('schema enums match the validator', () => {
   assert.deepEqual(enums(strategySchema, '/$defs/ctaType'), CTA_TYPES);
   assert.deepEqual(enums(specSchema, '/$defs/pageStatus'), PAGE_STATUSES);
   assert.deepEqual(enums(stateSchema, '/$defs/status'), WORKFLOW_STATUSES);
+  const briefSchema = JSON.parse(fs.readFileSync(path.join(root, 'schemas/page-briefs.schema.json'), 'utf8'));
+  assert.deepEqual(enums(briefSchema, '/$defs/ctaType'), CTA_TYPES);
   for (const status of PUBLISHABLE_STATUSES) assert.ok(CLAIM_STATUSES.includes(status));
 });
 
@@ -133,6 +137,58 @@ test('a webhook URL in client YAML fails', () => {
   const result = validateClientData('facts', data);
   assert.equal(result.ok, false);
   assert.match(result.errors.join('\n'), /secret/);
+});
+
+function researchNotes() {
+  return {
+    conventions: [],
+    gaps: [],
+    trust_requirements: [],
+    customer_fears: [],
+    high_intent_services: [],
+    common_offers: [],
+    conversion_patterns: [],
+    content_opportunities: [],
+  };
+}
+
+test('strategy research is optional and closed', () => {
+  const strategy = readClientYaml(path.join(root, 'client/strategy.example.yaml'));
+  strategy.research = { competitor_copy: ['a stolen sentence'] };
+  assert.equal(validateClientData('strategy', strategy).ok, false);
+
+  strategy.research = researchNotes();
+  strategy.research.sources = [{ url: 'https://example.com/drains', note: 'Phone-first service page' }];
+  strategy.research.intent_groups = [{ query: 'drain cleaning example city', intent: 'hire', home: 'service_page' }];
+  assert.equal(validateClientData('strategy', strategy).ok, true);
+
+  strategy.research.intent_groups[0].intent = 'rank';
+  assert.equal(validateClientData('strategy', strategy).ok, false);
+});
+
+test('a page brief rejects an unknown key', () => {
+  const briefs = readClientYaml(path.join(root, 'client/page-briefs.example.yaml'));
+  briefs.pages[0].keyword = 'drain cleaning';
+  assert.equal(validateClientData('page-briefs', briefs).ok, false);
+});
+
+test('page briefs must match build-now and optimize pages', () => {
+  const files = {
+    facts: facts(),
+    'site-spec': readClientYaml(path.join(root, 'client/site-spec.example.yaml')),
+    'page-briefs': readClientYaml(path.join(root, 'client/page-briefs.example.yaml')),
+  };
+  assert.deepEqual(crossCheck(files), []);
+
+  const extra = structuredClone(files['page-briefs'].pages[0]);
+  extra.path = '/services/water-heater-repair/';
+  extra.slug = 'water-heater-repair';
+  files['page-briefs'].pages.push(extra);
+  assert.match(crossCheck(files).join('\n'), /water-heater-repair/);
+
+  files['page-briefs'].pages.pop();
+  files['page-briefs'].pages.pop();
+  assert.match(crossCheck(files).join('\n'), /example-city/);
 });
 
 test('a site-spec page for an unknown service fails the cross-check', () => {

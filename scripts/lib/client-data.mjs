@@ -49,6 +49,7 @@ const SCHEMA_FILES = {
   strategy: 'client-strategy.schema.json',
   'site-spec': 'site-spec.schema.json',
   'build-state': 'build-state.schema.json',
+  'page-briefs': 'page-briefs.schema.json',
 };
 
 const SECRET_PATTERNS = [
@@ -85,7 +86,9 @@ export function loadYaml(text) {
 
 export function kindFromFilename(filePath) {
   const base = path.basename(filePath).replace(/\.example\.yaml$/, '').replace(/\.yaml$/, '');
-  if (base === 'facts' || base === 'strategy' || base === 'site-spec' || base === 'build-state') return base;
+  if (base === 'facts' || base === 'strategy' || base === 'site-spec' || base === 'build-state' || base === 'page-briefs') {
+    return base;
+  }
   return '';
 }
 
@@ -240,6 +243,12 @@ export function validateClientData(kind, data) {
   return { ok: errors.length === 0, errors, withheld };
 }
 
+const BUILDABLE = new Set(['build_now', 'optimize']);
+
+function briefKey(kind, slug) {
+  return `${kind}:${slug}`;
+}
+
 export function crossCheck(files) {
   const errors = [];
   const facts = files.facts;
@@ -255,6 +264,30 @@ export function crossCheck(files) {
   }
   for (const page of spec.pages?.service_areas ?? []) {
     if (!citySlugs.has(page.slug)) errors.push(`site spec city "${page.slug}" is not in facts.yaml`);
+  }
+
+  const briefs = files['page-briefs'];
+  if (!briefs) return errors;
+  const buildable = new Map();
+  for (const page of spec.pages?.services ?? []) {
+    if (BUILDABLE.has(page.status)) buildable.set(briefKey('service', page.slug), page);
+  }
+  for (const page of spec.pages?.service_areas ?? []) {
+    if (BUILDABLE.has(page.status)) buildable.set(briefKey('service_area', page.slug), page);
+  }
+  const seen = new Set();
+  for (const brief of briefs.pages ?? []) {
+    const key = briefKey(brief.kind, brief.slug);
+    const expected = brief.kind === 'service' ? `/services/${brief.slug}/` : `/service-areas/${brief.slug}/`;
+    if (!buildable.has(key)) {
+      errors.push(`page brief "${brief.slug}" is not a build_now or optimize page in the site spec`);
+    }
+    if (brief.path !== expected) errors.push(`page brief "${brief.slug}" path must be ${expected}`);
+    if (seen.has(key)) errors.push(`page brief "${brief.slug}" is duplicated`);
+    seen.add(key);
+  }
+  for (const [key, page] of buildable) {
+    if (!seen.has(key)) errors.push(`site spec page "${page.slug}" needs a page brief`);
   }
   return errors;
 }

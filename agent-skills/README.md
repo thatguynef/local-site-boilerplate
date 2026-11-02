@@ -2,28 +2,42 @@
 
 These instructions are for Claude, Cursor, Codex, Grok, and other agents that can read a `SKILL.md` file. Point the agent at the file, or copy the folder into the agent's skills directory.
 
-Start at [AGENTS.md](../AGENTS.md). What a client build may change is in [docs/change-policy.md](../docs/change-policy.md). The Example Plumbing design is scaffolding, not a design target. Vendored skills in `visual/` are helpers. `personalize-client-site` and the change policy win when a vendored skill conflicts with them.
+Start at [AGENTS.md](../AGENTS.md). What a client build may change is in [docs/change-policy.md](../docs/change-policy.md). Claims, page statuses, and the YAML files are in [docs/client-data.md](../docs/client-data.md). The Example Plumbing design is scaffolding, not a design target. Vendored skills in `visual/` are helpers. `personalize-client-site` and the change policy win when a vendored skill conflicts with them.
 
-## Foundation
+## Workflow
 
-Use these while the content and business facts are still being filled in.
+On a client repository, start at `orchestration/build-client-site/SKILL.md`. It reads `client/build-state.yaml` and names the next unfinished phase. On this repository it stops. The checkout is the Example Plumbing sample.
+
+| Phase | File |
+| --- | --- |
+| Discovery, no site | `foundation/new-site-intake/SKILL.md` |
+| Discovery, existing site | `foundation/existing-site-facts/SKILL.md` |
+| Competitor research | `research/competitor-research/SKILL.md` |
+| Local market | `research/local-market-analysis/SKILL.md` |
+| Search intent | `research/search-intent-analysis/SKILL.md` |
+| Positioning | `strategy/define-positioning/SKILL.md` |
+| Conversion | `strategy/define-conversion-strategy/SKILL.md` |
+| Page plan | `foundation/local-page-plan/SKILL.md` |
+| Site spec | `strategy/build-site-spec/SKILL.md` |
+| Page brief | `content/page-brief/SKILL.md` |
+| Service page | `foundation/generate-service-page/SKILL.md` |
+| Service-area page | `foundation/generate-service-area-page/SKILL.md` |
+| Visual pass | `visual/personalize-client-site/SKILL.md` |
+
+`foundation/existing-site-facts/SKILL.md` reads a live site. `foundation/new-site-intake/SKILL.md` asks the checklist and does not search. Accept the fact sheet before the page plan. The page plan reads facts and strategy when those files exist. It does not need Search Console, Analytics, or Business Profile access. None of these skills run inside `npm run verify`.
+
+## Also used while building
 
 | Skill | File |
 | --- | --- |
-| Existing site facts | `foundation/existing-site-facts/SKILL.md` |
-| New site intake | `foundation/new-site-intake/SKILL.md` |
-| Local page plan | `foundation/local-page-plan/SKILL.md` |
-| Service page | `foundation/generate-service-page/SKILL.md` |
-| Service-area page | `foundation/generate-service-area-page/SKILL.md` |
+| Fact sheet columns | `foundation/fact-sheet.md` |
 | JSON-LD | `foundation/fill-jsonld/SKILL.md` |
 | FAQ | `foundation/update-faq/SKILL.md` |
 | Website Scorecard review | `foundation/review-website-scorecard/SKILL.md` |
 | NAP consistency | `foundation/check-nap/SKILL.md` |
 | Open Graph image | `foundation/og-image/SKILL.md` |
 
-Run the matching fact skill first. `foundation/existing-site-facts/SKILL.md` reads a live site. `foundation/new-site-intake/SKILL.md` asks the checklist and does not search. Accept the fact sheet, then run `foundation/local-page-plan/SKILL.md` before the two page skills. The page plan chooses which service and city pages to build from local keyword demand and the public site. It does not need Search Console, Analytics, or Business Profile access. None of these skills run inside `npm run verify`.
-
-The other foundation skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
+Those skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
 
 ## Visual pass
 

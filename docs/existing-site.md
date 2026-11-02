@@ -121,7 +121,7 @@ Rewrite thin or duplicated location copy. Keep a claim only when the reference s
 
 Home, about, FAQ, and privacy come from `src/content/pages/`. The FAQ page needs at least three questions. Privacy should describe this form: name, phone, email, ZIP or area, service, preferred time, and an optional message. The client should have a qualified person review that page before launch.
 
-An agent can draft the pages from `agent-skills/foundation/generate-service-page/SKILL.md`, `generate-service-area-page/SKILL.md`, `update-faq/SKILL.md`, and `fill-jsonld/SKILL.md`. Paste the reference URL and the accepted fact sheet. Tell it to leave any unproven field blank.
+An agent writes `agent-skills/content/page-brief/SKILL.md` first, then drafts from `generate-service-page/SKILL.md`, `generate-service-area-page/SKILL.md`, `update-faq/SKILL.md`, and `fill-jsonld/SKILL.md`. Paste the reference URL, the accepted fact sheet, and the brief. Tell it to leave any unproven field blank.
 
 ## Phase 6 — Run the checks
 
