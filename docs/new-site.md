@@ -54,6 +54,16 @@ Required before writing pages:
 
 Write a one-page brief from the answers: name, trade, primary service, primary city, domain, and lead destination. List every blank optional field so nobody fills it with a guess later.
 
+## Choose the pages
+
+After the intake list is confirmed and before Phase 4, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md`. It does not run inside `npm run verify`. Keyword demand, Search Console, and Analytics still come from an OpenSEO project.
+
+Give it the services the client performs and the cities they will drive to. There is no Search Console property and no Analytics property yet, so the plan uses local keyword demand only. A missing metric stays unknown.
+
+Write a page only for a row marked build now. A service marked later stays in `primaryServices` with `href` `/contact/`. A city marked later stays off the site until a later pass. A neighborhood stays a name on its city page.
+
+The client's note about which services should get a page is an input to that plan. The plan orders the list. It does not name a Maps rank or a launch date.
+
 ## Phase 2 — Create the client project
 
 ```bash
@@ -91,6 +101,8 @@ Edit `src/config/business.ts` from the brief.
 Set `name` and `short_name` in `public/site.webmanifest`.
 
 ## Phase 4 — Write the pages
+
+Write the build-now service and city files from the page plan. Leave a later service as a `/contact/` link.
 
 Rewrite `src/content/pages/home.md`, `about.md`, `faq.md`, and `privacy.md`.
 

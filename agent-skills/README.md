@@ -8,6 +8,7 @@ Use these while the content and business facts are still being filled in.
 
 | Skill | File |
 | --- | --- |
+| Local page plan | `foundation/local-page-plan/SKILL.md` |
 | Service page | `foundation/generate-service-page/SKILL.md` |
 | Service-area page | `foundation/generate-service-area-page/SKILL.md` |
 | JSON-LD | `foundation/fill-jsonld/SKILL.md` |
@@ -16,7 +17,9 @@ Use these while the content and business facts are still being filled in.
 | NAP consistency | `foundation/check-nap/SKILL.md` |
 | Open Graph image | `foundation/og-image/SKILL.md` |
 
-Each one tells the agent to run `npm run verify` and points at the sister scorecards where that work shows up.
+Run `foundation/local-page-plan/SKILL.md` before the two page skills. It chooses which service and city pages to build. It reads keyword demand, Search Console, and Analytics through OpenSEO. It does not run inside `npm run verify`.
+
+The other foundation skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
 
 ## Visual pass
 

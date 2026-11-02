@@ -7,6 +7,12 @@ description: Write one local service page in the answer-first pattern used by th
 
 Use this when adding a real service to a site built from local-site-boilerplate.
 
+## Which page
+
+When the task is choosing which services get pages, stop and use `agent-skills/foundation/local-page-plan/SKILL.md`.
+
+Write a page from this skill only for a slug the user confirmed from that plan. A service with no page stays a `/contact/` link in `primaryServices`.
+
 ## Read first
 
 - `src/config/business.ts` for the name, city, phone, neighborhoods, and hours

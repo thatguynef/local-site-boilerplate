@@ -7,6 +7,12 @@ description: Write one service-area page with neighborhoods and local proof, usi
 
 Use this when a business serves another city and needs a page for that city.
 
+## Which page
+
+When the task is choosing which cities get pages, stop and use `agent-skills/foundation/local-page-plan/SKILL.md`.
+
+Write a page from this skill only for a city the user confirmed from that plan. A neighborhood stays a name on its city page unless that plan gives the neighborhood its own page.
+
 ## Read first
 
 - `src/config/business.ts` for `areaServed`, `neighborhoods`, phone, and services

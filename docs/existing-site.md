@@ -119,9 +119,19 @@ Leave owner, license, insurance, guarantee, reviews, and price empty when the si
 
 `schemaType` is a schema.org local-business subtype. The sample is `Plumber`. Use `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, `GeneralContractor`, or the closest real subtype for another trade.
 
+## Choose the pages
+
+Before Phase 5, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md` and give it the canonical domain. It does not run inside `npm run verify`. Keyword demand, Search Console, and Analytics still come from an OpenSEO project.
+
+Connect Search Console and Google Analytics on the OpenSEO project when the client can grant them. Queries in positions 5–20, and organic landing pages with key events, decide which current URLs to improve before adding a new city. When either source is not connected, the plan says so and ranks new pages on local keyword demand. A missing metric stays unknown.
+
+Build-now rows with no current URL are new pages. Optimize-first rows are the pages to rebuild with the most care. Do-not-build rows stay out of the new site. Keep those old URLs on the Phase 3 redirect map, pointed at the closest real page or `/contact/`.
+
+The plan compares this client's own services and cities. It does not name a Maps rank or a date.
+
 ## Phase 5 — Rewrite the pages
 
-Use the old page as the fact source. Write the new page in the answer-first shape.
+Use the old page as the fact source and the page plan as the build order. Write the new page in the answer-first shape.
 
 For each service file and each city file:
 

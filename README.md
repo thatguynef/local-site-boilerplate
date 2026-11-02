@@ -18,6 +18,12 @@ The journey is discovery, then the Google Business Profile, then the website. Lo
 
 `npm run verify` proves the on-site structure. It does not produce a numeric scorecard score. It does not measure Maps rank, competitor share, live AI citations, profile reviews, profile categories, or profile posts.
 
+## Page plan
+
+Before choosing which service pages and city pages to build, point an agent at [local-page-plan](agent-skills/foundation/local-page-plan/SKILL.md). It reads local keyword demand through OpenSEO, and Search Console and Google Analytics when those are connected, then orders `/services/<slug>/` and `/service-areas/<slug>/`. A business with no site yet is ranked on keyword demand only. A missing metric stays unknown.
+
+The plan does not score the built site, and `npm run verify` does not call it. It does not forecast a Maps rank or a date. The skill stays in this repository.
+
 ## Clone and start
 
 Requires Node.js 22.22.0 or newer.
