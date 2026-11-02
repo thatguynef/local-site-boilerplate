@@ -67,6 +67,22 @@ const assertions = [
     evidence: /min-height:\s*44px/.test(css) ? 'Built CSS sets a 44px minimum target' : 'Built CSS has no 44px target',
   },
   {
+    id: 'landmarks',
+    ok: documents.every((page) => (
+      /class="[^"]*site-header/.test(page.html)
+      && /<footer\b/.test(page.html)
+      && (page.html.match(/<main\b/gi) ?? []).length === 1
+    )),
+    evidence: 'Every page has a site header, one main, and a footer',
+  },
+  {
+    id: 'reduced-motion',
+    ok: /prefers-reduced-motion:\s*reduce/.test(css),
+    evidence: /prefers-reduced-motion:\s*reduce/.test(css)
+      ? 'Built CSS honors reduced motion'
+      : 'Built CSS has no reduced-motion rule',
+  },
+  {
     id: 'RL-MOB-01',
     ok: documents.every((page) => /width=device-width/.test(metaContent(page.html, 'viewport'))),
     evidence: 'Every page sets a device-width viewport',

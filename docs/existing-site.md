@@ -149,7 +149,7 @@ Before DNS moves:
 
 - Publish a 301 from each old URL that people or search engines already use to the new URL from the Phase 3 map. Unknown old URLs should hit the boilerplate 404, which is `noindex` and links home.
 - Set `CONTACT_WEBHOOK_URL` with `npx wrangler secret put` so a real submission is delivered. Copy `.dev.vars.example` to `.dev.vars` for local preview. Do not commit `.dev.vars`.
-- Submit one test lead and confirm it arrives. A valid post sends JSON with `name`, `phone`, `email`, `area`, `service`, `preferredTime`, `message`, and `source` set to `website-contact-form`, then redirects to `/thank-you/`.
+- Submit one test lead and confirm it arrives. Follow [production QA](../agent-skills/launch/production-qa/SKILL.md) before calling the site launched. After launch, use [post-launch.md](post-launch.md). A valid post sends JSON with `name`, `phone`, `email`, `area`, `service`, `preferredTime`, `message`, and `source` set to `website-contact-form`, then redirects to `/thank-you/`.
 - Attach the domain to the Worker and make it match `site` in `astro.config.mjs`.
 - Deploy with `npx wrangler login` and then `npm run build && npx wrangler deploy`.
 - When the client has a Business Profile, the name, phone, address, hours, and service names on it should match the new site.

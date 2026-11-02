@@ -1,3 +1,4 @@
+import { missingContactFields } from '../lib/form-contract.mjs';
 import { readPage, writeResult } from '../lib/html.mjs';
 
 const { html } = readPage('/contact/');
@@ -40,8 +41,10 @@ const assertions = [
   },
   {
     id: 'RL-RSP-05',
-    ok: ['service', 'area', 'message', 'preferredTime'].every((name) => fields.some((field) => field.name === name)),
-    evidence: 'Form includes service, area, message, and preferred contact time',
+    ok: missingContactFields(form).length === 0,
+    evidence: missingContactFields(form).length
+      ? `Form is missing ${missingContactFields(form).join(', ')}`
+      : 'Form includes service, area, message, and preferred contact time',
   },
   {
     id: 'form-honeypot',
@@ -56,11 +59,11 @@ if (!origin) {
     assertions.push({ id, ok: false, evidence: 'VERIFY_ORIGIN is not set' });
   }
 } else {
-  const secret = 'SECRET-VALUE-XYZ';
+  const canary = 'CANARY-VALUE';
   const invalid = await fetch(`${origin}/api/contact/`, {
     method: 'POST',
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ message: secret }).toString(),
+    body: new URLSearchParams({ message: canary }).toString(),
     redirect: 'manual',
   });
   const invalidBody = await invalid.text();
@@ -70,7 +73,7 @@ if (!origin) {
     && invalidJson?.ok === false
     && Array.isArray(invalidJson.fields)
     && ['name', 'phone', 'email', 'area', 'service', 'preferredTime'].every((name) => invalidJson.fields.includes(name))
-    && !invalidBody.includes(secret)
+    && !invalidBody.includes(canary)
     && !invalid.headers.get('location');
   assertions.push({
     id: 'form-invalid',

@@ -1,0 +1,34 @@
+# Fake profile. The secondary action asks for an estimate. Financing stays unpublished.
+
+audience:
+  primary:
+    - homeowners comparing a roof replacement
+
+customer_situations:
+  urgent:
+    - active roof leak
+  considered:
+    - roof replacement
+
+positioning:
+  core: "Cedar Roofing replaces roofs for homeowners in Dry Creek."
+  desired_perception:
+    - plainspoken
+  differentiators: []
+  avoid_positioning:
+    - cheapest
+    - invented credentials
+
+conversion:
+  primary:
+    type: phone
+    label: Call Cedar Roofing
+  secondary:
+    type: request_estimate
+    label: Request an estimate
+  mobile:
+    sticky_action: phone
+  emergency:
+    prioritize_phone: false
+  response_expectation:
+    enabled: false

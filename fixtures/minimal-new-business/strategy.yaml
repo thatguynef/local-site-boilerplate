@@ -1,0 +1,34 @@
+# Fake profile. No differentiators and no response promise.
+
+audience:
+  primary:
+    - homeowners
+
+customer_situations:
+  urgent:
+    - something in the house broke
+  considered:
+    - a small repair
+
+positioning:
+  core: "New Trade Co does home repairs in Smalltown."
+  desired_perception:
+    - new
+  differentiators: []
+  avoid_positioning:
+    - cheapest
+    - invented credentials
+
+conversion:
+  primary:
+    type: phone
+    label: Call New Trade Co
+  secondary:
+    type: request_service
+    label: Request a repair
+  mobile:
+    sticky_action: phone
+  emergency:
+    prioritize_phone: false
+  response_expectation:
+    enabled: false

@@ -162,7 +162,7 @@ Before the domain goes live:
 - Confirm `site` in `astro.config.mjs` matches the domain attached to the Worker.
 - Deploy with `npx wrangler login` and then `npm run build && npx wrangler deploy`.
 - Attach the domain to that Worker in Cloudflare.
-- Submit one lead on the production URL and confirm it arrives.
+- Submit one lead on the production URL and confirm it arrives. Follow [production QA](../agent-skills/launch/production-qa/SKILL.md) before calling the site launched. After launch, use [post-launch.md](post-launch.md).
 - When the client has a Business Profile, the name, phone, address, hours, and service names on it should match the site.
 - Run the [Rich Results Test](https://search.google.com/test/rich-results) and the [Schema Markup Validator](https://validator.schema.org/) on the home page, the primary service page, and the primary city page.
 

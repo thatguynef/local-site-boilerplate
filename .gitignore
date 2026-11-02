@@ -3,6 +3,9 @@ dist/
 .astro/
 .wrangler/
 .dev.vars
+.env
+.env.*
+!.env.example
 evaluations/results/
 .DS_Store
 *.log

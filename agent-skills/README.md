@@ -39,6 +39,10 @@ On a client repository, start at `orchestration/build-client-site/SKILL.md`. It 
 
 Those skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
 
+## Launch
+
+Use `launch/production-qa/SKILL.md` on the client repository after full verification. It does not deploy. One production lead has to arrive before launch is complete. After launch, read `docs/post-launch.md`. Later engine fixes arrive through a release tag. See `docs/upgrading.md`.
+
 ## Quality review
 
 Use these after the visual pass, in the client repository. On this repository, uniqueness review stops. The sample is the scaffold.

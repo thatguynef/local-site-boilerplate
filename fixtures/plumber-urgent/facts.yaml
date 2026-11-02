@@ -1,0 +1,73 @@
+# Fake profile. Not a client repository.
+
+business:
+  name: Harbor Drain Co
+  schema_type: Plumber
+  trade: plumbing
+  primary_service: Drain clearing
+
+contact:
+  phone_display: "(555) 010-2001"
+  phone_tel: "+15550102001"
+  email: drains@example.com
+
+address:
+  street: 10 Dock Street
+  city: Northwater
+  region: CA
+  postal_code: "90001"
+  country: US
+
+geo:
+  latitude: 34.1
+  longitude: -118.3
+
+hours:
+  - days: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    opens: "07:00"
+    closes: "19:00"
+
+hours_display: "Monday–Saturday, 7:00 a.m.–7:00 p.m."
+locale: en_US
+lang: en
+
+service_area:
+  summary: Northwater
+  primary_city: Northwater
+  cities:
+    - name: Northwater
+      slug: northwater
+  neighborhoods:
+    - Dockside
+
+services:
+  primary:
+    - name: Drain clearing
+      slug: drain-clearing
+
+profiles:
+  google_business_profile: ""
+  facebook: ""
+  yelp: ""
+
+analytics:
+  ga4: ""
+  gtm: ""
+
+claims:
+  license: { value: "", status: unknown }
+  insurance: { value: "", status: unknown }
+  guarantee: { value: "", status: unknown }
+  emergency_service: { value: false, status: unknown }
+  same_day_service: { value: false, status: unknown }
+  response_time: { value: "", status: unknown }
+  financing: { value: "", status: unknown }
+  starting_price: { value: "", status: unknown }
+  owner_name: { value: "", status: unknown }
+  years_in_business: { value: "", status: unknown }
+  reviews_rating: { value: "", status: unknown }
+  reviews_count: { value: "", status: unknown }
+  awards: { value: "", status: unknown }
+  certifications: { value: "", status: unknown }
+  after_hours: { value: "", status: unknown }
+  maintenance_plan: { value: "", status: unknown }

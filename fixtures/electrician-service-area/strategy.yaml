@@ -1,0 +1,35 @@
+# Fake profile. A second language is recorded here and is not a site locale.
+
+audience:
+  primary:
+    - homeowners
+    - Spanish-speaking homeowners
+
+customer_situations:
+  urgent:
+    - partial power loss
+  considered:
+    - panel upgrade
+
+positioning:
+  core: "Bright Line Electric upgrades panels for homeowners in North Bend and nearby cities."
+  desired_perception:
+    - local
+  differentiators: []
+  avoid_positioning:
+    - cheapest
+    - invented credentials
+
+conversion:
+  primary:
+    type: phone
+    label: Call Bright Line Electric
+  secondary:
+    type: request_service
+    label: Request panel service
+  mobile:
+    sticky_action: phone
+  emergency:
+    prioritize_phone: false
+  response_expectation:
+    enabled: false

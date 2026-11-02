@@ -86,7 +86,7 @@ Do not skip fact validation, the page plan, or `npm run verify`. A client site i
 | Uniqueness, content, and conversion | [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md), [content-review](agent-skills/quality/content-review/SKILL.md), and [conversion-review](agent-skills/quality/conversion-review/SKILL.md). The content and conversion commands are outside `npm run verify`. |
 | Full verify | `npm run verify` again after content or visual edits. |
 | Client review | The review section of the guide you started from. |
-| Production QA and launch | Deploy only when asked. Confirm one production lead. Rich Results Test and the Schema Markup Validator are manual. |
+| Production QA and launch | [production-qa](agent-skills/launch/production-qa/SKILL.md). `npm run security-check` and `npm run performance-check` also run inside `npm run verify`. Deploy only when asked. Confirm one production lead. |
 
 Principles: [docs/principles.md](docs/principles.md). What you may change: [docs/change-policy.md](docs/change-policy.md).
 
@@ -124,7 +124,7 @@ If a logo swap, a color swap, and a new phone number would make the site fit an 
 
 `npm run validate:client` checks the client YAML files. It does not build the site and it does not replace `npm run verify`.
 
-`npm run client:generate` writes `src/config/business.ts` from the client YAML. `npm run scaffold` creates missing build-now stubs without inventing trust claims. `npm run doctor` reports workflow readiness. Details are in [docs/client-data.md](docs/client-data.md).
+`npm run client:generate` writes `src/config/business.ts` from the client YAML. `npm run scaffold` creates missing build-now stubs without inventing trust claims. `npm run doctor` reports workflow readiness. `npm run security-check` and `npm run performance-check` are part of `npm run verify`. Details are in [docs/client-data.md](docs/client-data.md), [docs/security.md](docs/security.md), and [docs/performance.md](docs/performance.md).
 
 Do not edit `scripts/checks/` to make a client pass. The checks read the primary service URL and the primary city slug from `src/config/business.ts`.
 
@@ -138,7 +138,7 @@ Sister scorecards stay outside this repo:
 
 Leave owner, license, insurance, guarantee, reviews, price, after-hours, financing, and maintenance empty until the client can prove them. Do not publish a claim you inferred. Statuses and the publish rule are in [docs/client-data.md](docs/client-data.md).
 
-Do not commit `.dev.vars`, webhook URLs, or API keys. `CONTACT_WEBHOOK_URL` is a Wrangler secret.
+Do not commit `.dev.vars`, webhook URLs, or API keys. Where each value belongs is [docs/security.md](docs/security.md).
 
 ## Engine changes
 

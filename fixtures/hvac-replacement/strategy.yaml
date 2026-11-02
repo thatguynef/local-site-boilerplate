@@ -1,0 +1,35 @@
+# Fake profile. Differentiators stay empty.
+
+audience:
+  primary:
+    - homeowners replacing a furnace
+
+customer_situations:
+  urgent:
+    - furnace will not start
+  considered:
+    - furnace replacement
+    - AC replacement
+
+positioning:
+  core: "Summit Air Heating replaces furnaces and services the systems it installed in Coldspring."
+  desired_perception:
+    - specific
+  differentiators: []
+  avoid_positioning:
+    - cheapest
+    - invented credentials
+
+conversion:
+  primary:
+    type: phone
+    label: Call Summit Air Heating
+  secondary:
+    type: request_quote
+    label: Request a quote
+  mobile:
+    sticky_action: phone
+  emergency:
+    prioritize_phone: false
+  response_expectation:
+    enabled: false

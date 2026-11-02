@@ -35,7 +35,7 @@ Do the first step that is not done.
 12. Visual work incomplete: only after foundation verification has passed, [personalize-client-site](../../visual/personalize-client-site/SKILL.md). The layout grammar is [docs/design-primitives.md](../../../docs/design-primitives.md). Replacing a primitive is allowed.
 13. Quality review incomplete: [visual-uniqueness](../../quality/visual-uniqueness/SKILL.md), [content-review](../../quality/content-review/SKILL.md), and [conversion-review](../../quality/conversion-review/SKILL.md). Do not mark final verification passed while a logo and color swap would still fit an unrelated contractor.
 14. Full verification has not passed: fix the issues and run `npm run verify` again.
-15. Production QA incomplete: finish the production section of the guide this build started from. Do not deploy unless asked.
+15. Production QA incomplete: [production-qa](../../launch/production-qa/SKILL.md). Do not deploy unless asked. Do not mark launch complete until one production lead reaches the destination.
 16. Every step has passed: stop.
 
 Do not skip facts, the site spec, or verification. Do not start visual work before foundation verification has passed. Do not launch before production QA.

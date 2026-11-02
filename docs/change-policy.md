@@ -15,7 +15,7 @@ Do not change these while personalizing a client site:
 - `noindex` on `/thank-you/` and the 404 page; privacy stays indexable
 - Sitemap and `robots.txt` rules, including the thank-you omission
 - Required accessibility behavior: `lang`, skip link, labels, visible focus, 44px targets
-- Secrets: no `.dev.vars`, webhook URLs, or API keys in git
+- Secrets: no `.dev.vars`, webhook URLs, or API keys in git. Where each value belongs is [security.md](security.md).
 - Deploy contract: Cloudflare Workers, prerendered pages, contact form as the server route
 - Route meaning and trailing slashes
 - One H1 per page
@@ -59,7 +59,7 @@ Broad freedom after foundation verify passes:
 - Responsive composition
 - How services, reviews, trust, and the service area are presented
 - Iconography and client-owned imagery
-- Interaction that still meets accessibility and the performance notes in `DESIGN.md`
+- Interaction that still meets accessibility and the performance notes in `DESIGN.md` and [performance.md](performance.md)
 
 The Example Plumbing design is scaffolding, not a design target. Do not stop at a recolor. Layout primitives in `src/components/primitives/` are a starting grammar. Replacing them is allowed.
 

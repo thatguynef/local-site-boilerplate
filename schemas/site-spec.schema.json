@@ -74,6 +74,18 @@
         "preserve_foundation_contracts": { "const": true }
       }
     },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_client_js_kb": { "type": "number", "minimum": 1 },
+        "max_css_kb": { "type": "number", "minimum": 1 },
+        "max_hero_image_kb": { "type": "number", "minimum": 1 },
+        "max_homepage_image_kb": { "type": "number", "minimum": 1 },
+        "external_fonts": { "type": "boolean" },
+        "decorative_video_hero": { "type": "boolean" }
+      }
+    },
     "sample_banner": { "type": "boolean" }
   },
   "$defs": {

@@ -12,7 +12,9 @@ Structured records for a client repository. The operating contract is [AGENTS.md
 | `client/build-state.example.yaml` | `client/build-state.yaml` | `schemas/build-state.schema.json` |
 | `client/page-briefs.example.yaml` | `client/page-briefs.yaml` | `schemas/page-briefs.schema.json` |
 
-Copy the example, then remove `.example` from the name. Do not commit webhook URLs, API keys, or `.dev.vars`.
+Copy the example, then remove `.example` from the name. Do not commit webhook URLs, API keys, or `.dev.vars`. Where each value belongs is [security.md](security.md).
+
+`site-spec.yaml` may include a `performance` object. The keys and the defaults are in [performance.md](performance.md). Leave it off to use the defaults.
 
 ```bash
 npm run validate:client

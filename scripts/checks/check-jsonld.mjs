@@ -1,5 +1,6 @@
-import { digits, headings, jsonLd, pages, section, strip, writeResult } from '../lib/html.mjs';
+import { headings, jsonLd, pages, section, strip, writeResult } from '../lib/html.mjs';
 import { business } from '../lib/business.mjs';
+import { phonesMatch } from '../lib/phones.mjs';
 
 const documents = pages();
 const problems = [];
@@ -51,7 +52,7 @@ for (const page of documents) {
     const hours = local.openingHoursSpecification ?? [];
     const areas = (local.areaServed ?? []).map((area) => area.name);
     if (local.name !== business.businessName) problems.push(`${page.url} schema name`);
-    if (!samePhone(local.telephone, business.phoneTel)) problems.push(`${page.url} schema telephone`);
+    if (!phonesMatch(local.telephone, business.phoneTel)) problems.push(`${page.url} schema telephone`);
     if (address.streetAddress !== business.street) problems.push(`${page.url} schema street`);
     if (address.addressLocality !== business.city) problems.push(`${page.url} schema city`);
     if (address.addressRegion !== business.region) problems.push(`${page.url} schema region`);
@@ -114,12 +115,6 @@ for (const page of documents) {
   } else if (howto) {
     howtoProblems.push(`${page.url} has HowTo schema without a visible process`);
   }
-}
-
-function samePhone(left, right) {
-  const a = digits(String(left ?? ''));
-  const b = digits(String(right ?? ''));
-  return Boolean(a && b && (a.endsWith(b) || b.endsWith(a)));
 }
 
 const servicePage = documents.find((page) => page.url === business.primaryServiceUrl);

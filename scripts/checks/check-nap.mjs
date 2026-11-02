@@ -1,11 +1,6 @@
-import { digits, pages, writeResult } from '../lib/html.mjs';
+import { pages, writeResult } from '../lib/html.mjs';
 import { business } from '../lib/business.mjs';
-
-function samePhone(left, right) {
-  const a = digits(String(left ?? ''));
-  const b = digits(String(right ?? ''));
-  return Boolean(a && b && (a.endsWith(b) || b.endsWith(a)));
-}
+import { phonesMatch } from '../lib/phones.mjs';
 
 const documents = pages();
 const problems = [];
@@ -28,12 +23,12 @@ for (const page of documents) {
   }
   const phoneText = (nap.match(/data-phone[^>]*>([^<]*)/) ?? [])[1]?.trim() ?? '';
   const phoneHref = (nap.match(/data-phone[^>]*href="([^"]*)"/) ?? [])[1] ?? '';
-  if (!samePhone(phoneText, business.phoneTel) || !samePhone(phoneHref, business.phoneTel)) {
+  if (!phonesMatch(phoneText, business.phoneTel) || !phonesMatch(phoneHref, business.phoneTel)) {
     problems.push(`${page.url} footer phone is "${phoneText}" ${phoneHref}`);
   }
   const headerPhone = (page.html.match(/<a\b[^>]*class="[^"]*header-phone[^"]*"[^>]*>/i) ?? [])[0] ?? '';
   const headerHref = (headerPhone.match(/href="([^"]*)"/) ?? [])[1] ?? '';
-  if (!samePhone(headerHref, business.phoneTel)) problems.push(`${page.url} header phone is missing`);
+  if (!phonesMatch(headerHref, business.phoneTel)) problems.push(`${page.url} header phone is missing`);
 }
 
 const contact = documents.find((page) => page.url === '/contact/');

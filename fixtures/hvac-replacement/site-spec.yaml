@@ -1,0 +1,47 @@
+# Fake profile. Several service pages, one city.
+
+project:
+  domain: https://summit-air.example
+  primary_language: en
+  locale: en_US
+  worker_name: summit-air
+
+brand:
+  personality: [specific]
+  visual_direction: [quiet]
+  avoid: [generic contractor template]
+
+conversion:
+  primary: { type: phone, label: Call Summit Air Heating }
+  secondary: { type: request_quote, label: Request a quote }
+
+pages:
+  home: { enabled: true }
+  about: { enabled: true }
+  faq: { enabled: true }
+  contact: { enabled: true }
+  privacy: { enabled: true }
+  services:
+    - slug: furnace-replacement
+      status: build_now
+      primary_intent: hire furnace replacement in Coldspring
+    - slug: ac-replacement
+      status: build_now
+      primary_intent: hire AC replacement in Coldspring
+    - slug: maintenance-visit
+      status: build_now
+      primary_intent: book a maintenance visit in Coldspring
+  service_areas:
+    - slug: coldspring
+      status: build_now
+      primary_intent: find furnace replacement in Coldspring
+
+content_strategy:
+  answer_first: true
+  customer_language: plain
+
+visual:
+  design_freedom: high
+  preserve_foundation_contracts: true
+
+sample_banner: false

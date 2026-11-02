@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { repoRoot } from './lib/client-data.mjs';
+import { sampleLeakHits } from './lib/sample-markers.mjs';
 import { loadClientInputs, resolveClientInputs } from './lib/client-files.mjs';
 import {
   areaStub,
@@ -30,7 +31,6 @@ const SAMPLE_FILES = [
   ['src/content/services/drain-cleaning.md', 'drain-cleaning', 'services'],
   ['src/content/service-areas/example-city.md', 'example-city', 'service_areas'],
 ];
-const SAMPLE_MARKERS = ['Example Plumbing', '(555) 010-0199', 'hello@example.com'];
 
 function keptSlugs(spec, key) {
   return new Set((spec.pages?.[key] ?? []).map((page) => page.slug));
@@ -95,7 +95,7 @@ export function scaffoldAt(root, options = {}) {
       const file = path.join(root, relative);
       if (!fs.existsSync(file)) continue;
       const text = fs.readFileSync(file, 'utf8');
-      if (!SAMPLE_MARKERS.some((marker) => text.includes(marker))) continue;
+      if (sampleLeakHits(text).length === 0) continue;
       fs.unlinkSync(file);
       notes.push(`Removed sample file ${relative}`);
     }

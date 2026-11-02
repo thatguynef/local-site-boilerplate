@@ -1,0 +1,50 @@
+# Fake profile. One service and four city pages. Language stays en.
+
+project:
+  domain: https://bright-line.example
+  primary_language: en
+  locale: en_US
+  worker_name: bright-line
+
+brand:
+  personality: [local]
+  visual_direction: [plain]
+  avoid: [generic contractor template]
+
+conversion:
+  primary: { type: phone, label: Call Bright Line Electric }
+  secondary: { type: request_service, label: Request panel service }
+
+pages:
+  home: { enabled: true }
+  about: { enabled: true }
+  faq: { enabled: true }
+  contact: { enabled: true }
+  privacy: { enabled: true }
+  services:
+    - slug: panel-upgrades
+      status: build_now
+      primary_intent: hire panel upgrades in North Bend
+  service_areas:
+    - slug: north-bend
+      status: build_now
+      primary_intent: find an electrician in North Bend
+    - slug: cedar-flats
+      status: build_now
+      primary_intent: find an electrician in Cedar Flats
+    - slug: mill-crossing
+      status: build_now
+      primary_intent: find an electrician in Mill Crossing
+    - slug: harbor-point
+      status: build_now
+      primary_intent: find an electrician in Harbor Point
+
+content_strategy:
+  answer_first: true
+  customer_language: plain
+
+visual:
+  design_freedom: high
+  preserve_foundation_contracts: true
+
+sample_banner: false

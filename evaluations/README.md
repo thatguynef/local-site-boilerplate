@@ -18,7 +18,7 @@ The journey those scorecards describe is discovery, then the Business Profile, t
 
 Criteria live in `evaluations/criteria/`. Each item names the assertion ids the checks must emit. A missing or failed assertion fails the run. Evidence is printed and written to `evaluations/results/summary.json` (that folder is gitignored).
 
-`npm run evaluate:content` and `npm run evaluate:conversion` are separate. They read the built HTML and do not run inside `npm run verify`. Visual uniqueness is a written review in `agent-skills/quality/visual-uniqueness/SKILL.md`.
+`npm run security-check` and `npm run performance-check` run with the other checks. `npm run evaluate:content` and `npm run evaluate:conversion` are separate. They read the built HTML and do not run inside `npm run verify`. Visual uniqueness is a written review in `agent-skills/quality/visual-uniqueness/SKILL.md`.
 
 Rows marked not applicable are off-site: Maps rank, competitor share, live AI mentions, Business Profile reviews, categories, and posts. Empty analytics ids are also not applicable, because the default site loads no tracker.
 

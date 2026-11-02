@@ -35,7 +35,7 @@ Do not load fonts from a third-party host.
 
 ## Targets
 
-Core Web Vitals for the mobile site: LCP at or under 2.5s, INP at or under 200ms, CLS at or under 0.1. The default build ships no web font and no page JavaScript. A hero image needs width, height, `loading="eager"`, and `fetchpriority="high"`. Other images use `loading="lazy"` and `decoding="async"`.
+Core Web Vitals for the mobile site: LCP at or under 2.5s, INP at or under 200ms, CLS at or under 0.1. The default build ships no web font and no page JavaScript. A hero image needs width, height, `loading="eager"`, and `fetchpriority="high"`. Other images use `loading="lazy"` and `decoding="async"`. Byte limits are in [docs/performance.md](docs/performance.md). The sample stays inside them.
 
 ## Interaction
 

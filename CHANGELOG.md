@@ -12,6 +12,8 @@ Added the build workflow skills: an orchestrator, competitor and market research
 
 Added layout primitives in `src/components/primitives/` and `docs/design-primitives.md`. The sample is composed from that grammar and still looks like Example Plumbing. `npm run evaluate:content` and `npm run evaluate:conversion` review copy and the conversion strategy outside `npm run verify`. Visual uniqueness is a written review, so the sample is not failed for being the scaffold.
 
+Added `npm run security-check` and `npm run performance-check`. Both run inside `npm run verify`. Performance defaults live in `docs/performance.md` and can be raised from `site-spec.yaml`. `docs/security.md` says where secrets belong. Production QA, post-launch, and upgrading docs are in place. `fixtures/` holds fake businesses that are not Example Plumbing. Failure-mode tests cover an unsupported license line, cloned city answers, a drifted phone, a logo-and-color swap, a renamed form field, a webhook URL, and a sample string left in the manifest.
+
 ## 1.2.0 - 2026-11-01
 
 Added optional `licenses`, `afterHours`, `financing`, and `maintenancePlan` on `src/config/business.ts`. Empty after-hours, financing, and maintenance plan stay off the page. A maintenance plan is shown only on the maintenance service page. Financing is shown only when both the statement and the URL are set.

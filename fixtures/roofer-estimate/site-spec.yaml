@@ -1,0 +1,41 @@
+# Fake profile. Secondary action is an estimate request.
+
+project:
+  domain: https://cedar-roofing.example
+  primary_language: en
+  locale: en_US
+  worker_name: cedar-roofing
+
+brand:
+  personality: [plainspoken]
+  visual_direction: [practical]
+  avoid: [generic contractor template]
+
+conversion:
+  primary: { type: phone, label: Call Cedar Roofing }
+  secondary: { type: request_estimate, label: Request an estimate }
+
+pages:
+  home: { enabled: true }
+  about: { enabled: true }
+  faq: { enabled: true }
+  contact: { enabled: true }
+  privacy: { enabled: true }
+  services:
+    - slug: roof-replacement
+      status: build_now
+      primary_intent: hire roof replacement in Dry Creek
+  service_areas:
+    - slug: dry-creek
+      status: build_now
+      primary_intent: find roof replacement in Dry Creek
+
+content_strategy:
+  answer_first: true
+  customer_language: plain
+
+visual:
+  design_freedom: high
+  preserve_foundation_contracts: true
+
+sample_banner: false

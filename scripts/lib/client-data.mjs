@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { load } from 'js-yaml';
 import Ajv from 'ajv/dist/2020.js';
+import { phonesMatch } from './phones.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
@@ -117,16 +118,6 @@ export function publishedText(claim) {
   return String(claim.value).trim();
 }
 
-function digits(value) {
-  return String(value).replace(/\D/g, '');
-}
-
-function samePhone(display, tel) {
-  const a = digits(display);
-  const b = digits(tel);
-  return Boolean(a && b && (a.endsWith(b) || b.endsWith(a)));
-}
-
 function minutes(clock) {
   const [hour, minute] = clock.split(':').map(Number);
   return hour * 60 + minute;
@@ -187,7 +178,7 @@ function claimErrors(claims) {
 
 function factsErrors(data) {
   const errors = [];
-  if (!samePhone(data.contact?.phone_display, data.contact?.phone_tel)) {
+  if (!phonesMatch(data.contact?.phone_display, data.contact?.phone_tel)) {
     errors.push('contact.phone_display and contact.phone_tel must be the same digits');
   }
   for (const block of data.hours ?? []) {

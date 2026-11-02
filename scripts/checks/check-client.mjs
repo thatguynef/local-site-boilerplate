@@ -6,8 +6,7 @@ import { loadClientInputs, resolveClientInputs } from '../lib/client-files.mjs';
 import { publishedText } from '../lib/client-data.mjs';
 import { pagesToBuild, renderBusinessTs } from '../lib/generate-client.mjs';
 import { dist, pages, root, writeResult } from '../lib/html.mjs';
-
-const SAMPLE_MARKERS = ['Example Plumbing', 'Example City', '(555) 010-0199', '+15550100199', 'hello@example.com'];
+import { sampleLeakHits } from '../lib/sample-markers.mjs';
 const SECRET_PATTERNS = [
   /CONTACT_WEBHOOK_URL\s*[:=]\s*['"]?https?:\/\//,
   /sk_live_[A-Za-z0-9]+/,
@@ -114,8 +113,8 @@ if (!sampleIntentional) {
   for (const file of files) {
     if (!fs.existsSync(file)) continue;
     const text = fs.readFileSync(file, 'utf8');
-    for (const marker of SAMPLE_MARKERS) {
-      if (text.includes(marker)) leakHits.push(`${path.relative(root, file)} still contains ${marker}`);
+    for (const marker of sampleLeakHits(text)) {
+      leakHits.push(`${path.relative(root, file)} still contains ${marker}`);
     }
   }
 }

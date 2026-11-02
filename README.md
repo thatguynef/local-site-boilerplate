@@ -140,9 +140,11 @@ npm run validate:client
 npm run client:generate
 npm run scaffold
 npm run doctor
+npm run security-check
+npm run performance-check
 ```
 
-`validate:client` checks the YAML against `schemas/`. `client:generate` writes `src/config/business.ts` from those files. `scaffold` adds missing build-now stubs and does not overwrite pages that already exist. `doctor` says what is still open. None of them replace `npm run verify`.
+`validate:client` checks the YAML against `schemas/`. `client:generate` writes `src/config/business.ts` from those files. `scaffold` adds missing build-now stubs and does not overwrite pages that already exist. `doctor` says what is still open. Those four do not replace `npm run verify`. `security-check` and `performance-check` are included in it. Build before running `performance-check` on its own.
 
 On this repository the live YAML files are absent, so generate and scaffold use the example files and leave Example Plumbing in place. See [docs/client-data.md](docs/client-data.md).
 
@@ -165,12 +167,14 @@ That builds the site, previews it on `127.0.0.1:4329`, and runs:
 | `scripts/checks/check-nap.mjs` | One name, address, and phone across the header, footer, and contact page |
 | `scripts/checks/check-form.mjs` | Labels, required fields, honeypot, a 400 for an invalid POST, and a 303 to `/thank-you/` for a valid POST |
 | `scripts/checks/check-faq.mjs` | The FAQ page, answer blocks, and self-contained answers |
-| `scripts/checks/check-html-a11y.mjs` | Language, skip link, labels, focus styles, and touch targets |
+| `scripts/checks/check-html-a11y.mjs` | Language, skip link, labels, focus styles, touch targets, landmarks, and reduced motion |
+| `scripts/checks/check-security.mjs` | Tracked secret files, webhook URLs, private keys, form logs, and insecure site links |
+| `scripts/checks/check-performance.mjs` | Client JavaScript, CSS, image weight, remote fonts, and a homepage video |
 | `evaluations/run.mjs` | Pass, fail, or not-applicable rows mapped to the three scorecards |
 
 Evidence is printed and written under `evaluations/results/`, which is gitignored. A pass is structural readiness. Details and the scorecard URLs are in [evaluations/README.md](evaluations/README.md).
 
-`npm run evaluate:content` and `npm run evaluate:conversion` read that build and check copy and the conversion strategy. They are not part of `npm run verify`. Uniqueness is the written review in [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md).
+`npm run security-check` and `npm run performance-check` are part of that suite. `npm run evaluate:content` and `npm run evaluate:conversion` read the build and check copy and the conversion strategy. They are not part of `npm run verify`. Uniqueness is the written review in [visual-uniqueness](agent-skills/quality/visual-uniqueness/SKILL.md).
 
 GitHub Actions runs the same command on push and pull request (`.github/workflows/verify.yml`).
 

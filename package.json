@@ -17,6 +17,8 @@
     "client:generate": "node scripts/client-generate.mjs",
     "scaffold": "node scripts/scaffold.mjs",
     "doctor": "node scripts/doctor.mjs",
+    "security-check": "node scripts/checks/check-security.mjs",
+    "performance-check": "node scripts/checks/check-performance.mjs",
     "evaluate:content": "node scripts/quality/evaluate-content.mjs",
     "evaluate:conversion": "node scripts/quality/evaluate-conversion.mjs",
     "test": "node --test scripts/*.test.mjs"

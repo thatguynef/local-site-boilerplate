@@ -56,13 +56,6 @@ Leave the routes, the contact form field names, and the check scripts as they ar
 
 ## Take a later boilerplate release
 
-When you want the fixes from a newer tag:
-
-```bash
-git fetch upstream tag v1.3.0
-git merge v1.3.0
-```
-
-Use the real tag name. Merge a tag. Do not merge `upstream/main`. Keep the client's pages and `src/config/business.ts` when the merge overlaps them. Run `npm run verify` after the merge.
+Merge a release tag. Do not merge `upstream/main`. Categories, the commands, and the files that usually conflict are in [upgrading.md](upgrading.md).
 
 Keep `.git`. That history is how the next tag merges.

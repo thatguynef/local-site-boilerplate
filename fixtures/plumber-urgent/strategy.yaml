@@ -1,0 +1,34 @@
+# Fake profile. Differentiators stay empty.
+
+audience:
+  primary:
+    - homeowners with a clogged drain
+
+customer_situations:
+  urgent:
+    - clogged kitchen drain
+  considered:
+    - recurring slow drain
+
+positioning:
+  core: "Harbor Drain Co clears drains for homeowners in Northwater."
+  desired_perception:
+    - direct
+  differentiators: []
+  avoid_positioning:
+    - cheapest
+    - invented credentials
+
+conversion:
+  primary:
+    type: phone
+    label: Call Harbor Drain Co
+  secondary:
+    type: request_service
+    label: Request drain clearing
+  mobile:
+    sticky_action: phone
+  emergency:
+    prioritize_phone: false
+  response_expectation:
+    enabled: false

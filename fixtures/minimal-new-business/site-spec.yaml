@@ -1,0 +1,41 @@
+# Fake profile. One service page and one city page.
+
+project:
+  domain: https://new-trade.example
+  primary_language: en
+  locale: en_US
+  worker_name: new-trade
+
+brand:
+  personality: [plain]
+  visual_direction: [quiet]
+  avoid: [generic contractor template]
+
+conversion:
+  primary: { type: phone, label: Call New Trade Co }
+  secondary: { type: request_service, label: Request a repair }
+
+pages:
+  home: { enabled: true }
+  about: { enabled: true }
+  faq: { enabled: true }
+  contact: { enabled: true }
+  privacy: { enabled: true }
+  services:
+    - slug: home-repairs
+      status: build_now
+      primary_intent: hire home repairs in Smalltown
+  service_areas:
+    - slug: smalltown
+      status: build_now
+      primary_intent: find home repairs in Smalltown
+
+content_strategy:
+  answer_first: true
+  customer_language: plain
+
+visual:
+  design_freedom: high
+  preserve_foundation_contracts: true
+
+sample_banner: false
