@@ -4,6 +4,10 @@
 
 Added optional `licenses`, `afterHours`, `financing`, and `maintenancePlan` on `src/config/business.ts`. Empty after-hours, financing, and maintenance plan stay off the page. A maintenance plan is shown only on the maintenance service page. Financing is shown only when both the statement and the URL are set.
 
+Added `agent-skills/foundation/fact-sheet.md`, `existing-site-facts`, and `new-site-intake`. The existing-site guide starts by reading the live URL into that sheet. The new-site guide starts by sending the intake checklist into the same sheet. `local-page-plan` uses the accepted rows. The boilerplate does not create a Google Analytics property or a Search Console account.
+
+Documented the client repository in `docs/client-repo.md`. Clone release tag `v1.1.0`, keep the git history, and point `upstream` at this repo. Tailor the client repo. Do not delete `.git`, and do not build the client on this repo's `main` branch.
+
 ## 1.1.0 - 2026-11-02
 
 Added `docs/existing-site.md` and `docs/new-site.md`. The first is the path for a client who already has a website. The second is the from-scratch intake and build. Both clone this tag.

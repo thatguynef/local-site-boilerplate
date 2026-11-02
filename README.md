@@ -28,26 +28,24 @@ The plan does not score the built site, and `npm run verify` does not call it. I
 
 Requires Node.js 22.22.0 or newer.
 
+To work on this boilerplate, clone `main`, keep Example Plumbing, and run the checks:
+
 ```bash
-git clone https://github.com/thatguynef/local-site-boilerplate.git my-site
-cd my-site
+git clone https://github.com/thatguynef/local-site-boilerplate.git
+cd local-site-boilerplate
 npm install
-```
-
-Edit `site` in `astro.config.mjs` and the business facts in `src/config/business.ts`. Then:
-
-```bash
-npm run dev
 npm run verify
 ```
 
-The site is not ready until `npm run verify` exits 0.
+A client site does not use that clone. Cut a new repository from a release tag and tailor it there. The steps are in [docs/client-repo.md](docs/client-repo.md). `upstream` stays pointed at this repo so a later tag can be merged. Do not build the client on this `main` branch.
 
-For a client who already has a site, follow [docs/existing-site.md](docs/existing-site.md). That guide uses the current URL as the source of facts and rebuilds the pages in this shape. For a client with no site, follow [docs/new-site.md](docs/new-site.md). That guide starts with an intake checklist.
+For a client who already has a site, start with [existing-site-facts](agent-skills/foundation/existing-site-facts/SKILL.md), then follow [docs/existing-site.md](docs/existing-site.md). For a client with no site, start with [new-site-intake](agent-skills/foundation/new-site-intake/SKILL.md), then follow [docs/new-site.md](docs/new-site.md).
+
+The site is not ready until `npm run verify` exits 0.
 
 `npm run verify` reads the primary service page from the `primaryServices` href that matches `primaryService`, and the primary city page from the address city. `Example City` is `/service-areas/example-city/`. The home page, the services index, that service page, and that city page must use the city plus a word from `trade` or `primaryService` in the title, the description, and the H1. Words shorter than four characters do not count. A word ending in "ing" also matches its stem, so `plumbing` matches `plumber`.
 
-Deploy to Cloudflare Workers (not Cloudflare Pages):
+Deploy the repository you are shipping, either this sample or a client repo, to Cloudflare Workers (not Cloudflare Pages):
 
 ```bash
 npm run build && npx wrangler deploy
@@ -57,7 +55,9 @@ npm run build && npx wrangler deploy
 
 `compatibility_date` is `2026-10-30` because Wrangler 4.156.0's local runtime rejects a later date. Move it forward when you upgrade Wrangler.
 
-## Files to edit for a new business
+## Files to edit in the client repo
+
+Change these in the client repository from [docs/client-repo.md](docs/client-repo.md), after the fact sheet is accepted. Leave them as the sample on this repo's `main` branch.
 
 | File | What to change |
 | --- | --- |

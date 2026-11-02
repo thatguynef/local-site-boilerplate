@@ -8,6 +8,8 @@ Use these while the content and business facts are still being filled in.
 
 | Skill | File |
 | --- | --- |
+| Existing site facts | `foundation/existing-site-facts/SKILL.md` |
+| New site intake | `foundation/new-site-intake/SKILL.md` |
 | Local page plan | `foundation/local-page-plan/SKILL.md` |
 | Service page | `foundation/generate-service-page/SKILL.md` |
 | Service-area page | `foundation/generate-service-area-page/SKILL.md` |
@@ -17,7 +19,7 @@ Use these while the content and business facts are still being filled in.
 | NAP consistency | `foundation/check-nap/SKILL.md` |
 | Open Graph image | `foundation/og-image/SKILL.md` |
 
-Run `foundation/local-page-plan/SKILL.md` before the two page skills. It chooses which service and city pages to build from local keyword demand and the public site. It does not need Search Console, Analytics, or Business Profile access. It does not run inside `npm run verify`.
+Run the matching fact skill first. `foundation/existing-site-facts/SKILL.md` reads a live site. `foundation/new-site-intake/SKILL.md` asks the checklist and does not search. Accept the fact sheet, then run `foundation/local-page-plan/SKILL.md` before the two page skills. The page plan chooses which service and city pages to build from local keyword demand and the public site. It does not need Search Console, Analytics, or Business Profile access. None of these skills run inside `npm run verify`.
 
 The other foundation skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
 

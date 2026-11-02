@@ -9,7 +9,7 @@ Use Node.js 22.22.0 or newer. Run `npm install`, then `npm run verify`. A change
 ## Rules
 
 - Put the business name, phone, address, hours, and service list in `src/config/business.ts` only. Pages read that module. Do not paste a second copy of the NAP into a layout.
-- Keep the sample business synthetic. Example Plumbing, Example City, and (555) 010-0199 stay in the default branch. Do not add a real license number, review count, price, or a real person's name.
+- Keep the sample business synthetic. Example Plumbing, Example City, and (555) 010-0199 stay in the default branch. Do not add a real license number, review count, price, or a real person's name. A client site is a separate repository. See [docs/client-repo.md](docs/client-repo.md).
 - Do not index `/thank-you/` or the 404 page. Privacy stays indexable.
 - The contact form posts to `/api/contact/`. Do not change it to GET.
 - Leave trust fields empty until a real business can prove them.

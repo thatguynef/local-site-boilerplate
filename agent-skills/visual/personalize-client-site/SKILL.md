@@ -5,7 +5,7 @@ description: Tailor this local-service boilerplate to one client after the busin
 
 # Personalize a client site
 
-Use this skill only when someone asks to tailor the look of a site built from local-site-boilerplate. The default theme stays quiet until then.
+Use this skill only when someone asks to tailor the look of a site built from local-site-boilerplate. Run it in the client repository from `docs/client-repo.md`, after `npm run verify` exits 0. Do not restyle Example Plumbing on `local-site-boilerplate` main. The default theme stays quiet until then.
 
 ## Collect these before editing
 

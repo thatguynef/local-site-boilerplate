@@ -2,7 +2,7 @@
 
 Use this path when the client already has a site. The current URL is the source of facts and old addresses. Rebuild those facts on this boilerplate. Do not import the old theme, CMS, or page builder.
 
-Create a new repository from this one. Keep client work off `local-site-boilerplate`.
+Build the site in its own repository. Follow [client-repo.md](client-repo.md). Keep client work off `local-site-boilerplate`.
 
 Requires Node.js 22.22.0 or newer. The site deploys to Cloudflare Workers, not Cloudflare Pages. `npm run verify` must exit 0 before launch. A pass means the on-site structure is in place. It is not a numeric scorecard score, a Maps rank, or proof that an assistant cites the business.
 
@@ -34,32 +34,15 @@ Scorecards, without copying their rubrics:
 
 Collect the canonical URL, including `https://`. Note whether `www` or the bare domain is canonical. Confirm you may reuse the client's own facts and copy. Ask who can confirm the phone, address, hours, license, and services. The public site is enough to start. Record domain, Business Profile, inbox, or analytics access only when the client has already offered it.
 
-Write a one-page brief: business name, trade, primary city, primary service, and the URL you will treat as the source.
+Point an agent at `agent-skills/foundation/existing-site-facts/SKILL.md`. Do not clone until you accept the fact sheet in one sentence, or name the rows you strike.
 
 ## Phase 2 — Read the site
 
-Visit the home page, each service page, each city or neighborhood page, about, contact, FAQ, and privacy. Save the URL, the title, the H1, and a short note for each.
-
-Pull these into a worksheet. Leave a cell blank when the site does not say it.
-
-| Fact | Where it usually is |
-| --- | --- |
-| Name, phone, street, city, region, postal code | Header, footer, contact page |
-| Email | Contact page or footer |
-| Hours and how fast someone calls back | Contact page, footer |
-| Services, in the client's words | Nav, services page, footer |
-| Cities and neighborhoods | Location pages, footer, home page |
-| License, insurance, guarantee, owner name | About or footer |
-| Reviews: source, rating, count, and the review URL | Only if shown on the site |
-| Prices | Only if shown on the site |
-| Profile links | Footer icons |
-| Form fields and where a lead goes | Contact page |
-
-Copy the visible NAP exactly. If the header phone and the footer phone differ, record both and do not choose one. If the site names a license, copy the number and where you saw it.
+The existing-site-facts skill reads the public site, fills the fact sheet, and drafts the URL map used in Phase 3. It does not choose which pages to build.
 
 Use a logo, illustration, or job photo only when the client confirms they own it. Do not copy another company's reviews or badges.
 
-Make a separate list of blog posts that already earn calls or rankings. Decide later whether any of them deserve a service or city page. Do not add a blog to this build.
+Blog, tag, author, and gallery URLs stay on the URL map as redirects. Do not add a blog to this build.
 
 ## Phase 3 — Map old URLs to boilerplate URLs
 
@@ -85,21 +68,15 @@ Build a two-column map from each old URL to one of those routes.
 - About, contact, FAQ, and privacy map to those same routes.
 - Old blog, tag, author, and gallery URLs do not get a new page in this pass. They still need a redirect decision in Phase 8.
 
-Write down the primary service slug and the primary city slug. Those replace the sample paths in the check files listed above.
+Write down the primary service slug and the primary city slug. Verify reads those slugs from the business config. Do not edit the check scripts.
 
 ## Phase 4 — Start the client repo and load verified facts
 
-```bash
-git clone --branch v1.1.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
-cd client-site
-rm -rf .git
-git init
-npm install
-```
+Follow [client-repo.md](client-repo.md). Clone tag `v1.1.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
 
-Point `origin` at the client's repository. In `astro.config.mjs`, set `site` to the `https://` origin you will launch. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
+In that repository, set `site` in `astro.config.mjs` to the `https://` origin you will launch. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
 
-Fill `src/config/business.ts` from the worksheet:
+Fill `src/config/business.ts` from the accepted fact sheet:
 
 - `businessName`, `trade`, `primaryService`, `schemaType`
 - `phoneDisplay` and `phoneTel`
@@ -116,7 +93,7 @@ Leave owner, license, insurance, guarantee, reviews, and price empty when the si
 
 ## Choose the pages
 
-Before Phase 5, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md` and give it the canonical domain. It does not run inside `npm run verify`. The plan uses local keyword demand and the public URLs already collected. It does not need Search Console, Analytics, or Business Profile access. A missing metric stays unknown.
+Before Phase 5, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md`. Give it the accepted services and cities from the fact sheet, plus the canonical domain. It does not run inside `npm run verify`. The plan uses local keyword demand and the public URLs already collected. It does not need Search Console, Analytics, or Business Profile access. A missing metric stays unknown.
 
 Build-now rows with no current URL are new pages. Optimize-first rows are the pages to rebuild with the most care. Do-not-build rows stay out of the new site. Keep those old URLs on the Phase 3 redirect map, pointed at the closest real page or `/contact/`.
 
@@ -142,7 +119,7 @@ Rewrite thin or duplicated location copy. Keep a claim only when the reference s
 
 Home, about, FAQ, and privacy come from `src/content/pages/`. The FAQ page needs at least three questions. Privacy should describe this form: name, phone, email, ZIP or area, service, preferred time, and an optional message. The client should have a qualified person review that page before launch.
 
-An agent can draft the pages from `agent-skills/foundation/generate-service-page/SKILL.md`, `generate-service-area-page/SKILL.md`, `update-faq/SKILL.md`, and `fill-jsonld/SKILL.md`. Paste the reference URL and the worksheet. Tell it to leave any unproven field blank.
+An agent can draft the pages from `agent-skills/foundation/generate-service-page/SKILL.md`, `generate-service-area-page/SKILL.md`, `update-faq/SKILL.md`, and `fill-jsonld/SKILL.md`. Paste the reference URL and the accepted fact sheet. Tell it to leave any unproven field blank.
 
 ## Phase 6 — Run the checks
 

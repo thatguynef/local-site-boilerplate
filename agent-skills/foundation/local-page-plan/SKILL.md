@@ -19,6 +19,7 @@ Use OpenSEO `keyword-research` when the user wants a keyword list. Use `keyword-
 - The trade and the services the business actually performs
 - The cities the business will drive to, and which city is primary
 - Optional: the live domain, when one exists
+- Optional: an accepted fact sheet from `agent-skills/foundation/fact-sheet.md`. Use its `accepted` services and drive-to cities. A `blank` or `conflict` row is not a service or a city.
 
 If a service or city is missing, ask once. Confirm the list before any paid call. Keyword ideas do not add a service the business does not perform. Search volume does not add a city the business will not drive to.
 
@@ -97,7 +98,7 @@ Sections in this order:
 4. **Why this order** — one finding each for the first service, the first city, and any optimize-first page. State the evidence (the numbers, or `unknown`), the path to create or the URL to improve, and why it comes before the next candidate. The expected effect is a hypothesis about fit inside this set. Do not name a rank position or a date.
 5. **Optimize these first** — a table of URL, evidence, and action. Omit the section when no public URL matches a candidate and no first-party rows were used.
 6. **Do not build** — a short table of the term or place and the reason. Omit when empty.
-7. **What to do next** — an ordered list. After the user confirms the build-now rows, draft those pages with `generate-service-page` and `generate-service-area-page` in this repo. Offer `local-seo` only if a Maps grid for the first city would change the order. Ask before saving keywords.
+7. **What to do next** — an ordered list. After the user confirms the build-now rows, draft those pages with `generate-service-page` and `generate-service-area-page` in the client repo cloned from this boilerplate. Do not draft them on local-site-boilerplate main. Offer `local-seo` only if a Maps grid for the first city would change the order. Ask before saving keywords.
 8. **How this report was made** — name this skill, `agent-skills/foundation/local-page-plan/SKILL.md`, then which tools returned what. State that the order came from local keyword demand and, when a site was live, its public URLs. State that keyword difficulty and intent stayed national, and that local volume used `locationName`. Name Search Console or Analytics only when those tools were called.
 
 Add one bar chart of local volume for the build-now shortlist when at least two volumes are known. Print every bar's number in the table too.

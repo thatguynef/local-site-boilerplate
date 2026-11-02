@@ -2,7 +2,7 @@
 
 Use this path when the client has no website. Collect the intake checklist, then build from this boilerplate.
 
-Create a new repository from this one. Keep client work off `local-site-boilerplate`.
+Build the site in its own repository. Follow [client-repo.md](client-repo.md). Keep client work off `local-site-boilerplate`.
 
 Requires Node.js 22.22.0 or newer. The site deploys to Cloudflare Workers, not Cloudflare Pages. `npm run verify` must exit 0 on the client's real name, trade, city, and primary service. A pass means the on-site structure is in place. It is not a numeric scorecard score, a Maps rank, or proof that an assistant cites the business.
 
@@ -32,7 +32,9 @@ Scorecards, without copying their rubrics:
 
 ## Phase 1 — Intake
 
-Send the client the checklist at the end of this file. Do not start the repo until the required answers are in. If an optional answer is missing, leave that field blank and build the rest.
+Point an agent at `agent-skills/foundation/new-site-intake/SKILL.md`. It sends the checklist at the end of this file and fills the fact sheet. It does not search the company name.
+
+Do not start the repo until you accept the fact sheet in one sentence, or name the rows you strike. If an optional answer is missing, that row stays blank.
 
 Required before writing pages:
 
@@ -47,13 +49,11 @@ Required before writing pages:
 - The domain they will launch on
 - Where a lead should go: a webhook URL, an inbox tool, or "not decided yet"
 
-Write a one-page brief from the answers: name, trade, primary service, primary city, domain, and lead destination. List every blank optional field so nobody fills it with a guess later.
-
 ## Choose the pages
 
-After the intake list is confirmed and before Phase 4, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md`. It does not run inside `npm run verify`.
+After the fact sheet is accepted and before Phase 4, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md`. It does not run inside `npm run verify`.
 
-Give it the services the client performs and the cities they will drive to. The plan uses local keyword demand. A missing metric stays unknown.
+Give it the accepted services and cities from the fact sheet. The plan uses local keyword demand. A missing metric stays unknown.
 
 Write a page only for a row marked build now. A service marked later stays in `primaryServices` with `href` `/contact/`. A city marked later stays off the site until a later pass. A neighborhood stays a name on its city page.
 
@@ -61,21 +61,15 @@ The client's note about which services should get a page is an input to that pla
 
 ## Phase 2 — Create the client project
 
-```bash
-git clone --branch v1.1.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
-cd client-site
-rm -rf .git
-git init
-npm install
-```
+Follow [client-repo.md](client-repo.md). Clone tag `v1.1.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
 
-Point `origin` at the client's repository. In `astro.config.mjs`, set `site` to the real `https://` origin. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
+In that repository, set `site` in `astro.config.mjs` to the real `https://` origin. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
 
 Run `npm run dev` and confirm the sample Example Plumbing site loads.
 
 ## Phase 3 — Load the business config
 
-Edit `src/config/business.ts` from the brief.
+Edit `src/config/business.ts` from the accepted fact sheet.
 
 - `businessName`, `trade`, `primaryService`
 - `schemaType`: a schema.org local-business subtype such as `Plumber`, `Electrician`, `HVACBusiness`, `RoofingContractor`, `Locksmith`, or `GeneralContractor`
@@ -128,7 +122,7 @@ Use these skills if an agent writes the copy:
 - `agent-skills/foundation/fill-jsonld/SKILL.md`
 - `agent-skills/foundation/check-nap/SKILL.md`
 
-Give the agent the intake brief. Tell it to leave unproven fields blank.
+Give the agent the accepted fact sheet. Tell it to leave unproven fields blank.
 
 ## Phase 5 — Share image, mark, and checks
 
