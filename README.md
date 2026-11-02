@@ -45,7 +45,7 @@ The site is not ready until `npm run verify` exits 0.
 
 For a client who already has a site, follow [docs/existing-site.md](docs/existing-site.md). That guide uses the current URL as the source of facts and rebuilds the pages in this shape. For a client with no site, follow [docs/new-site.md](docs/new-site.md). That guide starts with an intake checklist.
 
-When the primary service and city slugs change, update `scripts/lib/business.mjs`, `scripts/checks/check-pages.mjs`, `scripts/checks/check-faq.mjs`, and `scripts/checks/check-jsonld.mjs`. Until those files change, `npm run verify` still expects `/services/drain-cleaning/`, `/service-areas/example-city/`, and the words "drain" or "plumb". Both guides list that step.
+`npm run verify` reads the primary service page from the `primaryServices` href that matches `primaryService`, and the primary city page from the address city. `Example City` is `/service-areas/example-city/`. The home page, the services index, that service page, and that city page must use the city plus a word from `trade` or `primaryService` in the title, the description, and the H1. Words shorter than four characters do not count. A word ending in "ing" also matches its stem, so `plumbing` matches `plumber`.
 
 Deploy to Cloudflare Workers (not Cloudflare Pages):
 

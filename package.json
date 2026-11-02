@@ -1,6 +1,6 @@
 {
   "name": "local-site-boilerplate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Astro boilerplate for local home-service websites. Built for SEO, GEO, and AEO, and ready to deploy on Cloudflare Workers.",
   "private": true,
   "type": "module",

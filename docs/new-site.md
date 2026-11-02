@@ -28,12 +28,7 @@ Scorecards, without copying their rubrics:
 - One page per city the client will actually drive to.
 - Visual changes come after the facts and `npm run verify` pass. Use `agent-skills/visual/personalize-client-site/SKILL.md`. That pass may edit `DESIGN.md` and `src/styles/global.css`. It keeps the routes, the single H1, the NAP, the schema, the form field names, and the answer blocks. One self-hosted font pair is allowed. The default is the system font stack.
 
-The sample checks look for `/services/drain-cleaning/`, `/service-areas/example-city/`, and the words "drain" or "plumb". After the primary service and city slugs change, update these files or verify still expects the sample plumbing pages:
-
-- `scripts/lib/business.mjs`
-- `scripts/checks/check-pages.mjs`
-- `scripts/checks/check-faq.mjs`
-- `scripts/checks/check-jsonld.mjs`
+`npm run verify` reads the primary service page from the `primaryServices` href that matches `primaryService`, and the primary city page from the address city (`Corpus Christi` is `/service-areas/corpus-christi/`). The home page, the services index, that service page, and that city page must use the city plus a word from `trade` or `primaryService` in the title, the description, and the H1. Words shorter than four characters do not count. A word ending in "ing" also matches its stem, so `plumbing` matches `plumber`. Do not edit the check scripts for a new business.
 
 ## Phase 1 — Intake
 
@@ -67,7 +62,7 @@ The client's note about which services should get a page is an input to that pla
 ## Phase 2 — Create the client project
 
 ```bash
-git clone --branch v1.0.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
+git clone --branch v1.1.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
 cd client-site
 rm -rf .git
 git init
@@ -137,7 +132,7 @@ Replace `public/images/og-default.png` with a 1200×630 PNG. Put the business na
 
 Replace `public/favicon.svg` and the PNG icons when the client supplied a mark.
 
-Update the four check files listed in the locked rules. The home page links must match the new primary service URL and primary city URL.
+The home page must link to the primary service href, the primary city page, `/faq/`, `/about/`, and `/contact/`. Verify reads those URLs from the config.
 
 Run `npm run verify`. Fix every failed assertion. Then click through home, the primary service, the primary city, contact, thank-you, and a missing URL.
 

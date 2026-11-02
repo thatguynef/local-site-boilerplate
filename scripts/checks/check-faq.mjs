@@ -2,8 +2,8 @@ import { readPage, section, strip, headings, writeResult } from '../lib/html.mjs
 import { business } from '../lib/business.mjs';
 
 const faq = readPage('/faq/');
-const service = readPage('/services/drain-cleaning/');
-const location = readPage('/service-areas/example-city/');
+const service = readPage(business.primaryServiceUrl);
+const location = readPage(business.primaryCityUrl);
 const question = /^(how|what|which|do|where|when|is|can|who)\b/i;
 
 function questions(html) {

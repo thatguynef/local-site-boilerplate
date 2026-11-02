@@ -20,7 +20,7 @@ for (const page of documents) {
   }
 }
 
-const serviceWord = /drain|plumb/i;
+const serviceWord = business.tradeWordPattern;
 for (const url of intentPages) {
   const page = byUrl.get(url);
   if (!page) {
@@ -45,10 +45,10 @@ function has(url, pattern) {
 
 const home = byUrl.get('/');
 const homeText = home ? strip(home.html) : '';
-const service = byUrl.get('/services/drain-cleaning/');
-const location = byUrl.get('/service-areas/example-city/');
+const service = byUrl.get(business.primaryServiceUrl);
+const location = byUrl.get(business.primaryCityUrl);
 const servicesIndex = byUrl.get('/services/');
-const linked = ['/services/drain-cleaning/', '/service-areas/example-city/', '/faq/', '/about/', '/contact/']
+const linked = [business.primaryServiceUrl, business.primaryCityUrl, '/faq/', '/about/', '/contact/']
   .filter((url) => !home?.html.includes(`href="${url}"`));
 
 const assertions = [
@@ -116,7 +116,7 @@ const assertions = [
   },
   {
     id: 'RL-CON-08',
-    ok: ['/', '/services/drain-cleaning/', '/about/', '/contact/'].every((url) => has(url, /href="\/contact\/"|href="tel:|action="\/api\/contact"/)),
+    ok: ['/', business.primaryServiceUrl, '/about/', '/contact/'].every((url) => has(url, /href="\/contact\/"|href="tel:|action="\/api\/contact"/)),
     evidence: 'Home, service, about, and contact pages each offer a call or the form',
   },
   {

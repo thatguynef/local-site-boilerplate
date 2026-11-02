@@ -106,7 +106,7 @@ function samePhone(left, right) {
   return Boolean(a && b && (a.endsWith(b) || b.endsWith(a)));
 }
 
-const servicePage = documents.find((page) => page.url === '/services/drain-cleaning/');
+const servicePage = documents.find((page) => page.url === business.primaryServiceUrl);
 const serviceHowTo = servicePage ? jsonLd(servicePage.html).some((node) => typesOf(node).includes('HowTo')) : false;
 const faqPage = documents.find((page) => page.url === '/faq/');
 const faqSchema = faqPage ? jsonLd(faqPage.html).some((node) => typesOf(node).includes('FAQPage')) : false;
@@ -150,7 +150,7 @@ const assertions = [
   {
     id: 'GEO-HOWTO',
     ok: serviceHowTo && howtoProblems.length === 0,
-    evidence: serviceHowTo ? 'Drain cleaning page publishes HowTo schema' : 'Drain cleaning page has no HowTo schema',
+    evidence: serviceHowTo ? `${business.primaryService} page publishes HowTo schema` : `${business.primaryService} page has no HowTo schema`,
   },
   {
     id: 'GEO-GRAPH',

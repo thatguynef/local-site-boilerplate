@@ -1,10 +1,12 @@
 # Changelog
 
-## Unreleased
+## 1.1.0 - 2026-11-02
 
-Added `docs/existing-site.md` and `docs/new-site.md`, and linked both from the README. The first is the path for a client who already has a website. The second is the from-scratch intake and build. Both name the check files that still expect the sample plumbing pages.
+Added `docs/existing-site.md` and `docs/new-site.md`. The first is the path for a client who already has a website. The second is the from-scratch intake and build. Both clone this tag.
 
-Added `agent-skills/foundation/local-page-plan/SKILL.md`. It decides which service and city pages to build or improve first from local keyword demand and the public site. Search Console, Analytics, and Business Profile access are optional. The README, both client guides, and the two page skills point at that file. This repo does not call it from `npm run verify`.
+Added `agent-skills/foundation/local-page-plan/SKILL.md`. It decides which service and city pages to build or improve first from local keyword demand and the public site. Search Console, Analytics, and Business Profile access are optional. `npm run verify` does not call it.
+
+`npm run verify` reads the primary service page and the primary city page from `src/config/business.ts`. A new trade no longer requires edits to the check scripts. The sample business on this repository stays Example Plumbing.
 
 ## 1.0.0 - 2026-10-31
 

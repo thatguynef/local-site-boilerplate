@@ -28,12 +28,7 @@ Scorecards, without copying their rubrics:
 - One page per city the client will actually drive to.
 - Visual changes come after the facts and `npm run verify` pass. Use `agent-skills/visual/personalize-client-site/SKILL.md`.
 
-The sample checks look for `/services/drain-cleaning/`, `/service-areas/example-city/`, and the words "drain" or "plumb". After the primary service and city slugs change, update these files or verify still expects the sample plumbing pages:
-
-- `scripts/lib/business.mjs`
-- `scripts/checks/check-pages.mjs`
-- `scripts/checks/check-faq.mjs`
-- `scripts/checks/check-jsonld.mjs`
+`npm run verify` reads the primary service page from the `primaryServices` href that matches `primaryService`, and the primary city page from the address city (`Corpus Christi` is `/service-areas/corpus-christi/`). The home page, the services index, that service page, and that city page must use the city plus a word from `trade` or `primaryService` in the title, the description, and the H1. Words shorter than four characters do not count. A word ending in "ing" also matches its stem, so `plumbing` matches `plumber`. Do not edit the check scripts for a new business.
 
 ## Phase 1 — Permission and the reference URL
 
@@ -95,7 +90,7 @@ Write down the primary service slug and the primary city slug. Those replace the
 ## Phase 4 — Start the client repo and load verified facts
 
 ```bash
-git clone --branch v1.0.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
+git clone --branch v1.1.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
 cd client-site
 rm -rf .git
 git init
@@ -149,9 +144,9 @@ Home, about, FAQ, and privacy come from `src/content/pages/`. The FAQ page needs
 
 An agent can draft the pages from `agent-skills/foundation/generate-service-page/SKILL.md`, `generate-service-area-page/SKILL.md`, `update-faq/SKILL.md`, and `fill-jsonld/SKILL.md`. Paste the reference URL and the worksheet. Tell it to leave any unproven field blank.
 
-## Phase 6 — Move the checks, then run them
+## Phase 6 — Run the checks
 
-Update the four check files listed in the locked rules so they require the new primary service URL, the new primary city URL, and a trade-word pattern for this business. The home page must link to that service URL, that city URL, `/faq/`, `/about/`, and `/contact/`.
+The home page must link to the primary service href, the primary city page, `/faq/`, `/about/`, and `/contact/`. Verify reads those URLs from the config. Do not edit the check scripts.
 
 Replace `public/images/og-default.png` with a 1200×630 image. Put the business name, the primary service, the city, and the phone in the center. Use a logo or job photo only when the client owns it. Keep `ogImage`, `ogImageWidth`, and `ogImageHeight` pointed at that file.
 
