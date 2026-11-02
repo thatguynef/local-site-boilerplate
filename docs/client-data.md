@@ -1,6 +1,6 @@
 # Client data
 
-Structured records for a client repository. The operating contract is [AGENTS.md](../AGENTS.md). The site still reads `src/config/business.ts`. These files do not replace it.
+Structured records for a client repository. The operating contract is [AGENTS.md](../AGENTS.md). `npm run client:generate` writes `src/config/business.ts` and the manifest name from `facts.yaml` and `site-spec.yaml`. Until a client repository has those live files, the command uses the example files and reproduces Example Plumbing. Do not hand-edit `business.ts` after that. Edit the YAML and generate again.
 
 ## Files
 
@@ -15,9 +15,20 @@ Copy the example, then remove `.example` from the name. Do not commit webhook UR
 
 ```bash
 npm run validate:client
+npm run client:generate
+npm run scaffold
+npm run doctor
 ```
 
-The command checks the example files and, when present, the live `client/*.yaml` files. A `build_now` or other spec slug must exist in `facts.yaml`. Unknown keys fail. `npm run verify` is still the structural gate for the built site.
+`validate:client` checks the example files and, when present, the live `client/*.yaml` files. A spec slug must exist in `facts.yaml`. Unknown keys fail.
+
+`client:generate` rewrites `src/config/business.ts` from the facts and the page statuses. `build_now` and `optimize` point at `/services/<slug>/`. Every other status points at `/contact/`. A claim is copied only when its status is publishable. Financing stays blank, because the page shows it only when both a statement and a URL are set. The manifest name changes only when the business name changed. Running the command twice makes no further diff.
+
+`scaffold` runs that generate step, sets `site` in `astro.config.mjs` from `project.domain`, and sets the Worker name only when `project.worker_name` is present. It creates a missing build-now markdown file as a stub that contains the name, city, and phone and no trust claims. It does not overwrite a page that already exists. It keeps every `_example.md`. It deletes `drain-cleaning.md` or `example-city.md` only when the business is no longer Example Plumbing, the slug is not in the spec, and the file still contains sample markers. On this repository it does not write `client/build-state.yaml`.
+
+`doctor` reports what is still open. It does not replace `npm run verify`.
+
+`npm run verify` also checks that the YAML is valid, that `business.ts` matches the generator, that build-now files exist, that trust fields match claim provenance, and that a non-sample site does not still say Example Plumbing. The sample checkout is allowed to say Example Plumbing while `showExampleBanner` is true.
 
 ## Facts and strategy
 

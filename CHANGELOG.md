@@ -4,7 +4,9 @@
 
 Documented the agent contract. The boilerplate is an engineering foundation, not a visual template. Added `AGENTS.md`, `docs/principles.md`, and `docs/change-policy.md`. The Example Plumbing design is scaffolding, not a design target.
 
-Added `client/*.example.yaml`, JSON Schemas, and `npm run validate:client`. Trust claims need a provenance status. A value with status `unknown` or `conflicting` fails validation. `src/config/business.ts` is still what the site reads.
+Added `client/*.example.yaml`, JSON Schemas, and `npm run validate:client`. Trust claims need a provenance status. A value with status `unknown` or `conflicting` fails validation.
+
+`npm run client:generate` writes `src/config/business.ts` from the client YAML. `npm run scaffold` creates missing build-now stubs, keeps existing pages, and removes an obsolete Example Plumbing page only for a different business. `npm run doctor` reports workflow readiness. `npm run verify` checks that the generated config, claim provenance, build-now pages, sample strings, secrets, internal links, and image rules still hold. Example Plumbing stays valid on this repository.
 
 ## 1.2.0 - 2026-11-01
 

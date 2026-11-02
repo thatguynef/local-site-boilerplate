@@ -122,6 +122,8 @@ If a logo swap, a color swap, and a new phone number would make the site fit an 
 
 `npm run validate:client` checks the client YAML files. It does not build the site and it does not replace `npm run verify`.
 
+`npm run client:generate` writes `src/config/business.ts` from the client YAML. `npm run scaffold` creates missing build-now stubs without inventing trust claims. `npm run doctor` reports workflow readiness. Details are in [docs/client-data.md](docs/client-data.md).
+
 Do not edit `scripts/checks/` to make a client pass. The checks read the primary service URL and the primary city slug from `src/config/business.ts`.
 
 Sister scorecards stay outside this repo:

@@ -13,7 +13,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "verify": "astro build && ./scripts/run-all.sh",
-    "validate:client": "node --test scripts/client-data.test.mjs && node scripts/validate-client.mjs"
+    "validate:client": "node --test scripts/client-data.test.mjs && node scripts/validate-client.mjs",
+    "client:generate": "node scripts/client-generate.mjs",
+    "scaffold": "node scripts/scaffold.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.3",

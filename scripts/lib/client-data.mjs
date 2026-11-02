@@ -105,6 +105,15 @@ export function isPublishAttempt(value) {
   return false;
 }
 
+export function isPublished(claim) {
+  return Boolean(claim) && PUBLISHABLE_STATUSES.includes(claim.status) && isPublishAttempt(claim.value);
+}
+
+export function publishedText(claim) {
+  if (!isPublished(claim) || typeof claim.value === 'boolean') return '';
+  return String(claim.value).trim();
+}
+
 function digits(value) {
   return String(value).replace(/\D/g, '');
 }

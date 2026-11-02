@@ -12,7 +12,8 @@
       "properties": {
         "domain": { "type": "string", "pattern": "^https://\\S+$" },
         "primary_language": { "type": "string", "pattern": "^[a-z]{2}$" },
-        "locale": { "type": "string", "pattern": "^[a-z]{2}_[A-Z]{2}$" }
+        "locale": { "type": "string", "pattern": "^[a-z]{2}_[A-Z]{2}$" },
+        "worker_name": { "type": "string", "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$" }
       }
     },
     "brand": {

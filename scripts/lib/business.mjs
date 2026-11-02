@@ -5,15 +5,43 @@ import { root } from './html.mjs';
 const source = fs.readFileSync(path.join(root, 'src/config/business.ts'), 'utf8');
 const config = fs.readFileSync(path.join(root, 'astro.config.mjs'), 'utf8');
 
+export function readJsString(text, quoteIndex) {
+  let index = quoteIndex + 1;
+  let value = '';
+  while (index < text.length) {
+    const char = text[index];
+    if (char === '\\') {
+      value += text[index + 1] ?? '';
+      index += 2;
+      continue;
+    }
+    if (char === "'") return { value, end: index };
+    value += char;
+    index += 1;
+  }
+  return { value, end: index };
+}
+
 function quoted(name) {
-  const match = source.match(new RegExp(`\\b${name}:\\s*'([^']*)'`));
-  return match?.[1] ?? '';
+  const match = source.match(new RegExp(`\\b${name}:\\s*'`));
+  if (!match) return '';
+  return readJsString(source, match.index + match[0].length - 1).value;
 }
 
 function list(name) {
-  const match = source.match(new RegExp(`${name}:\\s*\\[([^\\]]*)\\]`));
+  const match = source.match(new RegExp(`${name}:\\s*\\[`));
   if (!match) return [];
-  return [...match[1].matchAll(/'([^']*)'/g)].map((item) => item[1]);
+  const values = [];
+  const start = match.index + match[0].length;
+  const end = source.indexOf(']', start);
+  const body = source.slice(start, end === -1 ? undefined : end);
+  for (let index = 0; index < body.length; index += 1) {
+    if (body[index] !== "'") continue;
+    const item = readJsString(body, index);
+    values.push(item.value);
+    index = item.end;
+  }
+  return values;
 }
 
 function openingHours() {
@@ -29,10 +57,20 @@ function openingHours() {
   );
 }
 
-const serviceLinks = [...source.matchAll(/\{\s*name:\s*'([^']+)',\s*href:\s*'([^']+)'/g)].map((item) => ({
-  name: item[1],
-  href: item[2],
-}));
+function serviceLinksFrom(text) {
+  const links = [];
+  const pattern = /\{\s*name:\s*'/g;
+  for (const match of text.matchAll(pattern)) {
+    const name = readJsString(text, match.index + match[0].length - 1);
+    const hrefStart = text.slice(name.end + 1).match(/^\s*,\s*href:\s*'/);
+    if (!hrefStart) continue;
+    const href = readJsString(text, name.end + hrefStart[0].length);
+    links.push({ name: name.value, href: href.value });
+  }
+  return links;
+}
+
+const serviceLinks = serviceLinksFrom(source);
 
 export function slugify(value) {
   return value
@@ -96,6 +134,16 @@ export const business = {
   areaServed: list('areaServed'),
   licenseNumber: quoted('licenseNumber'),
   licenses: list('licenses'),
+  ownerName: quoted('ownerName'),
+  insurance: quoted('insurance'),
+  guarantee: quoted('guarantee'),
+  afterHours: quoted('afterHours'),
+  maintenancePlan: quoted('maintenancePlan'),
+  startingPrice: quoted('startingPrice'),
+  financingStatement: quoted('statement'),
+  reviewsRating: quoted('rating'),
+  reviewsCount: quoted('count'),
+  showExampleBanner: /showExampleBanner:\s*true/.test(source),
   ga4: quoted('ga4'),
   gtm: quoted('gtm'),
   site: (config.match(/site:\s*'([^']+)'/)?.[1] ?? '').replace(/\/$/, ''),

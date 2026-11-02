@@ -75,7 +75,7 @@ Refused even here: decorative hero video, scroll-jacking, third-party font hosts
 | `src/pages/robots.txt.ts`, sitemap filter | Locked | Indexing rules. |
 | `src/pages/thank-you.astro`, `src/pages/404.astro` | Locked for `noindex` | Wording may change. Indexing may not. |
 | `.github/workflows/verify.yml` | Locked | Same gate as local verify. |
-| `src/config/business.ts` | Values are client-customizable | The single-source rule is locked. |
+| `src/config/business.ts` | Values are client-customizable | The single-source rule is locked. `npm run client:generate` writes this file from `client/facts.yaml` and `client/site-spec.yaml`. |
 | `src/content/` | Client-customizable | Keep `_example.md`. Do not build files whose names start with `_`. |
 | `astro.config.mjs` `site` | Client-customizable | Canonical origin. |
 | `wrangler.jsonc` `name` | Client-customizable | Unique Worker name. Leave `compatibility_date` unless a newer Wrangler accepts a later date. |

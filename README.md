@@ -137,9 +137,14 @@ Run `npm run verify` after a visual pass. The structural suite still has to pass
 
 ```bash
 npm run validate:client
+npm run client:generate
+npm run scaffold
+npm run doctor
 ```
 
-That checks the YAML against `schemas/`. It does not build the site. `npm run verify` remains the structural gate.
+`validate:client` checks the YAML against `schemas/`. `client:generate` writes `src/config/business.ts` from those files. `scaffold` adds missing build-now stubs and does not overwrite pages that already exist. `doctor` says what is still open. None of them replace `npm run verify`.
+
+On this repository the live YAML files are absent, so generate and scaffold use the example files and leave Example Plumbing in place. See [docs/client-data.md](docs/client-data.md).
 
 ## Scripts and evaluations
 
@@ -151,6 +156,7 @@ That builds the site, previews it on `127.0.0.1:4329`, and runs:
 
 | Check | What it confirms |
 | --- | --- |
+| `scripts/checks/check-client.mjs` | Client YAML, generated `business.ts`, build-now pages, claim provenance, sample strings, secrets, internal links, and image rules |
 | `scripts/checks/check-404.mjs` | The 404 page exists, uses noindex, links home, and is what a missing path returns |
 | `scripts/checks/check-social.mjs` | Open Graph and Twitter Card tags on every HTML file, and a 1200×630 share image |
 | `scripts/checks/check-jsonld.mjs` | Local business, FAQ, Service, breadcrumb, and HowTo schema |
