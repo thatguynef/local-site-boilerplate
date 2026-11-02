@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Documented the agent contract. The boilerplate is an engineering foundation, not a visual template. Added `AGENTS.md`, `docs/principles.md`, and `docs/change-policy.md`. The Example Plumbing design is scaffolding, not a design target.
+
 ## 1.2.0 - 2026-11-01
 
 Added optional `licenses`, `afterHours`, `financing`, and `maintenancePlan` on `src/config/business.ts`. Empty after-hours, financing, and maintenance plan stay off the page. A maintenance plan is shown only on the maintenance service page. Financing is shown only when both the statement and the URL are set.

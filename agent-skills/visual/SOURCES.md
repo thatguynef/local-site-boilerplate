@@ -1,6 +1,6 @@
 # Visual skill sources
 
-These skills are for a later client pass. The default theme in `DESIGN.md` stays quiet until someone asks for that pass. After any visual edit, run `npm run verify`. Structural checks still have to pass.
+These skills are for a later client pass. The sample theme in `DESIGN.md` stays as Example Plumbing on this repository. In a client repository the visual pass may depart from that sample. After any visual edit, run `npm run verify`. Structural checks still have to pass.
 
 `agent-skills/visual/personalize-client-site/SKILL.md` is written for this repository. It is the gate for the vendored skills below.
 

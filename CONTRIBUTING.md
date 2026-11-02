@@ -13,7 +13,7 @@ Use Node.js 22.22.0 or newer. Run `npm install`, then `npm run verify`. A change
 - Do not index `/thank-you/` or the 404 page. Privacy stays indexable.
 - The contact form posts to `/api/contact/`. Do not change it to GET.
 - Leave trust fields empty until a real business can prove them.
-- Visual polish is a later pass. It does not remove the answer paragraph, the single H1, the form labels, or the schema.
+- Visual work is a later pass in the client repository. Follow [docs/change-policy.md](docs/change-policy.md). It does not remove the answer paragraph, the single H1, the form labels, or the schema. Example Plumbing's look is scaffolding, not a design target.
 - Third-party skills in `agent-skills/visual/` keep their upstream license and text. Put new project instructions in a new file rather than rewriting those skills.
 
 ## Pull requests

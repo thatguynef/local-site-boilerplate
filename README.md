@@ -1,8 +1,21 @@
 # local-site-boilerplate
 
-A foundation for local home-service websites. Clone it, replace the sample business, and publish a site that is ready to earn organic traffic from search, generative engines, and answer engines.
+An agent-ready engineering and quality foundation for bespoke local home-service websites.
 
-The sample business is Example Plumbing in Example City. The phone number (555) 010-0199 is not a real line. Replace it before launch.
+## Foundation, not visual template
+
+Use this repository to inherit proven architecture, local SEO/GEO/AEO structure, structured data, accessibility, performance, lead handling, conversion primitives, verification, and deployment conventions.
+
+Do not treat Example Plumbing as a visual template.
+
+A client implementation should preserve the foundation's contracts while substantially adapting its visual identity, page composition, content, positioning, imagery, typography, and presentation to the actual business.
+
+Standardize what customers cannot see.
+Personalize what customers can see.
+
+The sample business is Example Plumbing in Example City. The phone number (555) 010-0199 is not a real line. It stays on this repository's `main` branch. Replace it in a client repository, not here.
+
+Agents start at [AGENTS.md](AGENTS.md). Working rules are in [docs/principles.md](docs/principles.md). What may change is in [docs/change-policy.md](docs/change-policy.md).
 
 This repository is [MIT licensed](LICENSE). Copyright 2026 Nefer Lopez. Vendored skills in `agent-skills/visual/` keep their own licenses. See [agent-skills/visual/SOURCES.md](agent-skills/visual/SOURCES.md).
 
@@ -114,7 +127,7 @@ Foundation skills write and review content. Visual skills are a later pass.
 
 Read [agent-skills/README.md](agent-skills/README.md). Point your agent at the `SKILL.md` you need, or copy that folder into the agent's skills directory.
 
-Use `personalize-client-site` before any visual skill. It may update `DESIGN.md` and the stylesheet. It may not drop the H1, the NAP, the form fields, the schema, or the answer blocks. `overdrive`, scroll-jacking, and decorative hero motion are out. The default font stack is the system stack. One self-hosted pair is allowed during a client pass.
+Use `personalize-client-site` before any visual skill. The Example Plumbing design is scaffolding, not a design target. That pass may replace composition, type, color, and imagery. It may not drop the H1, the NAP, the form fields, the schema, or the answer blocks. Follow [docs/change-policy.md](docs/change-policy.md). `overdrive`, scroll-jacking, and decorative hero motion are out. The sample font stack is the system stack. One self-hosted pair is allowed during a client pass.
 
 Run `npm run verify` after a visual pass. The structural suite still has to pass.
 

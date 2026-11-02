@@ -4,6 +4,8 @@ Use this path when the client already has a site. The current URL is the source 
 
 Build the site in its own repository. Follow [client-repo.md](client-repo.md). Keep client work off `local-site-boilerplate`.
 
+This path inherits the engineering system and then builds a bespoke site. It does not stop when the sample name is replaced. Agents start at [AGENTS.md](../AGENTS.md). Layer rules are in [change-policy.md](change-policy.md). The Example Plumbing design is scaffolding, not a design target.
+
 Requires Node.js 22.22.0 or newer. The site deploys to Cloudflare Workers, not Cloudflare Pages. `npm run verify` must exit 0 before launch. A pass means the on-site structure is in place. It is not a numeric scorecard score, a Maps rank, or proof that an assistant cites the business.
 
 Scorecards, without copying their rubrics:
@@ -26,7 +28,7 @@ Scorecards, without copying their rubrics:
 - Files named `_example.md` are templates and are not built.
 - A service with no real page links to `/contact/`.
 - One page per city the client will actually drive to.
-- Visual changes come after the facts and `npm run verify` pass. Use `agent-skills/visual/personalize-client-site/SKILL.md`.
+- Visual changes come after the facts and `npm run verify` pass. Use `agent-skills/visual/personalize-client-site/SKILL.md` and [change-policy.md](change-policy.md). Composition, type, color, and imagery may depart from Example Plumbing.
 
 `npm run verify` reads the primary service page from the `primaryServices` href that matches `primaryService`, and the primary city page from the address city (`Corpus Christi` is `/service-areas/corpus-christi/`). The home page, the services index, that service page, and that city page must use the city plus a word from `trade` or `primaryService` in the title, the description, and the H1. Words shorter than four characters do not count. A word ending in "ing" also matches its stem, so `plumbing` matches `plumber`. Do not edit the check scripts for a new business.
 
@@ -135,7 +137,7 @@ Run `npm run verify`. Fix every failed line. Then click through home, one servic
 
 Do this after Phase 6 passes.
 
-Give an agent `agent-skills/visual/personalize-client-site/SKILL.md`, the reference URL, the client's logo, real job photos, and any brand colors. That pass may change `DESIGN.md` and `src/styles/global.css`. It keeps the routes, the single H1, the NAP, the schema, the form field names, and the answer blocks.
+Give an agent `agent-skills/visual/personalize-client-site/SKILL.md`, the reference URL, the client's logo, real job photos, and any brand colors. The Example Plumbing design is scaffolding, not a design target. Follow [change-policy.md](change-policy.md). That pass may replace composition, type, color, and imagery. It keeps the routes, the single H1, the NAP, the schema contracts, the form field names, and the answer blocks.
 
 Run `npm run verify` again after the visual pass.
 

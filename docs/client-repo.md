@@ -2,6 +2,8 @@
 
 `local-site-boilerplate` is the product. Example Plumbing stays on its `main` branch. A real business gets its own repository. You tailor that repository.
 
+The boilerplate is an engineering foundation, not a visual template. Agents start at [AGENTS.md](../AGENTS.md). What may change is in [change-policy.md](change-policy.md). The Example Plumbing design is scaffolding, not a design target. Principles are in [principles.md](principles.md).
+
 The client repository is a full copy of one release tag. It contains the pages, the checks, the form, and the skills from that tag. `upstream` points back at this boilerplate so a later tag can be merged. The client repository is not a submodule, and it does not import this repo as a package.
 
 ## Start the client repo
@@ -36,7 +38,7 @@ After the page plan says which rows to build, edit the client repo:
 - `wrangler.jsonc` gets a unique Worker `name`. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler accepts a later date.
 - `public/site.webmanifest`, the share image, and the icons change when you have the real name and a mark the client owns.
 - `docs/fact-sheet.md` stores the accepted sheet. An existing site also keeps `docs/url-map.md`.
-- `DESIGN.md` and `src/styles/global.css` change only in the visual pass, after `npm run verify` exits 0. Use `agent-skills/visual/personalize-client-site/SKILL.md`.
+- Visual work starts after `npm run verify` exits 0. Use `agent-skills/visual/personalize-client-site/SKILL.md` and [change-policy.md](change-policy.md). Composition, type, color, and imagery may depart from Example Plumbing. Routes, the form, NAP, and schema contracts stay.
 
 `npm run verify` must exit 0 on the client's name, trade, city, and primary service before that visual pass and again before launch.
 

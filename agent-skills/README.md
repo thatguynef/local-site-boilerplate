@@ -2,6 +2,8 @@
 
 These instructions are for Claude, Cursor, Codex, Grok, and other agents that can read a `SKILL.md` file. Point the agent at the file, or copy the folder into the agent's skills directory.
 
+Start at [AGENTS.md](../AGENTS.md). What a client build may change is in [docs/change-policy.md](../docs/change-policy.md). The Example Plumbing design is scaffolding, not a design target. Vendored skills in `visual/` are helpers. `personalize-client-site` and the change policy win when a vendored skill conflicts with them.
+
 ## Foundation
 
 Use these while the content and business facts are still being filled in.
@@ -27,7 +29,7 @@ The other foundation skills tell the agent to run `npm run verify` and point at 
 
 Do this later, when a client is ready to tailor the look.
 
-Start with `visual/personalize-client-site/SKILL.md`. It collects the trade, city, logo, photos, and colors, writes `DESIGN.md`, and refuses motion and claims that do not belong on this site.
+Start with `visual/personalize-client-site/SKILL.md`. It collects the trade, city, logo, photos, and colors, writes `DESIGN.md`, and may replace composition, type, and imagery. It refuses decorative motion and claims the business did not supply.
 
 Then the vendored skills in `visual/` can help with type, color, layout, and QA. Sources, commits, and licenses are in `visual/SOURCES.md`.
 

@@ -1,6 +1,8 @@
 # Design
 
-Default theme for the boilerplate. It is quiet on purpose. A later visual pass may change tokens in this file and in `src/styles/global.css`. It may not change routes, the single H1, NAP, schema, form field names, or noindex rules.
+Sample theme for Example Plumbing. It is quiet on purpose so the boilerplate is easy to read. This file is scaffolding, not a design target.
+
+A client visual pass may replace the tokens in this file and in `src/styles/global.css`, and it may replace layout and composition. It may not change routes, the single H1, NAP, schema contracts, form field names, or noindex rules. Permissions are in [docs/change-policy.md](docs/change-policy.md). The pass starts at `agent-skills/visual/personalize-client-site/SKILL.md`.
 
 ## Tone
 
