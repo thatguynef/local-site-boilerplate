@@ -28,6 +28,12 @@ Requires Node.js 22.22.0 or newer. The site deploys to Cloudflare Workers, not C
 
 Accept the fact sheet before this step. For a business that already has a site, follow [existing-site.md](existing-site.md). For a business with no site, follow [new-site.md](new-site.md).
 
+## Client state files
+
+After the repo exists, copy `client/*.example.yaml` to the same names without `.example`. `facts.yaml` holds accepted facts and claim provenance. `strategy.yaml`, `site-spec.yaml`, and `build-state.yaml` hold the decisions that follow. Run `npm run validate:client`. Do not put secrets in those files.
+
+The site still reads `src/config/business.ts`. The YAML files do not replace it yet. See [client-data.md](client-data.md).
+
 ## What you change there
 
 After the page plan says which rows to build, edit the client repo:

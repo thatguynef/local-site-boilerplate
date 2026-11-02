@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thatguynef/local-site-boilerplate/schemas/build-state.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "phase",
+    "discovery",
+    "facts",
+    "research",
+    "strategy",
+    "page_plan",
+    "site_spec",
+    "scaffold",
+    "content",
+    "foundation_verify",
+    "design",
+    "final_verify",
+    "production"
+  ],
+  "properties": {
+    "version": { "const": 1 },
+    "phase": {
+      "enum": [
+        "discovery",
+        "facts",
+        "research",
+        "strategy",
+        "page_plan",
+        "site_spec",
+        "scaffold",
+        "content",
+        "foundation_verify",
+        "design",
+        "final_verify",
+        "production",
+        "launch"
+      ]
+    },
+    "example": { "type": "boolean" },
+    "note": { "type": "string", "maxLength": 500 },
+    "discovery": { "$ref": "#/$defs/step" },
+    "facts": { "$ref": "#/$defs/step" },
+    "research": { "$ref": "#/$defs/step" },
+    "strategy": { "$ref": "#/$defs/step" },
+    "page_plan": { "$ref": "#/$defs/step" },
+    "site_spec": { "$ref": "#/$defs/step" },
+    "scaffold": { "$ref": "#/$defs/step" },
+    "content": { "$ref": "#/$defs/step" },
+    "foundation_verify": { "$ref": "#/$defs/step" },
+    "design": { "$ref": "#/$defs/step" },
+    "final_verify": { "$ref": "#/$defs/step" },
+    "production": { "$ref": "#/$defs/step" }
+  },
+  "$defs": {
+    "status": {
+      "enum": [
+        "not_started",
+        "in_progress",
+        "blocked",
+        "complete",
+        "validated",
+        "passed",
+        "failed",
+        "pending"
+      ]
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "commit": { "type": "string", "pattern": "^$|^[0-9a-f]{7,40}$" },
+        "note": { "type": "string", "maxLength": 500 }
+      }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thatguynef/local-site-boilerplate/schemas/site-spec.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project", "brand", "conversion", "pages", "content_strategy", "visual"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "primary_language", "locale"],
+      "properties": {
+        "domain": { "type": "string", "pattern": "^https://\\S+$" },
+        "primary_language": { "type": "string", "pattern": "^[a-z]{2}$" },
+        "locale": { "type": "string", "pattern": "^[a-z]{2}_[A-Z]{2}$" }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personality", "visual_direction", "avoid"],
+      "properties": {
+        "personality": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 2 } },
+        "visual_direction": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 2 } },
+        "avoid": { "type": "array", "items": { "type": "string", "minLength": 2 } }
+      }
+    },
+    "conversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/cta" },
+        "secondary": { "$ref": "#/$defs/cta" }
+      }
+    },
+    "pages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["home", "about", "faq", "services", "service_areas"],
+      "properties": {
+        "home": { "$ref": "#/$defs/toggle" },
+        "about": { "$ref": "#/$defs/toggle" },
+        "faq": { "$ref": "#/$defs/toggle" },
+        "contact": { "$ref": "#/$defs/toggle" },
+        "privacy": { "$ref": "#/$defs/toggle" },
+        "services": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/plannedPage" }
+        },
+        "service_areas": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/plannedPage" }
+        }
+      }
+    },
+    "content_strategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["answer_first", "customer_language"],
+      "properties": {
+        "answer_first": { "const": true },
+        "customer_language": { "enum": ["plain", "technical"] },
+        "avoid_jargon": { "type": "boolean" }
+      }
+    },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["design_freedom", "preserve_foundation_contracts"],
+      "properties": {
+        "design_freedom": { "enum": ["high"] },
+        "preserve_foundation_contracts": { "const": true }
+      }
+    },
+    "sample_banner": { "type": "boolean" }
+  },
+  "$defs": {
+    "ctaType": {
+      "enum": [
+        "phone",
+        "request_service",
+        "request_quote",
+        "request_estimate",
+        "book_consultation",
+        "book_inspection",
+        "schedule_service",
+        "directions"
+      ]
+    },
+    "cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label"],
+      "properties": {
+        "type": { "$ref": "#/$defs/ctaType" },
+        "label": { "type": "string", "minLength": 2 }
+      }
+    },
+    "toggle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled"],
+      "properties": {
+        "enabled": { "type": "boolean" }
+      }
+    },
+    "pageStatus": {
+      "enum": ["build_now", "optimize", "later", "contact_only", "do_not_build"]
+    },
+    "plannedPage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slug", "status", "primary_intent"],
+      "properties": {
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "status": { "$ref": "#/$defs/pageStatus" },
+        "primary_intent": { "type": "string", "minLength": 8 }
+      }
+    }
+  }
+}

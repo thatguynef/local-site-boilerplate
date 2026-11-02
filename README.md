@@ -131,6 +131,16 @@ Use `personalize-client-site` before any visual skill. The Example Plumbing desi
 
 Run `npm run verify` after a visual pass. The structural suite still has to pass.
 
+## Client data
+
+`client/*.example.yaml` is the shape for facts, strategy, the site spec, and build state. A client repository copies those files and drops `.example`. Claim rules are in [docs/client-data.md](docs/client-data.md). The pages still read `src/config/business.ts`.
+
+```bash
+npm run validate:client
+```
+
+That checks the YAML against `schemas/`. It does not build the site. `npm run verify` remains the structural gate.
+
 ## Scripts and evaluations
 
 ```bash

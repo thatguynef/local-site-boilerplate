@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thatguynef/local-site-boilerplate/schemas/client-strategy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["audience", "customer_situations", "positioning", "conversion"],
+  "properties": {
+    "audience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary"],
+      "properties": {
+        "primary": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 2 }
+        }
+      }
+    },
+    "customer_situations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["urgent", "considered"],
+      "properties": {
+        "urgent": { "type": "array", "items": { "type": "string", "minLength": 2 } },
+        "considered": { "type": "array", "items": { "type": "string", "minLength": 2 } }
+      }
+    },
+    "positioning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core", "desired_perception", "differentiators", "avoid_positioning"],
+      "properties": {
+        "core": { "type": "string", "minLength": 10 },
+        "desired_perception": { "type": "array", "items": { "type": "string", "minLength": 2 } },
+        "differentiators": { "type": "array", "items": { "type": "string", "minLength": 2 } },
+        "avoid_positioning": { "type": "array", "items": { "type": "string", "minLength": 2 } }
+      }
+    },
+    "conversion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary", "mobile", "emergency", "response_expectation"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/cta" },
+        "secondary": { "$ref": "#/$defs/cta" },
+        "mobile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sticky_action"],
+          "properties": {
+            "sticky_action": { "$ref": "#/$defs/ctaType" }
+          }
+        },
+        "emergency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["prioritize_phone"],
+          "properties": {
+            "prioritize_phone": { "type": "boolean" }
+          }
+        },
+        "response_expectation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled"],
+          "properties": {
+            "enabled": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ctaType": {
+      "enum": [
+        "phone",
+        "request_service",
+        "request_quote",
+        "request_estimate",
+        "book_consultation",
+        "book_inspection",
+        "schedule_service",
+        "directions"
+      ]
+    },
+    "cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label"],
+      "properties": {
+        "type": { "$ref": "#/$defs/ctaType" },
+        "label": { "type": "string", "minLength": 2 }
+      }
+    }
+  }
+}

@@ -85,7 +85,8 @@ Refused even here: decorative hero video, scroll-jacking, third-party font hosts
 | `public/images/`, icons, manifest name | Client-customizable | Keep a 1200×630 share image. |
 | `agent-skills/visual/personalize-client-site/` | Project skill | Entry point for the visual pass. |
 | `agent-skills/visual/` vendored skills | Locked text | Do not rewrite upstream skill files. Project rules win when they conflict. |
-| `client/` | Client-customizable | No secrets. Example files use the sample business. |
+| `client/*.yaml` | Client-customizable | No secrets. Example files use the sample business. Validate with `npm run validate:client`. |
+| `schemas/` | Locked | Client builds do not loosen the claim or route contracts. |
 
 ## Who changes a layer
 

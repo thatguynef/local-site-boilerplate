@@ -27,3 +27,5 @@ Optional rows: owner, licenses, after-hours, financing statement, financing URL,
 A `conflict` row holds both values and both sources. Do not pick one. A placeholder on a live page, such as a 555 phone, a generic inbox, or a button with no destination, is not a value. The existing-site skill lists those under ignored placeholders.
 
 The user accepts the sheet in one sentence, or names the rows to strike. A struck row goes back to `blank`. Only `accepted` rows are inputs to the page plan and to `src/config/business.ts` in the client repo.
+
+Trust rows that move into `client/facts.yaml` use the claim statuses in [docs/client-data.md](../../docs/client-data.md). `accepted` from a public page becomes `verified_public`. `accepted` from the client becomes `client_supplied` or `client_confirmed`. `conflict` becomes `conflicting`. `blank` stays an empty value with status `unknown`. Do not publish a blank or conflicting row.

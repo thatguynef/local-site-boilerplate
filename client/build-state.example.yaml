@@ -1,0 +1,33 @@
+# Shape for client/build-state.yaml.
+# example: true means this file is not the live state of a client build.
+# Do not store secrets here.
+
+version: 1
+phase: design
+example: true
+note: "Sample shape. On this repository, leave Example Plumbing in place."
+
+discovery:
+  status: complete
+facts:
+  status: validated
+research:
+  status: not_started
+strategy:
+  status: complete
+page_plan:
+  status: complete
+site_spec:
+  status: validated
+scaffold:
+  status: complete
+content:
+  status: complete
+foundation_verify:
+  status: passed
+design:
+  status: not_started
+final_verify:
+  status: pending
+production:
+  status: pending

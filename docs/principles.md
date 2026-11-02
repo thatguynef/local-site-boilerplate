@@ -8,7 +8,7 @@ Shared engineering does not require a shared appearance. Example Plumbing shows 
 
 ## 2. Facts before copy
 
-Write from accepted facts. Leave a trust field empty when the business cannot prove it. Do not invent a license, a review count, a price, years in business, a guarantee, after-hours service, financing, or a person's name.
+Write from accepted facts. Leave a trust field empty when the business cannot prove it. Do not invent a license, a review count, a price, years in business, a guarantee, after-hours service, financing, or a person's name. Claim statuses are in [client-data.md](client-data.md).
 
 ## 3. Evidence over adjectives
 

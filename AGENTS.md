@@ -15,17 +15,17 @@ Humans start at [README.md](README.md). This file is the agent entry point.
 ## Read before you edit
 
 1. Read `AGENTS.md`.
-2. Read `client/build-state.yaml` when it exists.
-3. Read `client/facts.yaml` when it exists.
-4. Read `client/strategy.yaml` when it exists.
-5. Read `client/site-spec.yaml` when it exists.
+2. Read `client/build-state.yaml` when it exists. On this repository, read `client/build-state.example.yaml` for the shape.
+3. Read `client/facts.yaml` when it exists. On this repository, read `client/facts.example.yaml`.
+4. Read `client/strategy.yaml` when it exists. On this repository, read `client/strategy.example.yaml`.
+5. Read `client/site-spec.yaml` when it exists. On this repository, read `client/site-spec.example.yaml`.
 6. Read the `SKILL.md` for the phase you are in.
 7. Inspect the implementation you are about to change.
 8. Make the smallest coherent set of changes.
 9. Run the checks that phase requires.
 10. Update `client/build-state.yaml` when it exists.
 
-Until those YAML files exist, the accepted fact sheet and `src/config/business.ts` are the client record. Do not invent a second copy of the name, phone, or address.
+The YAML files record facts, strategy, the page spec, and workflow state. The site still reads `src/config/business.ts`. Do not invent a second copy of the name, phone, or address. Rules for the files are in [docs/client-data.md](docs/client-data.md). Check them with `npm run validate:client`.
 
 On this repository's `main` branch, leave Example Plumbing in place. Do not turn `main` into a client site.
 
@@ -77,7 +77,7 @@ Do not skip fact validation, the page plan, or `npm run verify`. A client site i
 | Positioning | No skill yet. Use only differentiators the business can prove. |
 | Conversion strategy | The built actions are click-to-call and `POST /api/contact/`. Do not add booking, chat, a financing calculator, or a membership portal in this pass. |
 | Page plan | [local-page-plan](agent-skills/foundation/local-page-plan/SKILL.md). It does not run inside `npm run verify`. |
-| Site specification | The accepted fact sheet plus the page plan. `src/config/business.ts` remains the NAP source. |
+| Site specification | `client/site-spec.yaml` when it exists, else the accepted fact sheet plus the page plan. `src/config/business.ts` remains the NAP source. |
 | Client scaffold | [docs/client-repo.md](docs/client-repo.md). Clone a release tag. Do not clone `main`. |
 | Content | [generate-service-page](agent-skills/foundation/generate-service-page/SKILL.md), [generate-service-area-page](agent-skills/foundation/generate-service-area-page/SKILL.md), [update-faq](agent-skills/foundation/update-faq/SKILL.md) |
 | Foundation verify | `npm run verify` must exit 0 before visual work. |
@@ -120,6 +120,8 @@ If a logo swap, a color swap, and a new phone number would make the site fit an 
 
 `npm run verify` is the hard structural gate. It proves on-site structure. It does not produce a scorecard score, a Maps rank, or proof that an assistant cites the business.
 
+`npm run validate:client` checks the client YAML files. It does not build the site and it does not replace `npm run verify`.
+
 Do not edit `scripts/checks/` to make a client pass. The checks read the primary service URL and the primary city slug from `src/config/business.ts`.
 
 Sister scorecards stay outside this repo:
@@ -130,7 +132,7 @@ Sister scorecards stay outside this repo:
 
 ## Claims and secrets
 
-Leave owner, license, insurance, guarantee, reviews, price, after-hours, financing, and maintenance empty until the client can prove them. Do not publish a claim you inferred.
+Leave owner, license, insurance, guarantee, reviews, price, after-hours, financing, and maintenance empty until the client can prove them. Do not publish a claim you inferred. Statuses and the publish rule are in [docs/client-data.md](docs/client-data.md).
 
 Do not commit `.dev.vars`, webhook URLs, or API keys. `CONTACT_WEBHOOK_URL` is a Wrangler secret.
 

@@ -1,0 +1,37 @@
+# Shape for client/strategy.yaml. Sample only. Differentiators stay empty
+# until a real business can prove them. Do not copy a competitor.
+
+audience:
+  primary:
+    - residential homeowners
+
+customer_situations:
+  urgent:
+    - clogged drain
+  considered:
+    - water heater repair
+    - leak detection
+
+positioning:
+  core: "Example Plumbing clears drains and handles everyday plumbing in Example City."
+  desired_perception:
+    - local
+    - straightforward
+  differentiators: []
+  avoid_positioning:
+    - cheapest
+    - invented credentials
+
+conversion:
+  primary:
+    type: phone
+    label: Call Example Plumbing
+  secondary:
+    type: request_service
+    label: Request service
+  mobile:
+    sticky_action: phone
+  emergency:
+    prioritize_phone: false
+  response_expectation:
+    enabled: true

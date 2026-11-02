@@ -1,0 +1,63 @@
+# Shape for client/site-spec.yaml. Sample page plan for Example Plumbing.
+# build_now is the only status that gets a new page. contact_only keeps /contact/.
+
+project:
+  domain: https://example.com
+  primary_language: en
+  locale: en_US
+
+brand:
+  personality:
+    - dependable
+    - direct
+  visual_direction:
+    - clean
+    - practical
+  avoid:
+    - generic contractor template
+    - stock-photo call-center aesthetic
+
+conversion:
+  primary:
+    type: phone
+    label: Call Example Plumbing
+  secondary:
+    type: request_service
+    label: Request service
+
+pages:
+  home:
+    enabled: true
+  about:
+    enabled: true
+  faq:
+    enabled: true
+  contact:
+    enabled: true
+  privacy:
+    enabled: true
+  services:
+    - slug: drain-cleaning
+      status: build_now
+      primary_intent: hire drain cleaning in Example City
+    - slug: water-heater-repair
+      status: contact_only
+      primary_intent: ask about water heater repair
+    - slug: leak-detection
+      status: contact_only
+      primary_intent: ask about leak detection
+  service_areas:
+    - slug: example-city
+      status: build_now
+      primary_intent: find a plumber in Example City
+
+content_strategy:
+  answer_first: true
+  customer_language: plain
+  avoid_jargon: true
+
+visual:
+  design_freedom: high
+  preserve_foundation_contracts: true
+
+sample_banner: true
