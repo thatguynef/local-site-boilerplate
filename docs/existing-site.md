@@ -72,7 +72,7 @@ Write down the primary service slug and the primary city slug. Verify reads thos
 
 ## Phase 4 — Start the client repo and load verified facts
 
-Follow [client-repo.md](client-repo.md). Clone tag `v1.1.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
+Follow [client-repo.md](client-repo.md). Clone tag `v1.2.0`, keep the git history, and set `upstream` to this boilerplate. Do not delete `.git`.
 
 In that repository, set `site` in `astro.config.mjs` to the `https://` origin you will launch. In `wrangler.jsonc`, change `"name"` from `local-site-boilerplate` to a unique Worker name. Leave `compatibility_date` at `2026-10-30` unless a newer Wrangler runtime accepts a later date.
 

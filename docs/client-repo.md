@@ -9,7 +9,7 @@ The client repository is a full copy of one release tag. It contains the pages, 
 Create an empty Git repository for the business. Do not add a README or a license there. Then:
 
 ```bash
-git clone --branch v1.1.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
+git clone --branch v1.2.0 https://github.com/thatguynef/local-site-boilerplate.git client-site
 cd client-site
 git checkout -b main
 git remote rename origin upstream
@@ -18,7 +18,7 @@ npm install
 git push -u origin main
 ```
 
-`v1.1.0` is the current release tag. Clone a tag. Do not clone `main`.
+`v1.2.0` is the current release tag. Clone a tag. Do not clone `main`.
 
 `upstream` is this boilerplate. `origin` is the client's repository. Day-to-day commits go to `origin`.
 
@@ -51,8 +51,8 @@ Leave the routes, the contact form field names, and the check scripts as they ar
 When you want the fixes from a newer tag:
 
 ```bash
-git fetch upstream tag v1.2.0
-git merge v1.2.0
+git fetch upstream tag v1.3.0
+git merge v1.3.0
 ```
 
 Use the real tag name. Merge a tag. Do not merge `upstream/main`. Keep the client's pages and `src/config/business.ts` when the merge overlaps them. Run `npm run verify` after the merge.
