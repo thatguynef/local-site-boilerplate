@@ -71,7 +71,7 @@ npm run build && npx wrangler deploy
 | `public/favicon.svg` and the PNG icons | Mark, if the client has one. |
 | `.dev.vars` | Optional `CONTACT_WEBHOOK_URL`. Copy from `.dev.vars.example`. Do not commit `.dev.vars`. |
 
-Leave `licenseNumber`, `insurance`, `guarantee`, `reviews`, `startingPrice`, and `ownerName` empty until you can prove them. The page shows a placeholder instead of a fake credential.
+Leave `licenseNumber`, `licenses`, `afterHours`, `financing`, `maintenancePlan`, `insurance`, `guarantee`, `reviews`, `startingPrice`, and `ownerName` empty until you can prove them. License, insurance, and guarantee show a placeholder. After-hours, financing, and a maintenance plan stay off the page until they are set. A maintenance plan is shown only on the service page whose slug or title contains "maintenance".
 
 Set `showExampleBanner` to `false` when the sample banner should come down.
 

@@ -54,6 +54,13 @@ export const business = {
   sameAs: [] as string[],
   ownerName: '',
   licenseNumber: '',
+  licenses: [] as string[],
+  afterHours: '',
+  financing: {
+    statement: '',
+    url: '',
+  },
+  maintenancePlan: '',
   insurance: '',
   guarantee: '',
   reviews: {

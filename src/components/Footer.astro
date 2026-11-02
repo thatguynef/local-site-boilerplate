@@ -16,6 +16,7 @@ const { address } = business;
       <a data-phone href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
       <a href={`mailto:${business.email}`}>{business.email}</a>
       <span data-hours>{business.hoursDisplay}</span>
+      {business.afterHours.trim() && <span data-after-hours>{business.afterHours}</span>}
     </address>
     <nav class="footer-nav" aria-label="Footer">
       <ul>

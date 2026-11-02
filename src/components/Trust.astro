@@ -1,12 +1,10 @@
 ---
 import { business } from '../config/business';
+import { financingOffer, licenseLines } from '../lib/offers.mjs';
 
+const licenses = licenseLines(business.licenseNumber, business.licenses);
+const financing = financingOffer(business.financing);
 const slots = [
-  {
-    label: 'License',
-    value: business.licenseNumber,
-    empty: 'Add the license number in src/config/business.ts.',
-  },
   {
     label: 'Insurance',
     value: business.insurance,
@@ -28,6 +26,22 @@ const reviewsReady = business.reviews.rating && business.reviews.count && busine
     <p>{business.ownerName} owns {business.businessName}.</p>
   ) : (
     <p class="placeholder">Add the owner or team name in src/config/business.ts.</p>
+  )}
+  {licenses.length ? (
+    licenses.map((line) => (
+      <p>
+        <strong>License:</strong> {line}
+      </p>
+    ))
+  ) : (
+    <p class="placeholder">
+      <strong>License:</strong> Add the license number in src/config/business.ts.
+    </p>
+  )}
+  {financing && (
+    <p data-financing>
+      <a href={financing.url}>{financing.statement}</a>
+    </p>
   )}
   {slots.map((slot) => (
     <p class:list={{ placeholder: !slot.value }}>

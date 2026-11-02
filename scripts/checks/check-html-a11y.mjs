@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { dist, metaContent, pages, writeResult } from '../lib/html.mjs';
 import { business } from '../lib/business.mjs';
+import { licenseLines } from '../../src/lib/offers.mjs';
 
 const documents = pages();
 const cssFiles = [];
@@ -97,8 +98,15 @@ const assertions = [
   },
   {
     id: 'RL-TRU-04',
-    ok: Boolean(home && /License:/.test(home.html) && /license number/i.test(home.html)),
-    evidence: 'License slot is visible and points at src/config/business.ts until a real number is added',
+    ok: (() => {
+      const lines = licenseLines(business.licenseNumber, business.licenses);
+      if (!home) return false;
+      if (lines.length === 0) return /License:/.test(home.html) && /license number/i.test(home.html);
+      return lines.every((line) => home.html.includes(line)) && !/Add the license number/.test(home.html);
+    })(),
+    evidence: licenseLines(business.licenseNumber, business.licenses).length
+      ? `License lines: ${licenseLines(business.licenseNumber, business.licenses).join('; ')}`
+      : 'License slot is visible and points at src/config/business.ts until a real number is added',
   },
   {
     id: 'RL-TRU-05',

@@ -16,7 +16,7 @@ Scorecards, without copying their rubrics:
 
 - Put name, phone, address, hours, service area, and services only in `src/config/business.ts`.
 - `phoneDisplay` and `phoneTel` use the same digits.
-- Leave `ownerName`, `licenseNumber`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the reference site or the client shows a value they can prove.
+- Leave `ownerName`, `licenseNumber`, `licenses`, `afterHours`, `financing`, `maintenancePlan`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the reference site or the client shows a value they can prove. After-hours, financing, and a maintenance plan stay off the page until they are set.
 - Leave `analytics.ga4` and `analytics.gtm` empty unless the id matches `G-…` or `GTM-…`.
 - One H1 per page. On the home page, the services index, each service page, and each city page, the title, the meta description, and the H1 each include a trade word and the city.
 - Service and city answers are at least 40 characters and say what the company does, where, and how to book. FAQ answers stand alone. Do not write "click here", "see above", or "read more".

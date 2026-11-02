@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Page from '../../layouts/Page.astro';
+import { business } from '../../config/business';
+import { maintenanceStatement } from '../../lib/offers.mjs';
 
 export const prerender = true;
 
@@ -14,6 +16,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const maintenance = maintenanceStatement(business.maintenancePlan, entry.id, entry.data.title);
 const crumbs = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services/' },
@@ -34,4 +37,5 @@ const crumbs = [
   showArea
 >
   <Content />
+  {maintenance && <p data-maintenance-plan>{maintenance}</p>}
 </Page>

@@ -38,9 +38,13 @@ Body copy starts at H2. Phrase headings as questions. Link to the matching servi
 
 In `primaryServices`, point `href` at the new page. Until a page exists, point the service at `/contact/` rather than cloning a thin page.
 
+## Optional facts
+
+Read `afterHours`, `financing`, and `maintenancePlan` from `src/config/business.ts`. Leave them out of the page when they are empty. When `maintenancePlan` is set, that sentence is shown only on the service page whose slug or title contains "maintenance". Do not copy it onto another service page.
+
 ## Do not
 
-- Invent a license, insurance, guarantee, review, price, or owner name
+- Invent a license, insurance, guarantee, review, price, owner name, after-hours offer, financing term, or maintenance plan
 - Paste the phone or address anywhere except content that must match `business.ts`
 - Add a second H1 in the markdown body
 

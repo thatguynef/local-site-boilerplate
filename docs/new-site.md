@@ -16,7 +16,7 @@ Scorecards, without copying their rubrics:
 
 - Put name, phone, address, hours, service area, and services only in `src/config/business.ts`.
 - `phoneDisplay` and `phoneTel` use the same digits. The sample shape is `(555) 010-0199` and `+15550100199`.
-- Leave `ownerName`, `licenseNumber`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the client supplies a value they can prove. The page shows a placeholder.
+- Leave `ownerName`, `licenseNumber`, `licenses`, `afterHours`, `financing`, `maintenancePlan`, `insurance`, `guarantee`, `reviews`, and `startingPrice` empty until the client supplies a value they can prove. License, insurance, and guarantee show a placeholder. After-hours, financing, and a maintenance plan stay off the page until they are set.
 - Leave `analytics.ga4` and `analytics.gtm` empty unless the id matches `G-…` or `GTM-…`.
 - One H1 per page. On the home page, the services index, each service page, and each city page, the title, the meta description, and the H1 each include a trade word and the city.
 - Service and city answers are at least 40 characters and say what the company does, where, and how to book. Body headings are questions. FAQ answers stand alone. Do not write "click here", "see above", or "read more".
@@ -90,6 +90,10 @@ Edit `src/config/business.ts` from the brief.
 - `sameAs` only for profile URLs the client gave
 - `locale` and `lang` when they are not `en_US` and `en`
 - Trust and review fields only from the optional intake answers
+- `licenses` for each proven license. `licenseNumber` is included with that list when it is set
+- `afterHours` as one sentence, only when the company offers it
+- `financing.statement` and `financing.url` together, only with proof. One without the other stays hidden
+- `maintenancePlan` as one sentence. It appears only on the service page whose slug or title contains "maintenance"
 - `showExampleBanner`: `false` after the sample sentences are gone
 - Analytics ids only if the client provided a real one
 
@@ -203,7 +207,11 @@ Where should form leads go (inbox tool, webhook, or not decided):
 
 Optional — leave blank if you cannot show proof:
 Owner or crew name:
-License number:
+Licenses (one per line):
+After-hours offer (one sentence, only if you offer it):
+Financing statement:
+Financing URL:
+Maintenance plan (one sentence, only if you offer one):
 Insurance statement:
 Guarantee (what it covers and for how long):
 Reviews (site, rating, number of reviews, link):

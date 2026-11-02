@@ -80,6 +80,8 @@ export const business = {
   tradeWordPattern: tradeWordPattern(trade, primaryService),
   neighborhoods: list('neighborhoods'),
   areaServed: list('areaServed'),
+  licenseNumber: quoted('licenseNumber'),
+  licenses: list('licenses'),
   ga4: quoted('ga4'),
   gtm: quoted('gtm'),
   site: (config.match(/site:\s*'([^']+)'/)?.[1] ?? '').replace(/\/$/, ''),
