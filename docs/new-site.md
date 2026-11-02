@@ -56,9 +56,9 @@ Write a one-page brief from the answers: name, trade, primary service, primary c
 
 ## Choose the pages
 
-After the intake list is confirmed and before Phase 4, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md`. It does not run inside `npm run verify`. Keyword demand, Search Console, and Analytics still come from an OpenSEO project.
+After the intake list is confirmed and before Phase 4, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md`. It does not run inside `npm run verify`.
 
-Give it the services the client performs and the cities they will drive to. There is no Search Console property and no Analytics property yet, so the plan uses local keyword demand only. A missing metric stays unknown.
+Give it the services the client performs and the cities they will drive to. The plan uses local keyword demand. A missing metric stays unknown.
 
 Write a page only for a row marked build now. A service marked later stays in `primaryServices` with `href` `/contact/`. A city marked later stays off the site until a later pass. A neighborhood stays a name on its city page.
 
@@ -167,12 +167,12 @@ Before the domain goes live:
 - Deploy with `npx wrangler login` and then `npm run build && npx wrangler deploy`.
 - Attach the domain to that Worker in Cloudflare.
 - Submit one lead on the production URL and confirm it arrives.
-- On the Google Business Profile, use the same name, phone, address, hours, and service names the site shows.
+- When the client has a Business Profile, the name, phone, address, hours, and service names on it should match the site.
 - Run the [Rich Results Test](https://search.google.com/test/rich-results) and the [Schema Markup Validator](https://validator.schema.org/) on the home page, the primary service page, and the primary city page.
 
 There is no old site, so there is no redirect map. Unknown URLs use the boilerplate 404.
 
-After launch, submit `https://<domain>/sitemap-index.xml` in Search Console.
+After launch, the client can submit `https://<domain>/sitemap-index.xml` if they have Search Console.
 
 ## Done when
 

@@ -17,7 +17,7 @@ Use these while the content and business facts are still being filled in.
 | NAP consistency | `foundation/check-nap/SKILL.md` |
 | Open Graph image | `foundation/og-image/SKILL.md` |
 
-Run `foundation/local-page-plan/SKILL.md` before the two page skills. It chooses which service and city pages to build. It reads keyword demand, Search Console, and Analytics through OpenSEO. It does not run inside `npm run verify`.
+Run `foundation/local-page-plan/SKILL.md` before the two page skills. It chooses which service and city pages to build from local keyword demand and the public site. It does not need Search Console, Analytics, or Business Profile access. It does not run inside `npm run verify`.
 
 The other foundation skills tell the agent to run `npm run verify` and point at the sister scorecards where that work shows up.
 

@@ -37,7 +37,7 @@ The sample checks look for `/services/drain-cleaning/`, `/service-areas/example-
 
 ## Phase 1 — Permission and the reference URL
 
-Collect the canonical URL, including `https://`. Note whether `www` or the bare domain is canonical. Confirm you may reuse the client's own facts and copy. Ask who can confirm the phone, address, hours, license, and services. Ask for access to the domain, the Google Business Profile, and the current form inbox. Record a live analytics id only if they want it kept.
+Collect the canonical URL, including `https://`. Note whether `www` or the bare domain is canonical. Confirm you may reuse the client's own facts and copy. Ask who can confirm the phone, address, hours, license, and services. The public site is enough to start. Record domain, Business Profile, inbox, or analytics access only when the client has already offered it.
 
 Write a one-page brief: business name, trade, primary city, primary service, and the URL you will treat as the source.
 
@@ -121,9 +121,7 @@ Leave owner, license, insurance, guarantee, reviews, and price empty when the si
 
 ## Choose the pages
 
-Before Phase 5, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md` and give it the canonical domain. It does not run inside `npm run verify`. Keyword demand, Search Console, and Analytics still come from an OpenSEO project.
-
-Connect Search Console and Google Analytics on the OpenSEO project when the client can grant them. Queries in positions 5–20, and organic landing pages with key events, decide which current URLs to improve before adding a new city. When either source is not connected, the plan says so and ranks new pages on local keyword demand. A missing metric stays unknown.
+Before Phase 5, point an agent at `agent-skills/foundation/local-page-plan/SKILL.md` and give it the canonical domain. It does not run inside `npm run verify`. The plan uses local keyword demand and the public URLs already collected. It does not need Search Console, Analytics, or Business Profile access. A missing metric stays unknown.
 
 Build-now rows with no current URL are new pages. Optimize-first rows are the pages to rebuild with the most care. Do-not-build rows stay out of the new site. Keep those old URLs on the Phase 3 redirect map, pointed at the closest real page or `/contact/`.
 
@@ -180,9 +178,9 @@ Before DNS moves:
 - Submit one test lead and confirm it arrives. A valid post sends JSON with `name`, `phone`, `email`, `area`, `service`, `preferredTime`, `message`, and `source` set to `website-contact-form`, then redirects to `/thank-you/`.
 - Attach the domain to the Worker and make it match `site` in `astro.config.mjs`.
 - Deploy with `npx wrangler login` and then `npm run build && npx wrangler deploy`.
-- On the Google Business Profile, use the same name, phone, address, hours, and service names the new site shows.
+- When the client has a Business Profile, the name, phone, address, hours, and service names on it should match the new site.
 - Run the [Rich Results Test](https://search.google.com/test/rich-results) and the [Schema Markup Validator](https://validator.schema.org/) on the home page, the primary service page, and the primary city page.
 
-After launch, open the old service and city URLs and confirm each one lands on the new page. Submit `https://<domain>/sitemap-index.xml` in Search Console.
+After launch, open the old service and city URLs and confirm each one lands on the new page. When the client has Search Console, they can submit `https://<domain>/sitemap-index.xml`.
 
 This repository does not ship a redirect file. The redirect map is part of the client project, not part of the boilerplate sample.

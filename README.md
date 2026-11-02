@@ -20,7 +20,7 @@ The journey is discovery, then the Google Business Profile, then the website. Lo
 
 ## Page plan
 
-Before choosing which service pages and city pages to build, point an agent at [local-page-plan](agent-skills/foundation/local-page-plan/SKILL.md). It reads local keyword demand through OpenSEO, and Search Console and Google Analytics when those are connected, then orders `/services/<slug>/` and `/service-areas/<slug>/`. A business with no site yet is ranked on keyword demand only. A missing metric stays unknown.
+Before choosing which service pages and city pages to build, point an agent at [local-page-plan](agent-skills/foundation/local-page-plan/SKILL.md). It orders `/services/<slug>/` and `/service-areas/<slug>/` from local keyword demand through OpenSEO, and from the public URLs when a site is already live. Search Console, Analytics, and the Business Profile are used only when the user already has them. A missing metric stays unknown.
 
 The plan does not score the built site, and `npm run verify` does not call it. It does not forecast a Maps rank or a date. The skill stays in this repository.
 
