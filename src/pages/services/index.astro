@@ -6,6 +6,8 @@ import { business } from '../../config/business';
 export const prerender = true;
 
 const services = await getCollection('services');
+const tradeLabel = business.trade.charAt(0).toUpperCase() + business.trade.slice(1);
+const serviceList = business.primaryServices.map((service) => service.name.toLowerCase()).join(', ');
 const crumbs = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services/' },
@@ -13,10 +15,10 @@ const crumbs = [
 ---
 
 <Page
-  title="Plumbing services in Example City"
-  seoTitle="Plumbing Services in Example City"
-  description="Example Plumbing offers drain cleaning, water heater repair, and leak detection for homes in Example City."
-  answer="Example Plumbing works on drain cleaning, water heater repair, and leak detection for homes in Example City. Drain cleaning is written up below. The other two start with a call until you add their pages."
+  title={`${tradeLabel} services in ${business.address.city}`}
+  seoTitle={`${tradeLabel} services in ${business.address.city}`}
+  description={`${business.businessName} offers ${serviceList} for homes in ${business.address.city}.`}
+  answer={`${business.businessName} works on ${serviceList} for homes in ${business.address.city}. ${business.primaryService} is written up below. The other services start with a call until you add their pages.`}
   crumbs={crumbs}
   showArea
 >

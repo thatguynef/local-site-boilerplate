@@ -1,10 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import Page from '../../layouts/Page.astro';
+import { business } from '../../config/business';
 
 export const prerender = true;
 
 const areas = await getCollection('serviceAreas');
+const tradeLabel = business.trade.charAt(0).toUpperCase() + business.trade.slice(1);
+const places = business.neighborhoods.join(', ');
 const crumbs = [
   { name: 'Home', href: '/' },
   { name: 'Service areas', href: '/service-areas/' },
@@ -12,10 +15,10 @@ const crumbs = [
 ---
 
 <Page
-  title="Plumbing service areas in Example City"
-  seoTitle="Plumbing Service Areas in Example City"
-  description="Example Plumbing serves Example City, including North Example, Old Town, and River District."
-  answer="Example Plumbing serves homes in Example City. The sample area includes North Example, Old Town, and River District. Add one page for each city you actually drive to."
+  title={`${tradeLabel} service areas in ${business.address.city}`}
+  seoTitle={`${tradeLabel} service areas in ${business.address.city}`}
+  description={`${business.businessName} serves ${business.address.city}, including ${places}.`}
+  answer={`${business.businessName} serves homes in ${business.address.city}. The area includes ${places}. Add one page for each city you actually drive to.`}
   crumbs={crumbs}
 >
   <ul class="card-list">
@@ -23,7 +26,7 @@ const crumbs = [
       <li class="card">
         <h2>{area.data.city}</h2>
         <p>{area.data.neighborhoods.join(', ')}</p>
-        <a href={`/service-areas/${area.id}/`}>Plumbing in {area.data.city}</a>
+        <a href={`/service-areas/${area.id}/`}>{tradeLabel} in {area.data.city}</a>
       </li>
     ))}
   </ul>

@@ -16,6 +16,19 @@ function list(name) {
   return [...match[1].matchAll(/'([^']*)'/g)].map((item) => item[1]);
 }
 
+function openingHours() {
+  const start = source.indexOf('openingHours:');
+  const end = source.indexOf('hoursDisplay:', start);
+  const body = start === -1 ? '' : source.slice(start, end === -1 ? undefined : end);
+  return [...body.matchAll(/days:\s*\[([^\]]*)\][\s\S]*?opens:\s*'([^']*)'[\s\S]*?closes:\s*'([^']*)'/g)].map(
+    (item) => ({
+      days: [...item[1].matchAll(/'([^']*)'/g)].map((day) => day[1]),
+      opens: item[2],
+      closes: item[3],
+    }),
+  );
+}
+
 const serviceLinks = [...source.matchAll(/\{\s*name:\s*'([^']+)',\s*href:\s*'([^']+)'/g)].map((item) => ({
   name: item[1],
   href: item[2],
@@ -73,6 +86,7 @@ export const business = {
   region: quoted('region'),
   postalCode: quoted('postalCode'),
   hoursDisplay: quoted('hoursDisplay'),
+  openingHours: openingHours(),
   responsePromise: quoted('responsePromise'),
   serviceNames: serviceLinks.map((item) => item.name),
   primaryServiceUrl,

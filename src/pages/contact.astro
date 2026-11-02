@@ -7,16 +7,20 @@ import { business } from '../config/business';
 
 export const prerender = true;
 
-const title = 'Contact Example Plumbing';
-const description = 'Call Example Plumbing at (555) 010-0199 or request a call back within one business hour for homes in Example City.';
-const answer = 'Call (555) 010-0199 or send the form. Example Plumbing calls back within one business hour, 7:00 a.m. to 7:00 p.m., for homes in Example City.';
+const citySlug = business.address.city
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '');
+const title = `Contact ${business.businessName}`;
+const description = `Call ${business.businessName} at ${business.phoneDisplay} or request a call back for homes in ${business.address.city}. ${business.responsePromise}`;
+const answer = `Call ${business.phoneDisplay} or send the form. ${business.responsePromise} Homes in ${business.address.city}.`;
 const crumbs = [
   { name: 'Home', href: '/' },
   { name: 'Contact', href: '/contact/' },
 ];
 ---
 
-<Base title={title} seoTitle="Contact a Plumber in Example City" description={description} crumbs={crumbs}>
+<Base title={title} seoTitle={`Contact ${business.businessName} in ${business.address.city}`} description={description} crumbs={crumbs}>
   <article class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
@@ -32,14 +36,14 @@ const crumbs = [
     {business.afterHours.trim() && <p data-after-hours>{business.afterHours}</p>}
     <ContactForm />
     <section class="section">
-      <h2>Where is Example Plumbing?</h2>
+      <h2>Where is {business.businessName}?</h2>
       <p>
         {business.businessName}<br />
         {business.address.street}<br />
         {business.address.city}, {business.address.region} {business.address.postalCode}<br />
         <a href={`tel:${business.phoneTel}`}>{business.phoneDisplay}</a>
       </p>
-      <p>Service questions start on the <a href="/services/">services page</a> and the <a href="/service-areas/example-city/">Example City page</a>.</p>
+      <p>Service questions start on the <a href="/services/">services page</a> and the <a href={`/service-areas/${citySlug}/`}>{business.address.city} page</a>.</p>
     </section>
     <Trust />
   </article>

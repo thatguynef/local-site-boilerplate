@@ -14,6 +14,22 @@ function typesOf(node) {
   return Array.isArray(value) ? value : [value].filter(Boolean);
 }
 
+function sameDays(left, right) {
+  return left.length === right.length && left.every((day) => right.includes(day));
+}
+
+function schemaHoursMatch(specs, blocks) {
+  if (!Array.isArray(specs) || specs.length === 0 || specs.length !== blocks.length) return false;
+  return blocks.every((block) =>
+    specs.some(
+      (item) =>
+        sameDays(item.dayOfWeek ?? [], block.days) &&
+        item.opens === block.opens &&
+        item.closes === block.closes,
+    ),
+  );
+}
+
 for (const page of documents) {
   let nodes = [];
   try {
@@ -41,7 +57,7 @@ for (const page of documents) {
     if (address.addressRegion !== business.region) problems.push(`${page.url} schema region`);
     if (address.postalCode !== business.postalCode) problems.push(`${page.url} schema postal code`);
     if (typeof geo.latitude !== 'number' || typeof geo.longitude !== 'number') problems.push(`${page.url} schema geo`);
-    if (!hours.length || !hours.some((item) => (item.dayOfWeek ?? []).includes('Monday') && item.opens === '07:00' && item.closes === '19:00')) {
+    if (!schemaHoursMatch(hours, business.openingHours)) {
       problems.push(`${page.url} schema hours`);
     }
     for (const area of business.areaServed) {
@@ -160,7 +176,7 @@ const assertions = [
   {
     id: 'GBP-HOURS',
     ok: problems.length === 0 && documents.every((page) => page.html.includes(business.hoursDisplay)),
-    evidence: `Visible hours "${business.hoursDisplay}" and schema hours Monday 07:00-19:00`,
+    evidence: `Visible hours "${business.hoursDisplay}" and schema hours match openingHours`,
   },
   {
     id: 'LV-AREA',
